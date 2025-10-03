@@ -41,18 +41,18 @@ public class GestoreCorsiDiStudioConservatorio {
 			eD = DocenteDAO.readDocente(matricolaDocente);
 			eC = CorsoDAO.readCorso(codiceCorso);
 			if(eD == null || eC == null) {
-				throw new OperationException("Docente o Corso non trovato");
+				throw new OperationException("Teacher or Course not found");
 			}
 			eC.matricolaDocente=CorsoDAO.readAssociazioneDocenteCorso(codiceCorso);
 			
 		   if(eC.matricolaDocente != null) {
-				throw new OperationException("Corso gia assegnato");
+				throw new OperationException("Course already assigned");
 			}
 		   CorsoDAO.updateAssociazioneDocenteCorso(codiceCorso, matricolaDocente);
 		}catch(DBConnectionException dbEx) {
-			throw new OperationException("\nRiscontrato problema interno applicazione!\n");
+			throw new OperationException("\nInternal application problem encountered!\n");
 		}catch(DAOException ex) {
-			throw new OperationException("Ops, qualcosa è andato storto...");
+			throw new OperationException("Oops, something went wrong...");
 		}
 	}
 		
@@ -61,9 +61,9 @@ public class GestoreCorsiDiStudioConservatorio {
 		EntityEsame esame = new EntityEsame(voto, lode, noteDocente, null, codiceVerbale, codiceCorso, username);
         EsameDAO.createEsame(esame);
 		}catch(DBConnectionException dbEx) {
-	        throw new OperationException("\nRiscontrato problema interno applicazione!\n");
+	        throw new OperationException("\nInternal application problem encountered!\n");
 	    } catch(DAOException ex) {
-	        throw new OperationException("Ops, qualcosa è andato storto..");
+	        throw new OperationException("Oops, something went wrong...");
 	    }
     }
 	
@@ -72,9 +72,9 @@ public class GestoreCorsiDiStudioConservatorio {
 	        EntityCorso corso = new EntityCorso(codiceCorso, denominazione, CFU, null, propDi, propA);
 	        CorsoDAO.createCorso(corso);
 	    } catch (DBConnectionException dbEx) {
-	        throw new OperationException("\nRiscontrato problema interno applicazione!\n");
+	        throw new OperationException("\nInternal application problem encountered!\n");
 	    } catch (DAOException ex) {
-	        throw new OperationException("Ops, qualcosa è andato storto..");
+	        throw new OperationException("Oops, something went wrong...");
 	    }
 	}
 
@@ -83,9 +83,9 @@ public class GestoreCorsiDiStudioConservatorio {
 		EntityDocente docente = new EntityDocente(nomeDocente, cognomeDocente, matricola);
         DocenteDAO.createDocente(docente);
 		}catch(DBConnectionException dbEx) {
-	        throw new OperationException("\nRiscontrato problema interno applicazione!\n");
+	        throw new OperationException("\nInternal application problem encountered!\n");
 	    } catch(DAOException ex) {
-	        throw new OperationException("Ops, qualcosa è andato storto..");
+	        throw new OperationException("Oops, something went wrong...");
 	    }
     }
 	
@@ -94,9 +94,9 @@ public class GestoreCorsiDiStudioConservatorio {
 	        EntityVerbale eB = new EntityVerbale(dataVerbale, codiceVerbale, matricola);
 	        VerbaleDAO.createVerbale(eB);
 	    } catch(DBConnectionException dbEx) {
-	        throw new OperationException("\nRiscontrato problema interno applicazione!\n");
+	        throw new OperationException("\nInternal application problem encountered!\n");
 	    } catch(DAOException ex) {
-	        throw new OperationException("Ops, qualcosa è andato storto..");
+	        throw new OperationException("Oops, something went wrong...");
 	    }
 	}
 	
@@ -106,19 +106,19 @@ public class GestoreCorsiDiStudioConservatorio {
 		    eV = VerbaleDAO.readVerbale(codiceVerbale);
 		
 		    if(eV == null) {
-			   throw new OperationException("Verbale non aperto");
+			   throw new OperationException("Report not opened");
 		    }
 		    
 		    List<EntityEsame> esami = EsameDAO.readEsame(codiceVerbale);
             for (EntityEsame esame : esami) {
                if (esame.getDataSuperamento() != null) {
-                  throw new OperationException("Verbale gia chiuso.");
+                  throw new OperationException("Report already closed");
                }
             }
 		}catch(DBConnectionException dbEx) {
-			throw new OperationException("\nRiscontrato problema interno applicazione!\n");
+			throw new OperationException("\nInternal application problem encountered!\n");
 		}catch(DAOException ex) {
-			throw new OperationException("Ops, qualcosa è andato storto..");
+			throw new OperationException("Oops, something went wrong...");
 		}
 	}
 	
@@ -131,9 +131,9 @@ public class GestoreCorsiDiStudioConservatorio {
 			    }
 	       return true;
 	    } catch(DBConnectionException dbEx) {
-			throw new OperationException("\nRiscontrato problema interno applicazione!\n");
+			throw new OperationException("\nInternal application problem encountered!\n");
 		}catch(DAOException ex) {
-			throw new OperationException("Ops, qualcosa è andato storto..");
+			throw new OperationException("Oops, something went wrong...");
 		}
 	}
 	
@@ -146,9 +146,9 @@ public class GestoreCorsiDiStudioConservatorio {
 			    }
 	       return true;
 	    } catch(DBConnectionException dbEx) {
-			throw new OperationException("\nRiscontrato problema interno applicazione!\n");
+			throw new OperationException("\nInternal application problem encountered!\n");
 		}catch(DAOException ex) {
-			throw new OperationException("Ops, qualcosa è andato storto..");
+			throw new OperationException("Oops, something went wrong...");
 		}
 	}
 	
@@ -161,9 +161,9 @@ public class GestoreCorsiDiStudioConservatorio {
 			    }
 	       return true;
 	    } catch(DBConnectionException dbEx) {
-			throw new OperationException("\nRiscontrato problema interno applicazione!\n");
+			throw new OperationException("\nInternal application problem encountered!\n");
 		}catch(DAOException ex) {
-			throw new OperationException("Ops, qualcosa è andato storto..");
+			throw new OperationException("Oops, something went wrong...");
 		}
 	}
 	
@@ -171,9 +171,9 @@ public class GestoreCorsiDiStudioConservatorio {
 	    try {
 	        return EsameDAO.getUsernamesByVerbale(codiceVerbale);
 	    } catch(DBConnectionException dbEx) {
-			throw new OperationException("\nRiscontrato problema interno applicazione!\n");
+			throw new OperationException("\nInternal application problem encountered!\n");
 		}catch(DAOException ex) {
-			throw new OperationException("Ops, qualcosa andato storto..");
+			throw new OperationException("Oops, something went wrong...");
 		}
 	}
 	
@@ -181,9 +181,9 @@ public class GestoreCorsiDiStudioConservatorio {
 	    try {
 	        EsameDAO.controlloPIN(pinInserito, codiceVerbale, username);
 	    } catch(DBConnectionException dbEx) {
-			throw new OperationException("\nRiscontrato problema interno applicazione!\n");
+			throw new OperationException("\nInternal application problem encountered!\n");
 		}catch(DAOException ex) {
-			throw new OperationException("Ops, qualcosa andato storto..");
+			throw new OperationException("Oops, something went wrong...");
 		}
 	}
 
@@ -195,15 +195,15 @@ public class GestoreCorsiDiStudioConservatorio {
 	    try {
 			EsameDAO.eliminaEsame(codiceVerbale, username);
 		} catch (DAOException e) {
-			throw new OperationException("Ops, qualcosa andato storto..");
+			throw new OperationException("Oops, something went wrong...");
 		} catch (DBConnectionException e) {
-			throw new OperationException("\nRiscontrato problema interno applicazione!\n");
+			throw new OperationException("\nInternal application problem encountered!\n");
 		}
 	    }
         catch(DBConnectionException dbEx) {
-			throw new OperationException("\nRiscontrato problema interno applicazione!\n");
+			throw new OperationException("\nInternal application problem encountered!\n");
 		}catch(DAOException ex) {
-			throw new OperationException("Ops, qualcosa andato storto..");
+			throw new OperationException("Oops, something went wrong...");
 		}
     }
 	
@@ -211,9 +211,9 @@ public class GestoreCorsiDiStudioConservatorio {
             try {
                EsameDAO.controlloVoti(codiceVerbale);
             } catch(DBConnectionException dbEx) {
-    			throw new OperationException("\nRiscontrato problema interno applicazione!\n");
+    			throw new OperationException("\nInternal application problem encountered!\n");
     		}catch(DAOException ex) {
-    			throw new OperationException("Ops, qualcosa andato storto..");
+    			throw new OperationException("Oops, something went wrong...");
     		}
     }
 
