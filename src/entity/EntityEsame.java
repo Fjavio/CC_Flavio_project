@@ -3,59 +3,59 @@ package entity;
 import java.util.Date;
 
 public class EntityEsame {
-	private int voto;
-	private boolean lode;
-	private String noteDocente;
-	private Date dataSuperamento;
-	private String codiceVerbale;
-	private String codiceCorso;
+	private int vote;
+	private boolean honors;
+	private String teacherNotes;
+	private Date passingDate;
+	private String reportCode;
+	private String courseCode;
 	private String username;
 	
-	public EntityEsame(int voto, boolean lode, String noteDocente, Date dataSuperamento, String codiceVerbale, String codiceCorso, String username) {
+	public EntityEsame(int vote, boolean honors, String teacherNotes, Date passingDate, String reportCode, String courseCode, String username) {
 		super();
-		this.voto = voto;
-		this.lode = lode;
-		this.noteDocente = noteDocente;
-		this.dataSuperamento = dataSuperamento;
-		this.codiceVerbale = codiceVerbale;
-		this.codiceCorso = codiceCorso;
+		this.vote = vote;
+		this.honors = honors;
+		this.teacherNotes = teacherNotes;
+		this.passingDate = passingDate;
+		this.reportCode = reportCode;
+		this.courseCode = courseCode;
 		this.username = username;
 	}
-	public int getVoto() {
-		return voto;
+	public int getvote() {
+		return vote;
 	}
-	public void setVoto(int voto) {
-		this.voto = voto;
+	public void setvote(int vote) {
+		this.vote = vote;
 	}
-	public boolean getLode() {
-		return lode;
+	public boolean gethonors() {
+		return honors;
 	}
-	public void setLode(boolean lode) {
-		this.lode = lode;
+	public void sethonors(boolean honors) {
+		this.honors = honors;
 	}
-	public String getNoteDocente() {
-		return noteDocente;
+	public String getteacherNotes() {
+		return teacherNotes;
 	}
-	public void setNoteDocente(String noteDocente) {
-		this.noteDocente = noteDocente;
+	public void setteacherNotes(String teacherNotes) {
+		this.teacherNotes = teacherNotes;
 	}
-	public Date getDataSuperamento() {
-	return dataSuperamento;
+	public Date getpassingDate() {
+	return passingDate;
     }
-    public void setDataSuperamento(Date dataSuperamento) {
-	  this.dataSuperamento = dataSuperamento;
+    public void setpassingDate(Date passingDate) {
+	  this.passingDate = passingDate;
     }
-	public String getCodiceVerbale() {
-		return codiceVerbale;
+	public String getreportCode() {
+		return reportCode;
 	}
-	public void setCodiceVerbale(String codiceVerbale) {
-		this.codiceVerbale = codiceVerbale;
+	public void setreportCode(String reportCode) {
+		this.reportCode = reportCode;
 	}
-	public String getCodiceCorso() {
-		return codiceCorso;
+	public String getcourseCode() {
+		return courseCode;
 	}
-	public void setCodiceCorso(String codiceCorso) {
-		this.codiceCorso = codiceCorso;
+	public void setcourseCode(String courseCode) {
+		this.courseCode = courseCode;
 	}
 	public String getUsername() {
 		return username;

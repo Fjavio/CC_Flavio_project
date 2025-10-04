@@ -17,10 +17,10 @@ import java.util.List;
 public class GuiAssociazione {
 
     JFrame frame;
-    private JTextField codiceCorsoField;
-    private JTextField matricolaDocenteField;
-    private String codiceCorso;
-    private String matricolaDocente;
+    private JTextField courseCodeField;
+    private JTextField teacherIDField;
+    private String courseCode;
+    private String teacherID;
 
    
     public static void main(String[] args) {
@@ -48,52 +48,52 @@ public class GuiAssociazione {
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.getContentPane().setLayout(null);
 
-        JLabel lblAssociazioneDocenteCorso = new JLabel("Associazione Docente Corso");
-        lblAssociazioneDocenteCorso.setForeground(Color.RED);
-        lblAssociazioneDocenteCorso.setFont(new Font("Lucida Grande", Font.PLAIN, 20));
-        lblAssociazioneDocenteCorso.setBounds(100, 6, 250, 32);
-        frame.getContentPane().add(lblAssociazioneDocenteCorso);
+        JLabel lblAssociationTeacherCourse = new JLabel("Association Teacher Course");
+        lblAssociationTeacherCourse.setForeground(Color.RED);
+        lblAssociationTeacherCourse.setFont(new Font("Lucida Grande", Font.PLAIN, 20));
+        lblAssociationTeacherCourse.setBounds(100, 6, 250, 32);
+        frame.getContentPane().add(lblAssociationTeacherCourse);
 
-        JLabel lblCodiceCorso = new JLabel("Codice Corso");
-        lblCodiceCorso.setBounds(25, 50, 100, 16);
-        frame.getContentPane().add(lblCodiceCorso);
+        JLabel lblcourseCode = new JLabel("Course Code");
+        lblcourseCode.setBounds(25, 50, 100, 16);
+        frame.getContentPane().add(lblcourseCode);
 
-        codiceCorsoField = new JTextField();
-        codiceCorsoField.setBounds(25, 70, 168, 26);
-        frame.getContentPane().add(codiceCorsoField);
-        codiceCorsoField.setColumns(10);
+        courseCodeField = new JTextField();
+        courseCodeField.setBounds(25, 70, 168, 26);
+        frame.getContentPane().add(courseCodeField);
+        courseCodeField.setColumns(10);
 
-        JLabel lblMatricolaDocente = new JLabel("Matricola Docente");
-        lblMatricolaDocente.setBounds(25, 110, 130, 16);
-        frame.getContentPane().add(lblMatricolaDocente);
+        JLabel lblteacherID = new JLabel("Teacher id");
+        lblteacherID.setBounds(25, 110, 130, 16);
+        frame.getContentPane().add(lblteacherID);
 
-        matricolaDocenteField = new JTextField();
-        matricolaDocenteField.setBounds(25, 130, 168, 26);
-        frame.getContentPane().add(matricolaDocenteField);
-        matricolaDocenteField.setColumns(10);
+        teacherIDField = new JTextField();
+        teacherIDField.setBounds(25, 130, 168, 26);
+        frame.getContentPane().add(teacherIDField);
+        teacherIDField.setColumns(10);
 
-        JButton btnAssocia = new JButton("Associa");
-        btnAssocia.setBounds(268, 100, 155, 26);
-        frame.getContentPane().add(btnAssocia);
+        JButton btnAssociate = new JButton("Associate");
+        btnAssociate.setBounds(268, 100, 155, 26);
+        frame.getContentPane().add(btnAssociate);
 
-        btnAssocia.addActionListener(new ActionListener() {
+        btnAssociate.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                codiceCorso = codiceCorsoField.getText();
-                matricolaDocente = matricolaDocenteField.getText();
+                courseCode = courseCodeField.getText();
+                teacherID = teacherIDField.getText();
                 GestoreCorsiDiStudioConservatorio gestore = GestoreCorsiDiStudioConservatorio.getInstance();
 
                 try {
-                    if (codiceCorso.length() != 5 || !codiceCorso.matches("[a-zA-Z0-9]+")) {
-                        throw new OperationException("Il Codice Corso deve essere di 5 caratteri alfanumerici.");
+                    if (courseCode.length() != 5 || !courseCode.matches("[a-zA-Z0-9]+")) {
+                        throw new OperationException("The Course Code must be 5 alphanumeric characters long.");
                     }
-                    if (matricolaDocente.length() != 7 || !matricolaDocente.matches("[a-zA-Z0-9]+")) {
-                        throw new OperationException("La Matricola Docente deve essere di 7 caratteri alfanumerici.");
+                    if (teacherID.length() != 7 || !teacherID.matches("[a-zA-Z0-9]+")) {
+                        throw new OperationException("The Teacher id must be 7 alphanumeric characters long.");
                     }
                     
-                    gestore.AssociazioneDocenteCorso(codiceCorso, matricolaDocente);
-                    JOptionPane.showMessageDialog(frame, "Docente associato con successo al corso!", "Successo", JOptionPane.INFORMATION_MESSAGE);
+                    gestore.AssociationTeacherCourse(courseCode, teacherID);
+                    JOptionPane.showMessageDialog(frame, "Successfully taught course associate professor!", "Success", JOptionPane.INFORMATION_MESSAGE);
                 } catch (OperationException ex) {
-                    JOptionPane.showMessageDialog(frame, ex.getMessage(), "Errore di Operazione", JOptionPane.ERROR_MESSAGE);
+                    JOptionPane.showMessageDialog(frame, ex.getMessage(), "Operation error", JOptionPane.ERROR_MESSAGE);
                 }
             }
         });

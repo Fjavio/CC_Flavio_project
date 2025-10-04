@@ -9,134 +9,134 @@ import exception.DAOException;
 import exception.DBConnectionException;
 
 public class CorsoDAO {
-	public static EntityCorso readCorso(String codiceCorso) throws DAOException, DBConnectionException {
+	public static EntityCorso readCourse(String courseCode) throws DAOException, DBConnectionException {
 
 		EntityCorso eC = null;
 
 		try {
 
 			Connection conn = DBManager.getConnection();
-			String query = "SELECT * FROM CORSO WHERE CODICECORSO=?;";
+			String query = "SELECT * FROM COURSE WHERE COURSECODE=?;";
 			
 			try {
 
 				PreparedStatement stmt = conn.prepareStatement(query);
 
-				stmt.setString(1, codiceCorso);
+				stmt.setString(1, courseCode);
 
 				ResultSet result = stmt.executeQuery();
 
 				if(result.next()) {
-					eC = new EntityCorso(codiceCorso, result.getString(2), result.getInt(3), result.getString(4),result.getString(5),result.getString(6));
+					eC = new EntityCorso(courseCode, result.getString(2), result.getInt(3), result.getString(4),result.getString(5),result.getString(6));
 				}
 
 			}catch(SQLException e) {
-				throw new DAOException("Errore lettura corso");
+				throw new DAOException("Course reading error");
 			}finally {
 				DBManager.closeConnection();
 			}
 			
 		}catch(SQLException e) {
-			throw new DBConnectionException("Errore di connessione DB");
+			throw new DBConnectionException("DB connection error");
 		}
 
 		return eC;
 	}
 	
-	public static void createCorso(EntityCorso eC) throws DAOException, DBConnectionException {
+	public static void createCourse(EntityCorso eC) throws DAOException, DBConnectionException {
 	    try {
 	        Connection conn = DBManager.getConnection();
 
-	        String query = "INSERT INTO CORSO VALUES (?, ?, ?, ?, ?, ?);";
+	        String query = "INSERT INTO COURSE VALUES (?, ?, ?, ?, ?, ?);";
 			
 	        try {
 	            PreparedStatement stmt = conn.prepareStatement(query);
 
-	            stmt.setString(1, eC.getCodiceCorso());
-                stmt.setString(2, eC.getDenominazione());
+	            stmt.setString(1, eC.getcourseCode());
+                stmt.setString(2, eC.getcourseName());
                 stmt.setInt(3, eC.getCFU());
                 stmt.setString(4, null);
-                stmt.setString(5, eC.getPropDi());
-                stmt.setString(6, eC.getPropA());
+                stmt.setString(5, eC.getpreOf());
+                stmt.setString(6, eC.getpreFor());
 
 	            stmt.executeUpdate();
 
 	        } catch (SQLException e) {
-	            throw new DAOException("Errore scrittura corso");
+	            throw new DAOException("Course writing error");
 	        } finally {
 	            DBManager.closeConnection();
 	        }
 
 	    } catch (SQLException e) {
-	        throw new DBConnectionException("Errore connessione database");
+	        throw new DBConnectionException("DB connection error");
 	    }
 	}
 
-	public static String propDi(Connection conn, String codiceCorso) throws DAOException, DBConnectionException {
-	    String propDi = null;
+	public static String preOf(Connection conn, String courseCode) throws DAOException, DBConnectionException {
+	    String preOf = null;
 
 	    //try (Connection conn = DBManager.getConnection()) {
-	        String query = "SELECT PROPDI FROM CORSO WHERE CODICECORSO = ?;";
+	        String query = "SELECT PREOF FROM COURSE WHERE COURSECODE = ?;";
 	        try (PreparedStatement stmt = conn.prepareStatement(query)) {
-	            stmt.setString(1, codiceCorso);
+	            stmt.setString(1, courseCode);
 	            ResultSet result = stmt.executeQuery();
 	            if (result.next()) {
-	                propDi = result.getString("propDi"); 
-	                System.out.println(propDi);
+	                preOf = result.getString("preOf"); 
+	                System.out.println(preOf);
 	            }
 	        } catch (SQLException e) {
-	            throw new DAOException("Errore durante il recupero dei corsi propedeutici per l'esame");
+	            throw new DAOException("Error while retrieving preparatory courses for the exam");
 	        }
 	   /* } catch (SQLException e) {
-	        throw new DBConnectionException("Errore di connessione DB");
+	        throw new DBConnectionException("DB connection error");
 	    }*/
 
-	    return propDi;
+	    return preOf;
 	}
 
-public static String readAssociazioneDocenteCorso(String codiceCorso) throws DAOException, DBConnectionException {
-        String matricolaDocente = null;
+public static String readAssociationTeacherCourse(String courseCode) throws DAOException, DBConnectionException {
+        String teacherID = null;
 
         try {
             Connection conn = DBManager.getConnection();
-            String query = "SELECT MATRICOLADOCENTE FROM CORSO WHERE CODICECORSO = ?;";
+            String query = "SELECT TEACHERID FROM COURSE WHERE COURSECODE = ?;";
             try {
                 PreparedStatement stmt = conn.prepareStatement(query);
-                stmt.setString(1, codiceCorso);
+                stmt.setString(1, courseCode);
 
                 ResultSet result = stmt.executeQuery();
 
                 if (result.next()) {
-                    matricolaDocente = result.getString("matricolaDocente");
+                    teacherID = result.getString("teacherID");
                 }
             } catch (SQLException e) {
-                throw new DAOException("Errore lettura associazione docente-corso");
+                throw new DAOException("Error reading teacher-course association");
             } finally {
                 DBManager.closeConnection();
             }
         } catch (SQLException e) {
-            throw new DBConnectionException("Errore di connessione DB");
+            throw new DBConnectionException("DB connection error");
         }
 
-        return matricolaDocente;
+        return teacherID;
     } 
     
-public static void updateAssociazioneDocenteCorso(String codiceCorso, String matricolaDocente) throws DAOException, DBConnectionException {
+public static void updateAssociationTeacherCourse(String courseCode, String teacherID) throws DAOException, DBConnectionException {
     try {
         Connection conn = DBManager.getConnection();
-        String query = "UPDATE CORSO SET MATRICOLADOCENTE = ? WHERE CODICECORSO = ?;";
+        String query = "UPDATE COURSE SET TEACHERID = ? WHERE COURSECODE = ?;";
         try {
             PreparedStatement stmt = conn.prepareStatement(query);
-            stmt.setString(1, matricolaDocente);
-            stmt.setString(2, codiceCorso);
+            stmt.setString(1, teacherID);
+            stmt.setString(2, courseCode);
             stmt.executeUpdate();
         } catch (SQLException e) {
-            throw new DAOException("Errore durante l'aggiornamento dell'associazione del corso al docente");
+            throw new DAOException("Error updating course association to teacher");
         } finally {
             DBManager.closeConnection();
         }
     } catch (SQLException e) {
-        throw new DBConnectionException("Errore di connessione al DB");
+        throw new DBConnectionException("DB connection error");
     }
   }
 }

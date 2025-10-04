@@ -35,34 +35,34 @@ public class MenuSegreteriaStudenti {
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.getContentPane().setLayout(null);
         
-        JLabel lblInterfacciaSegreteria = new JLabel("Menu Segreteria");
-        lblInterfacciaSegreteria.setForeground(Color.RED);
-        lblInterfacciaSegreteria.setFont(new Font("Lucida Grande", Font.PLAIN, 30));
-        lblInterfacciaSegreteria.setBounds(90, 6, 270, 64);
-        frame.getContentPane().add(lblInterfacciaSegreteria);
+        JLabel lblSecretariatInterface = new JLabel("Secretariat Menu");
+        lblSecretariatInterface.setForeground(Color.RED);
+        lblSecretariatInterface.setFont(new Font("Lucida Grande", Font.PLAIN, 30));
+        lblSecretariatInterface.setBounds(90, 6, 270, 64);
+        frame.getContentPane().add(lblSecretariatInterface);
 
-        JButton btnAggiungiDocente = new JButton("Aggiungi Docente");
-        btnAggiungiDocente.setBounds(90, 100, 270, 40);
-        frame.getContentPane().add(btnAggiungiDocente);
+        JButton btnAddTeacher = new JButton("Add Teacher");
+        btnAddTeacher.setBounds(90, 100, 270, 40);
+        frame.getContentPane().add(btnAddTeacher);
 
-        JButton btnAggiungiCorso = new JButton("Aggiungi Corso");
-        btnAggiungiCorso.setBounds(90, 150, 270, 40);
-        frame.getContentPane().add(btnAggiungiCorso);
+        JButton btnAddCourse = new JButton("Add Course");
+        btnAddCourse.setBounds(90, 150, 270, 40);
+        frame.getContentPane().add(btnAddCourse);
 
-        JButton btnAssociazioneDocenteCorso = new JButton("Associa Docente a Corso");
-        btnAssociazioneDocenteCorso.addActionListener(new ActionListener() {
+        JButton btnAssociationTeacherCourse = new JButton("Associate Teacher to Course");
+        btnAssociationTeacherCourse.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 try {
                     GuiAssociazione window = new GuiAssociazione();
                     window.frame.setVisible(true);
                     frame.setVisible(false);
                 } catch (Exception exc) {
-                    System.out.println("Errore nella creazione della finestra");
+                    System.out.println("Error creating window");
                 }
             }
         });
-        btnAssociazioneDocenteCorso.setBounds(90, 200, 270, 40);
-        frame.getContentPane().add(btnAssociazioneDocenteCorso);
+        btnAssociationTeacherCourse.setBounds(90, 200, 270, 40);
+        frame.getContentPane().add(btnAssociationTeacherCourse);
     }
 }
 

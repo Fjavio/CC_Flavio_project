@@ -20,9 +20,9 @@ import java.util.List;
 public class GuiChiusura {
 
     JFrame frame;
-    private JTextField codiceVerbaleField;
+    private JTextField reportCodeField;
     private JTextField pinField;
-    private String codiceVerbale;
+    private String reportCode;
     private List<String> usernames;
     private int currentUserIndex;
 
@@ -49,20 +49,20 @@ public class GuiChiusura {
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.getContentPane().setLayout(null);
 
-        JLabel lblChiusuraVerbale = new JLabel("Chiusura Verbale");
-        lblChiusuraVerbale.setForeground(Color.RED);
-        lblChiusuraVerbale.setFont(new Font("Lucida Grande", Font.PLAIN, 26));
-        lblChiusuraVerbale.setBounds(138, 6, 200, 32);
-        frame.getContentPane().add(lblChiusuraVerbale);
+        JLabel lblClosingReport = new JLabel("Closing Report");
+        lblClosingReport.setForeground(Color.RED);
+        lblClosingReport.setFont(new Font("Lucida Grande", Font.PLAIN, 26));
+        lblClosingReport.setBounds(138, 6, 200, 32);
+        frame.getContentPane().add(lblClosingReport);
 
-        JLabel lblCodiceVerbale = new JLabel("Codice Verbale");
-        lblCodiceVerbale.setBounds(25, 50, 100, 16);
-        frame.getContentPane().add(lblCodiceVerbale);
+        JLabel lblreportCode = new JLabel("Report Code");
+        lblreportCode.setBounds(25, 50, 100, 16);
+        frame.getContentPane().add(lblreportCode);
 
-        codiceVerbaleField = new JTextField();
-        codiceVerbaleField.setBounds(25, 70, 168, 26);
-        frame.getContentPane().add(codiceVerbaleField);
-        codiceVerbaleField.setColumns(10);
+        reportCodeField = new JTextField();
+        reportCodeField.setBounds(25, 70, 168, 26);
+        frame.getContentPane().add(reportCodeField);
+        reportCodeField.setColumns(10);
 
         JLabel lblPin = new JLabel("Pin");
         lblPin.setBounds(25, 110, 100, 16);
@@ -73,40 +73,40 @@ public class GuiChiusura {
         frame.getContentPane().add(pinField);
         pinField.setColumns(10);
 
-        JButton btnVerifica = new JButton("Verifica Verbale");
-        btnVerifica.setBounds(268, 70, 155, 26);
-        frame.getContentPane().add(btnVerifica);
+        JButton btnCheck = new JButton("Check Report");
+        btnCheck.setBounds(268, 70, 155, 26);
+        frame.getContentPane().add(btnCheck);
 
-        JButton btnInserisciPin = new JButton("Inserisci PIN");
-        btnInserisciPin.setBounds(268, 130, 155, 26);
-        frame.getContentPane().add(btnInserisciPin);
-        btnInserisciPin.setEnabled(false);
+        JButton btnInsertPin = new JButton("Insert PIN");
+        btnInsertPin.setBounds(268, 130, 155, 26);
+        frame.getContentPane().add(btnInsertPin);
+        btnInsertPin.setEnabled(false);
 
-        JButton btnConferma = new JButton("Conferma");
-        btnConferma.setBounds(268, 190, 155, 49);
-        frame.getContentPane().add(btnConferma);
-        btnConferma.setEnabled(false);
+        JButton btnConfirm = new JButton("Conferma");
+        btnConfirm.setBounds(268, 190, 155, 49);
+        frame.getContentPane().add(btnConfirm);
+        btnConfirm.setEnabled(false);
 
-        btnVerifica.addActionListener(new ActionListener() {
+        btnCheck.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                codiceVerbale = codiceVerbaleField.getText();
+                reportCode = reportCodeField.getText();
                 GestoreCorsiDiStudioConservatorio gestore = GestoreCorsiDiStudioConservatorio.getInstance();
                 try {
-                    gestore.verificaVerbale(codiceVerbale);
-                    usernames = gestore.getUsernamesByVerbale(codiceVerbale);
+                    gestore.checkReport(reportCode);
+                    usernames = gestore.getUsernamesByReport(reportCode);
                     currentUserIndex = 0;
                     if (usernames.isEmpty()) {
-                        JOptionPane.showMessageDialog(frame, "Nessuno studente associato al verbale.", "Errore", JOptionPane.ERROR_MESSAGE);
+                        JOptionPane.showMessageDialog(frame, "No students associated with the report.", "Error", JOptionPane.ERROR_MESSAGE);
                     } else {
-                        btnInserisciPin.setEnabled(true);
+                        btnInsertPin.setEnabled(true);
                     }
                 } catch (OperationException ex) {
-                    JOptionPane.showMessageDialog(frame, ex.getMessage(), "Errore di Operazione", JOptionPane.ERROR_MESSAGE);
+                    JOptionPane.showMessageDialog(frame, ex.getMessage(), "Operation error", JOptionPane.ERROR_MESSAGE);
                 }
             }
         });
 
-        btnInserisciPin.addActionListener(new ActionListener() {
+        btnInsertPin.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 String pinStr = pinField.getText();
                 try {
@@ -117,33 +117,33 @@ public class GuiChiusura {
                     }
                     GestoreCorsiDiStudioConservatorio gestore = GestoreCorsiDiStudioConservatorio.getInstance();
                     String username = usernames.get(currentUserIndex);
-                    gestore.controlloPIN(pin, codiceVerbale, username);
-                    gestore.ChiusuraVerbale1(codiceVerbale, username);
+                    gestore.checkPIN(pin, reportCode, username);
+                    gestore.ClosingReport1(reportCode, username);
                     currentUserIndex++;
                     pinField.setText("");
                     if (currentUserIndex < usernames.size()) {
-                        JOptionPane.showMessageDialog(frame, "PIN accettato per " + username + ". Inserisci il PIN per il prossimo studente.", "Successo", JOptionPane.INFORMATION_MESSAGE);
+                        JOptionPane.showMessageDialog(frame, "PIN accepted for " + username + ". Insert pin for next student.", "Success", JOptionPane.INFORMATION_MESSAGE);
                     } else {
-                        btnConferma.setEnabled(true);
-                        btnInserisciPin.setEnabled(false);
-                        JOptionPane.showMessageDialog(frame, "Tutti i PIN sono stati accettati. Conferma per chiudere il verbale.", "Successo", JOptionPane.INFORMATION_MESSAGE);
+                        btnConfirm.setEnabled(true);
+                        btnInsertPin.setEnabled(false);
+                        JOptionPane.showMessageDialog(frame, "All PINs have been accepted. Confirm to close the report.", "Success", JOptionPane.INFORMATION_MESSAGE);
                     }
                 } catch (NumberFormatException ex) {
-                    JOptionPane.showMessageDialog(frame, "Il PIN deve essere un numero di 7 cifre. Riprovare.", "Errore di Formato", JOptionPane.ERROR_MESSAGE);
+                    JOptionPane.showMessageDialog(frame, "The PIN must be a 7-digit number. Try again.", "Format Error", JOptionPane.ERROR_MESSAGE);
                 } catch (OperationException ex) {
-                    JOptionPane.showMessageDialog(frame, ex.getMessage(), "Errore di Operazione", JOptionPane.ERROR_MESSAGE);
+                    JOptionPane.showMessageDialog(frame, ex.getMessage(), "Operation error", JOptionPane.ERROR_MESSAGE);
                 }
             }
         });
 
-        btnConferma.addActionListener(new ActionListener() {
+        btnConfirm.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 try {
                     GestoreCorsiDiStudioConservatorio gestore = GestoreCorsiDiStudioConservatorio.getInstance();
-                    gestore.ChiusuraVerbale2(codiceVerbale);
-                    JOptionPane.showMessageDialog(frame, "Verbale chiuso con successo!", "Successo", JOptionPane.INFORMATION_MESSAGE);
+                    gestore.ClosingReport2(reportCode);
+                    JOptionPane.showMessageDialog(frame, "Report closed successfully!", "Success", JOptionPane.INFORMATION_MESSAGE);
                 } catch (OperationException ex) {
-                    JOptionPane.showMessageDialog(frame, ex.getMessage(), "Errore di Operazione", JOptionPane.ERROR_MESSAGE);
+                    JOptionPane.showMessageDialog(frame, ex.getMessage(), "Operation error", JOptionPane.ERROR_MESSAGE);
                 }
             }
         });

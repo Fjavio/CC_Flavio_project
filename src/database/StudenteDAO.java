@@ -10,14 +10,14 @@ import exception.DAOException;
 import exception.DBConnectionException;
 
 public class StudenteDAO {
-	public static EntityStudente readStudente(String username) throws DAOException, DBConnectionException {
+	public static EntityStudente readStudent(String username) throws DAOException, DBConnectionException {
 
 		EntityStudente eS = null;
 
 		try {
 
 			Connection conn = DBManager.getConnection();
-			String query = "SELECT * FROM STUDENTE WHERE USERNAME=?;";
+			String query = "SELECT * FROM STUDENT WHERE USERNAME=?;";
 			
 			try {
 
@@ -32,23 +32,23 @@ public class StudenteDAO {
 				}
 
 			}catch(SQLException e) {
-				throw new DAOException("Errore lettura studente");
+				throw new DAOException("Student reading error");
 			}finally {
 				DBManager.closeConnection();
 			}
 			
 		}catch(SQLException e) {
-			throw new DBConnectionException("Errore di connessione DB");
+			throw new DBConnectionException("DB connection error");
 		}
 
 		return eS;
 	}
 	
-	public static void createStudente(EntityStudente eS) throws DAOException, DBConnectionException {
+	public static void createStudent(EntityStudente eS) throws DAOException, DBConnectionException {
         try {
             Connection conn = DBManager.getConnection();
 
-            String query = "INSERT INTO STUDENTE VALUES (?, ?, ?, ?);";
+            String query = "INSERT INTO STUDENT VALUES (?, ?, ?, ?);";
 
             try {
                 PreparedStatement stmt = conn.prepareStatement(query);
@@ -56,18 +56,18 @@ public class StudenteDAO {
                 stmt.setString(1, eS.getUsername());
                 stmt.setString(2, eS.getPassword());
                 stmt.setInt(3, eS.getPIN());
-                stmt.setInt(4, eS.getIdCorsodiStudio());
+                stmt.setInt(4, eS.getidCDS());
 
                 stmt.executeUpdate();
 
             } catch (SQLException e) {
-                throw new DAOException("Errore scrittura studente");
+                throw new DAOException("Student writing error");
             } finally {
                 DBManager.closeConnection();
             }
 
         } catch (SQLException e) {
-            throw new DBConnectionException("Errore connessione database");
+            throw new DBConnectionException("DB connection error");
         }
     }
 	

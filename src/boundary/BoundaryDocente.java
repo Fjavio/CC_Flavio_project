@@ -21,214 +21,214 @@ public class BoundaryDocente {
 		boolean exit = false;
 		
 		while(!exit) {
-			System.out.println("Docente");
-			System.out.println("1. AperturaVerbale");
-			System.out.println("2. ChiusuraVerbale");
-			System.out.println("3. Esci");
+			System.out.println("Teacher");
+			System.out.println("1. OpeningReport");
+			System.out.println("2. ClosingReport");
+			System.out.println("3. Exit");
 			
 			String op = scan.nextLine();
 
 			if (op.equals("1")) {
-                AperturaVerbale();
+				OpeningReport();
             } else if (op.equals("2")) {
-                    ChiusuraVerbale();
+            	ClosingReport();
                 } else if (op.equals("3")) {
                 exit = true;
             } else {
-                System.out.println("Operazione non disponibile");
+                System.out.println("Operation not available");
                 System.out.println();
             }
         }
 		
-		System.out.println("Arrivederci");
+		System.out.println("Goodbye");
 		
 	}
 	
-            private static void AperturaVerbale() {
+            private static void OpeningReport() {
                 GestoreCorsiDiStudioConservatorio gestoreCorsiDiStudioConservatorio = GestoreCorsiDiStudioConservatorio.getInstance();
-                String codiceVerbale = null;
-                String matricola = null;
-                String codiceCorso = null;
+                String reportCode = null;
+                String teacherID = null;
+                String courseCode = null;
                 String username = null;
-                Date data = null;
+                Date date = null;
                 try {
-                	boolean verbaleValido = false;
-                    while (!verbaleValido) {
-                    	System.out.println("Inserisci il verbale che vuoi creare");
-                        codiceVerbale = scan.nextLine();
+                	boolean validReport = false;
+                    while (!validReport) {
+                    	System.out.println("Enter the report you want to create");
+                        reportCode = scan.nextLine();
                         try {
-                        	if (codiceVerbale.length() == 5) {
-                                if (codiceVerbale.matches("[a-zA-Z0-9]+")) {
-                                        verbaleValido = true;
+                        	if (reportCode.length() == 5) {
+                                if (reportCode.matches("[a-zA-Z0-9]+")) {
+                                        validReport = true;
                                 } else {
-                                    System.out.println("Verbale deve essere senza simboli. Riprovare.");
+                                    System.out.println("The report must be without symbols. Try again.");
                                 }
                             } else {
-                                System.out.println("Verbale deve essere di 5 caratteri. Riprovare.");
+                                System.out.println("The report must be 5 characters. Try again.");
                             }
                         } catch (Exception e) {
-                            System.out.println("Errore inaspettato, riprovare..");
+                            System.out.println("Unexpected error, try again..");
                         }
                     }
                     
-                    boolean dataValida = false;
-                    while (!dataValida) {
+                    boolean validDate = false;
+                    while (!validDate) {
         				try {
-        					System.out.println("Inserisci la data (aaaa-MM-gg)");
-        					String dataTemp = scan.nextLine();
-        					data = Date.valueOf(dataTemp);
+        					System.out.println("Insert the date (aaaa-MM-gg)");
+        					String dateTemp = scan.nextLine();
+        					date = Date.valueOf(dateTemp);
 
-        					dataValida = true;
+        					validDate = true;
         				} catch (IllegalArgumentException iE) {
-        					System.out.println("Errore nell'acquisizione della data, riprovare..");
+        					System.out.println("Error acquiring the date, try again..");
         					System.out.println();
         				}
         			}
 					
-                    boolean matricolaValida = false;
-                    while (!matricolaValida) {
-                        System.out.println("Inserisci la tua matricola");
-                        matricola = scan.nextLine();
+                    boolean validTeacherID = false;
+                    while (!validTeacherID) {
+                        System.out.println("Insert your id");
+                        teacherID = scan.nextLine();
                         try {
-                        	if (matricola.length() == 7) {
-                                if (matricola.matches("[a-zA-Z0-9]+")) {
-                                    if (gestoreCorsiDiStudioConservatorio.controlloDocente(matricola)) {
-                                        matricolaValida = true;
+                        	if (teacherID.length() == 7) {
+                                if (teacherID.matches("[a-zA-Z0-9]+")) {
+                                    if (gestoreCorsiDiStudioConservatorio.checkTeacher(teacherID)) {
+                                        validTeacherID = true;
                                     } else {
-                                        System.out.println("Docente specificato non esiste nel database. Riprovare.");
+                                        System.out.println("The specified teacher does not exist in the database. Try again.");
                                     }
                                 } else {
-                                    System.out.println("Matricola deve essere senza simboli. Riprovare.");
+                                    System.out.println("Id must be without symbols. Try again.");
                                 }
                             } else {
-                                System.out.println("Matricola deve essere di 7 caratteri. Riprovare.");
+                                System.out.println("Id must be 7 characters long. Try again.");
                             }
                         } catch (OperationException oE) {
                             System.out.println(oE.getMessage());
-                            System.out.println("Errore nell'acquisizione di dati, riprovare..");
+                            System.out.println("Error acquiring data, try again..");
                         } catch (Exception e) {
-                            System.out.println("Errore inaspettato, riprovare..");
+                            System.out.println("Unexpected error, try again..");
                         }
                     }
                     
-                    gestoreCorsiDiStudioConservatorio.AperturaVerbale(codiceVerbale, data, matricola);
-                    System.out.println("Verbale " + codiceVerbale + " creato correttamente.");
+                    gestoreCorsiDiStudioConservatorio.OpeningReport(reportCode, date, teacherID);
+                    System.out.println("Report " + reportCode + " created successfully.");
                     
-                    boolean inserisciAltroEsame = true;
-                    while (inserisciAltroEsame) {
-                        System.out.println("Inserisci i dettagli dell'esame:");
-                        System.out.println("Voto:");
-                        int voto = Integer.parseInt(scan.nextLine());
-                        System.out.println("Lode (true/false):");
-                        boolean lode = Boolean.parseBoolean(scan.nextLine());
-                        System.out.println("Note docente:");
-                        String noteDocente = scan.nextLine();
-                        boolean corsoValido = false;
-                        while (!corsoValido) {
-                        	System.out.println("Codice Corso:");
-                            codiceCorso = scan.nextLine();
+                    boolean insertOtherExam = true;
+                    while (insertOtherExam) {
+                        System.out.println("Enter exam details:");
+                        System.out.println("Vote:");
+                        int vote = Integer.parseInt(scan.nextLine());
+                        System.out.println("Honors (true/false):");
+                        boolean honors = Boolean.parseBoolean(scan.nextLine());
+                        System.out.println("Teacher notes:");
+                        String teacherNotes = scan.nextLine();
+                        boolean validCourse = false;
+                        while (!validCourse) {
+                        	System.out.println("Course code:");
+                            courseCode = scan.nextLine();
                             try {
-                            	if (codiceCorso.length() == 5) {
-                                    if (codiceCorso.matches("[a-zA-Z0-9]+")) {
-                                        if (gestoreCorsiDiStudioConservatorio.controlloCorso(codiceCorso)) {
-                                            corsoValido = true;
+                            	if (courseCode.length() == 5) {
+                                    if (courseCode.matches("[a-zA-Z0-9]+")) {
+                                        if (gestoreCorsiDiStudioConservatorio.checkCourse(courseCode)) {
+                                            validCourse = true;
                                         } else {
-                                            System.out.println("Corso specificato non esiste nel database. Riprovare.");
+                                            System.out.println("The specified course does not exist in the database. Try again.");
                                         }
                                     } else {
-                                        System.out.println("CodiceCorso deve essere senza simboli. Riprovare.");
+                                        System.out.println("CourseCode must be without symbols. Try again.");
                                     }
                                 } else {
-                                    System.out.println("CodiceCorso deve essere di 5 caratteri. Riprovare.");
+                                    System.out.println("CourseCode must be 5 characters. Try again.");
                                 }
                             } catch (OperationException oE) {
                                 System.out.println(oE.getMessage());
-                                System.out.println("Errore nell'acquisizione di dati, riprovare..");
+                                System.out.println("Error acquiring data, try again..");
                             } catch (Exception e) {
-                                System.out.println("Errore inaspettato, riprovare..");
+                                System.out.println("Unexpected error, try again..");
                             }
                         }
                         
-                        boolean usernameValido = false;
-                        while (!usernameValido) {
+                        boolean validUsername = false;
+                        while (!validUsername) {
                         	 System.out.println("Username:");
                         	 username = scan.nextLine();
                             try {
-                                if (gestoreCorsiDiStudioConservatorio.controlloStudente(username)) {
-                                      usernameValido = true;
+                                if (gestoreCorsiDiStudioConservatorio.checkStudent(username)) {
+                                      validUsername = true;
                                         } else {
-                                            System.out.println("Studente specificato non esiste nel database. Riprovare.");
+                                            System.out.println("The specified student does not exist in the database. Try again.");
                                         }
                             } catch (OperationException oE) {
                                 System.out.println(oE.getMessage());
-                                System.out.println("Errore nell'acquisizione di dati, riprovare..");
+                                System.out.println("Error acquiring data, try again..");
                             } catch (Exception e) {
-                                System.out.println("Errore inaspettato, riprovare..");
+                                System.out.println("Unexpected error, try again..");
                             }
                         }
                        
                         try {
-                            gestoreCorsiDiStudioConservatorio.createAndInsertEsame(voto, lode, noteDocente, codiceVerbale, codiceCorso, username);
-                            System.out.println("Esame aggiunto con successo.");
-                            System.out.println("Vuoi inserire un altro esame? (yes/no):");
-                            inserisciAltroEsame = scan.nextLine().equalsIgnoreCase("yes");
+                            gestoreCorsiDiStudioConservatorio.createAndInsertExam(vote, honors, teacherNotes, reportCode, courseCode, username);
+                            System.out.println("Exam added successfully.");
+                            System.out.println("Do you want to add another exam? (yes/no):");
+                            insertOtherExam = scan.nextLine().equalsIgnoreCase("yes");
                         } catch (OperationException oE) {
                             System.out.println(oE.getMessage());
-                            System.out.println("Riprovare..\n");
+                            System.out.println("Try again..\n");
                         } catch (Exception e) {
-                            System.out.println("Unexpected exception, riprovare..");
+                            System.out.println("Unexpected exception, try again..");
                             System.out.println();
                         }
                     }
                 } catch (OperationException oE) {
                     System.out.println(oE.getMessage());
-                    System.out.println("Riprovare..\n");
+                    System.out.println("Try again..\n");
                 } catch (Exception e) {
-                    System.out.println("Unexpected exception, riprovare..");
+                    System.out.println("Unexpected exception, try again..");
                     System.out.println();
                 }
             }
 
-	public static void ChiusuraVerbale() { //public per fare JUNIT
+	public static void ClosingReport() { //public to test with JUNIT
         GestoreCorsiDiStudioConservatorio gestoreCorsiDiStudioConservatorio = GestoreCorsiDiStudioConservatorio.getInstance();
-        String codiceVerbale = null; 
-        int pinInserito = 0;
+        String reportCode = null; 
+        int insertedPin = 0;
         try {
-        	System.out.println("Inserisci il verbale che devi chiudere");
-   		    codiceVerbale = scan.nextLine();
-   		    gestoreCorsiDiStudioConservatorio.verificaVerbale(codiceVerbale);
-            List<String> usernames = gestoreCorsiDiStudioConservatorio.getUsernamesByVerbale(codiceVerbale);
+        	System.out.println("Enter the report you need to close");
+   		    reportCode = scan.nextLine();
+   		    gestoreCorsiDiStudioConservatorio.checkReport(reportCode);
+            List<String> usernames = gestoreCorsiDiStudioConservatorio.getUsernamesByReport(reportCode);
                 for (String username : usernames) {
-                	boolean pinValido = false;
-                    while (!pinValido) {
+                	boolean validPin = false;
+                    while (!validPin) {
                     	try {
-                    	System.out.println("Inserisci il PIN per lo studente" + username + ":");
-                        pinInserito = Integer.parseInt(scan.nextLine());
-                        int length = String.valueOf(pinInserito).length();
+                    	System.out.println("Enter the PIN for the student " + username + ":");
+                        insertedPin = Integer.parseInt(scan.nextLine());
+                        int length = String.valueOf(insertedPin).length();
                         try {
                         	if (length == 7) {
-                                 pinValido = true;
+                                 validPin = true;
                             } else {
-                                System.out.println("Pin deve essere di 7 numeri. Riprovare.");
+                                System.out.println("PIN must be 7 numbers. Try again.");
                             }
                         } catch (Exception e) {
-                            System.out.println("Errore inaspettato, riprovare..");
+                            System.out.println("Unexpected error, try again..");
                         }
                     	}catch (NumberFormatException nE) {
-        					System.out.println("Errore, inserire un numero valido");
+        					System.out.println("Error, enter a valid number");
         					System.out.println();
         				}
                     }
-                gestoreCorsiDiStudioConservatorio.controlloPIN(pinInserito, codiceVerbale, username);
-                gestoreCorsiDiStudioConservatorio.ChiusuraVerbale1(codiceVerbale, username);
+                gestoreCorsiDiStudioConservatorio.checkPIN(insertedPin, reportCode, username);
+                gestoreCorsiDiStudioConservatorio.ClosingReport1(reportCode, username);
                 }
-                gestoreCorsiDiStudioConservatorio.ChiusuraVerbale2(codiceVerbale);
-                System.out.println("Verbale chiuso con successo!");
+                gestoreCorsiDiStudioConservatorio.ClosingReport2(reportCode);
+                System.out.println("Report closed successfully!");
         } catch (OperationException oE) {
 			System.out.println(oE.getMessage());
-			System.out.println("Riprovare..\n");
+			System.out.println("Try again..\n");
 		} catch (Exception e) {
-			System.out.println("Unexpected exception, riprovare..");
+			System.out.println("Unexpected exception, try again..");
 			System.out.println();
 		}
     }

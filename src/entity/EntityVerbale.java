@@ -2,32 +2,32 @@ package entity;
 import java.util.Date;
 
 public class EntityVerbale {
-	private Date dataVerbale;
-	private String codiceVerbale;
-	private String matricolaDocente;
+	private Date reportDate;
+	private String reportCode;
+	private String teacherID;
 	
-	public EntityVerbale(Date dataVerbale, String codiceVerbale, String matricolaDocente) {
+	public EntityVerbale(Date reportDate, String reportCode, String teacherID) {
 		super();
-		this.dataVerbale = dataVerbale;
-		this.codiceVerbale = codiceVerbale;
-		this.matricolaDocente = matricolaDocente;
+		this.reportDate = reportDate;
+		this.reportCode = reportCode;
+		this.teacherID = teacherID;
 	}
-	public Date getDataVerbale() {
-		return dataVerbale;
+	public Date getreportDate() {
+		return reportDate;
 	}
-	public void setDataVerbale(Date dataVerbale) {
-		this.dataVerbale = dataVerbale;
+	public void setreportDate(Date reportDate) {
+		this.reportDate = reportDate;
 	}
-	public String getCodiceVerbale() {
-		return codiceVerbale;
+	public String getreportCode() {
+		return reportCode;
 	}
-	public void setCodiceVerbale(String codiceVerbale) {
-		this.codiceVerbale = codiceVerbale;
+	public void setreportCode(String reportCode) {
+		this.reportCode = reportCode;
 	}
-	public String getMatricolaDocente() {
-		return matricolaDocente;
+	public String getteacherID() {
+		return teacherID;
 	}
-	public void setMatricolaDocente(String matricolaDocente) {
-		this.matricolaDocente = matricolaDocente;
+	public void setteacherID(String teacherID) {
+		this.teacherID = teacherID;
 	}
 }

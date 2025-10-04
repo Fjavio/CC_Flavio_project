@@ -1,37 +1,37 @@
 package entity;
 
 public class EntityCorso {
-	private String codiceCorso;
-	private String denominazione;
+	private String courseCode;
+	private String courseName;
 	private int CFU;
-	public String matricolaDocente;
-	public String propDi;
-	public String propA;
+	public String teacherID;
+	public String preOf;
+	public String preFor;
 	
-	public EntityCorso(String codiceCorso, String denominazione, int CFU, String matricolaDocente, String propDi, String propA) {
+	public EntityCorso(String courseCode, String courseName, int CFU, String teacherID, String preOf, String preFor) {
 		super();
-		this.codiceCorso = codiceCorso;
-		this.denominazione = denominazione;
+		this.courseCode = courseCode;
+		this.courseName = courseName;
 		this.CFU = CFU;
-		this.matricolaDocente = matricolaDocente;
-		this.propDi = propDi;
-		this.propA = propA;
+		this.teacherID = teacherID;
+		this.preOf = preOf;
+		this.preFor = preFor;
 	}
 	
-	public String getCodiceCorso() {
-		return codiceCorso;
+	public String getcourseCode() {
+		return courseCode;
 	}
 	
-	public void setCodiceCorso(String codiceCorso) {
-		this.codiceCorso = codiceCorso;
+	public void setcourseCode(String courseCode) {
+		this.courseCode = courseCode;
 	}
 	
-	public String getDenominazione() {
-		return denominazione;
+	public String getcourseName() {
+		return courseName;
 	}
 	
-	public void setDenominazione(String denominazione) {
-		this.denominazione = denominazione;
+	public void setcourseName(String courseName) {
+		this.courseName = courseName;
 	}
 	
 	public int getCFU() {
@@ -42,27 +42,27 @@ public class EntityCorso {
 		this.CFU = CFU;
 	}
 	
-	public String getMatricolaDocente() {
-		return matricolaDocente;
+	public String getteacherID() {
+		return teacherID;
 	}
 	
-	public void setMatricolaDocente(String matricolaDocente) {
-		this.matricolaDocente = matricolaDocente;
+	public void setteacherID(String teacherID) {
+		this.teacherID = teacherID;
 	}
 	
-	public String getPropDi() {
-		return propDi;
+	public String getpreOf() {
+		return preOf;
 	}
 	
-	public void setPropDi(String propDi) {
-		this.propDi = propDi;
+	public void setpreOf(String preOf) {
+		this.preOf = preOf;
 	}
 	
-	public String getPropA() {
-		return propA;
+	public String getpreFor() {
+		return preFor;
 	}
 	
-	public void setPropA(String propA) {
-		this.propA = propA;
+	public void setpreFor(String preFor) {
+		this.preFor = preFor;
 	}
 }

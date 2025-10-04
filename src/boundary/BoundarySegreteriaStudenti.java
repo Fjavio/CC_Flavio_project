@@ -21,174 +21,174 @@ public class BoundarySegreteriaStudenti {
 		boolean exit = false;
 		
 		while(!exit) {
-			System.out.println("SegreteriaStudenti");
-			System.out.println("1. AggiungiDocente");
-			System.out.println("2. AggiungiCorso");
-			System.out.println("3. AssociazioneDocenteCorso");
-			System.out.println("4. Esci");
+			System.out.println("StudentSecretariat");
+			System.out.println("1. AddTeacher");
+			System.out.println("2. AddCourse");
+			System.out.println("3. AssociationTeacherCourse");
+			System.out.println("4. Exit");
 			
 			String op = scan.nextLine();
 
 			if(op.equals("1")) {
-				AggiungiDocente();
+				AddTeacher();
 			} else if(op.equals("2")){
-				AggiungiCorso();
+				AddCourse();
 			} else if(op.equals("3")){
-				AssociazioneDocenteCorso();
+				AssociationTeacherCourse();
 			} else if(op.equals("4")){
 				exit = true;
 			}else{
-				System.out.println("Operazione non disponibile");
+				System.out.println("Operation not available");
 				System.out.println();
 			}
 		}	
 		
-		System.out.println("Arrivederci");
+		System.out.println("Goodbye");
 		
 	}
 	
-	public static void AssociazioneDocenteCorso(){ //public per fare JUNIT
+	public static void AssociationTeacherCourse(){ //public to test with JUNIT
 		 GestoreCorsiDiStudioConservatorio gestoreCorsiDiStudioConservatorio = GestoreCorsiDiStudioConservatorio.getInstance();
-		 String corso = null;
-		 String docente = null;
+		 String course = null;
+		 String teacher = null;
 		try {
-			boolean corsoValido = false;
-            while (!corsoValido) {
-            	System.out.println("Inserisci il codice del corso");
-    			corso = scan.nextLine();
+			boolean validCourse = false;
+            while (!validCourse) {
+            	System.out.println("Enter the course code");
+    			course = scan.nextLine();
                 try {
-                	if (corso.length() == 5) {
-                        if (corso.matches("[a-zA-Z0-9]+")) {
-                            if (gestoreCorsiDiStudioConservatorio.controlloCorso(corso)) {
-                                corsoValido = true;
+                	if (course.length() == 5) {
+                        if (course.matches("[a-zA-Z0-9]+")) {
+                            if (gestoreCorsiDiStudioConservatorio.checkCourse(course)) {
+                                validCourse = true;
                             } else {
-                                System.out.println("Corso specificato non esiste nel database. Riprovare.");
+                                System.out.println("The specified course does not exist in the database. Try again.");
                             }
                         } else {
-                            System.out.println("CodiceCorso deve essere senza simboli. Riprovare.");
+                            System.out.println("CourseCode must be without symbols. Try again.");
                         }
                     } else {
-                        System.out.println("CodiceCorso deve essere di 5 caratteri. Riprovare.");
+                        System.out.println("CourseCode must be 5 characters. Try again.");
                     }
                 } catch (OperationException oE) {
                     System.out.println(oE.getMessage());
-                    System.out.println("Errore nell'acquisizione di dati, riprovare..");
+                    System.out.println("Error acquiring data, try again..");
                 } catch (Exception e) {
-                    System.out.println("Errore inaspettato, riprovare..");
+                    System.out.println("Unexpected error, try again..");
                 }
             }
 	
-            boolean matricolaValida = false;
-            while (!matricolaValida) {
-            	System.out.println("Inserisci matricola del docente da associare al corso");
-    			docente = scan.nextLine();
+            boolean validTeacherID = false;
+            while (!validTeacherID) {
+            	System.out.println("Enter the teacher's ID to be associated with the course");
+    			teacher = scan.nextLine();
                 try {
-                	if (docente.length() == 7) {
-                        if (docente.matches("[a-zA-Z0-9]+")) {
-                            if (gestoreCorsiDiStudioConservatorio.controlloDocente(docente)) {
-                                matricolaValida = true;
+                	if (teacher.length() == 7) {
+                        if (teacher.matches("[a-zA-Z0-9]+")) {
+                            if (gestoreCorsiDiStudioConservatorio.checkTeacher(teacher)) {
+                                validTeacherID = true;
                             } else {
-                                System.out.println("Docente specificato non esiste nel database. Riprovare.");
+                                System.out.println("The specified teacher does not exist in the database. Try again.");
                             }
                         } else {
-                            System.out.println("Matricola deve essere senza simboli. Riprovare.");
+                            System.out.println("Registration number must be without symbols. Try again.");
                         }
                     } else {
-                        System.out.println("Matricola deve essere di 7 caratteri. Riprovare.");
+                        System.out.println("Registration number must be 7 characters long. Try again.");
                     }
                 } catch (OperationException oE) {
                     System.out.println(oE.getMessage());
-                    System.out.println("Errore nell'acquisizione di dati, riprovare..");
+                    System.out.println("Error acquiring data, try again..");
                 } catch (Exception e) {
-                    System.out.println("Errore inaspettato, riprovare..");
+                    System.out.println("Unexpected error, try again..");
                 }
             }
 			
-			gestoreCorsiDiStudioConservatorio.AssociazioneDocenteCorso(corso, docente);
+			gestoreCorsiDiStudioConservatorio.AssociationTeacherCourse(course, teacher);
 		}catch (OperationException oE) {
 			System.out.println(oE.getMessage());
-			System.out.println("Riprovare..\n");
+			System.out.println("Try again..\n");
 		} catch (Exception e) {
-			System.out.println("Unexpected exception, riprovare..");
+			System.out.println("Unexpected exception, try again..");
 			System.out.println();
 		}
 	}
 	
-	private static void AggiungiDocente() {
+	private static void AddTeacher() {
         GestoreCorsiDiStudioConservatorio gestoreCorsiDiStudioConservatorio = GestoreCorsiDiStudioConservatorio.getInstance();
         try {
-            System.out.println("Nome docente:");
-            String nome = scan.nextLine();
-            System.out.println("cognome:");
-            String cognome = scan.nextLine();
-            System.out.println("matricola:");
-            String matricola = scan.nextLine();
-            gestoreCorsiDiStudioConservatorio.createAndInsertDocente(nome, cognome, matricola);
+            System.out.println("Teacher name:");
+            String name = scan.nextLine();
+            System.out.println("surnam:");
+            String surname = scan.nextLine();
+            System.out.println("teacher id:");
+            String id = scan.nextLine();
+            gestoreCorsiDiStudioConservatorio.createAndInsertTeacher(name, surname, id);
         }catch (OperationException oE) {
 			System.out.println(oE.getMessage());
-			System.out.println("Riprovare..\n");
+			System.out.println("Try again..\n");
 		} catch (Exception e) {
-			System.out.println("Unexpected exception, riprovare..");
+			System.out.println("Unexpected exception, try again..");
 			System.out.println();
 		}
 	}
 	
-	private static void AggiungiCorso() {
+	private static void AddCourse() {
 	    GestoreCorsiDiStudioConservatorio gestoreCorsiDiStudioConservatorio = GestoreCorsiDiStudioConservatorio.getInstance();
-	    String propDi = "";
-	    String propA = "";
-	    //String propDi = null;
-		//String propA = null;
+	    String preOf = "";
+	    String preFor = "";
+	    //String preOf = null;
+		//String preFor = null;
 	    try {
-	        System.out.println("Codice corso:");
-	        String codiceCorso = scan.nextLine();
-	        System.out.println("Denominazione:");
-	        String denominazione = scan.nextLine();
+	        System.out.println("Course code:");
+	        String courseCode = scan.nextLine();
+	        System.out.println("Course name:");
+	        String courseName = scan.nextLine();
 	        System.out.println("CFU:");
 	        int CFU = Integer.parseInt(scan.nextLine());
 
-	        System.out.println("Vuoi aggiungere propedeuticità di? (yes/no):");
-	        String risposta = scan.nextLine();
-	        if (risposta.equalsIgnoreCase("yes")) {
-	            boolean continuaAggiunta = true;
-	            while (continuaAggiunta) {
-	                System.out.println("Inserisci il codice del corso propedeutico:");
-	                String codicePropedeutico = scan.nextLine();
-	                if (!propDi.isEmpty()) {
-	                    propDi += " ";
+	        System.out.println("Do you want to add prerequisites of? (yes/no):");
+	        String answer = scan.nextLine();
+	        if (answer.equalsIgnoreCase("yes")) {
+	            boolean continueAdding = true;
+	            while (continueAdding) {
+	                System.out.println("Enter the preparatory course code:");
+	                String preparatoryCode = scan.nextLine();
+	                if (!preOf.isEmpty()) {
+	                    preOf += " ";
 	                }
-	                propDi += codicePropedeutico;
+	                preOf += preparatoryCode;
 
-	                System.out.println("Vuoi aggiungere un altro corso propedeutico? (yes/no):");
-	                risposta = scan.nextLine();
-	                continuaAggiunta = risposta.equalsIgnoreCase("yes");
+	                System.out.println("Do you want to add another preparatory course? (yes/no):");
+	                answer = scan.nextLine();
+	                continueAdding = answer.equalsIgnoreCase("yes");
 	            }
 	        }
 
-	        System.out.println("Vuoi aggiungere propedeuticità a? (yes/no):");
-	        risposta = scan.nextLine();
-	        if (risposta.equalsIgnoreCase("yes")) {
-	            boolean continuaAggiunta = true;
-	            while (continuaAggiunta) {
-	                System.out.println("Inserisci il codice del corso propedeutico:");
-	                String codicePropedeutico = scan.nextLine();
-	                if (!propA.isEmpty()) {
-	                    propA += " ";
+	        System.out.println("Do you want to add prerequisites for? (yes/no):");
+	        answer = scan.nextLine();
+	        if (answer.equalsIgnoreCase("yes")) {
+	            boolean continueAdding = true;
+	            while (continueAdding) {
+	                System.out.println("Enter the preparatory course code:");
+	                String preparatoryCode = scan.nextLine();
+	                if (!preFor.isEmpty()) {
+	                    preFor += " ";
 	                }
-	                propA += codicePropedeutico;
+	                preFor += preparatoryCode;
 
-	                System.out.println("Vuoi aggiungere un altro corso propedeutico? (yes/no):");
-	                risposta = scan.nextLine();
-	                continuaAggiunta = risposta.equalsIgnoreCase("yes");
+	                System.out.println("Do you want to add another preparatory course? (yes/no):");
+	                answer = scan.nextLine();
+	                continueAdding = answer.equalsIgnoreCase("yes");
 	            }
 	        }
 
-	        gestoreCorsiDiStudioConservatorio.createAndInsertCorso(codiceCorso, denominazione, CFU, propDi, propA);
+	        gestoreCorsiDiStudioConservatorio.createAndInsertCourse(courseCode, courseName, CFU, preOf, preFor);
 	    } catch (OperationException oE) {
 	        System.out.println(oE.getMessage());
-	        System.out.println("Riprovare..\n");
+	        System.out.println("Try again..\n");
 	    } catch (Exception e) {
-	        System.out.println("Errore inaspettato, riprovare..");
+	        System.out.println("Unexpected error, try again..");
 	        System.out.println();
 	    }
 	}

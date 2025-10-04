@@ -8,7 +8,7 @@ public class DBTest {
         try {
             Connection conn = DBManager.getConnection();
             if (conn != null) {
-                System.out.println("Connessione al database riuscita!");
+                System.out.println("Database connection successful!");
                 DBManager.closeConnection();
             }
         } catch (SQLException e) {

@@ -35,29 +35,29 @@ public class MenuDocente {
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		
-		JLabel lblInterfacciaDocente = new JLabel("Menu");
-		lblInterfacciaDocente.setForeground(Color.RED);
-		lblInterfacciaDocente.setFont(new Font("Lucida Grande", Font.PLAIN, 30));
-		lblInterfacciaDocente.setBounds(138, 6, 183, 64);
-		frame.getContentPane().add(lblInterfacciaDocente);
+		JLabel lblTeacherInterface = new JLabel("Menu");
+		lblTeacherInterface.setForeground(Color.RED);
+		lblTeacherInterface.setFont(new Font("Lucida Grande", Font.PLAIN, 30));
+		lblTeacherInterface.setBounds(138, 6, 183, 64);
+		frame.getContentPane().add(lblTeacherInterface);
 		
-		JButton btnAperturaVerbale = new JButton("Apertura Verbale");
-        btnAperturaVerbale.setBounds(90, 100, 270, 40);
-        frame.getContentPane().add(btnAperturaVerbale);
+		JButton btnOpeningReport = new JButton("Opening Report");
+        btnOpeningReport.setBounds(90, 100, 270, 40);
+        frame.getContentPane().add(btnOpeningReport);
 		
-		JButton btnChiusuraVerbale = new JButton("Chiusura Verbale");
-        btnChiusuraVerbale.addActionListener(new ActionListener() {
+		JButton btnClosingReport = new JButton("Closing Report");
+        btnClosingReport.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 try {
                     GuiChiusura window = new GuiChiusura();
                     window.frame.setVisible(true);
                     frame.setVisible(false);
                 } catch (Exception exc) {
-                    System.out.println("Errore nella creazione della finestra");
+                    System.out.println("Error creating window");
                 }
             }
         });
-        btnChiusuraVerbale.setBounds(90, 150, 270, 40);
-        frame.getContentPane().add(btnChiusuraVerbale);
+        btnClosingReport.setBounds(90, 150, 270, 40);
+        frame.getContentPane().add(btnClosingReport);
 	}
 }

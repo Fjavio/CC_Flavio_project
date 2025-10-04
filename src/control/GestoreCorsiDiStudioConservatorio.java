@@ -33,22 +33,22 @@ public class GestoreCorsiDiStudioConservatorio {
 		return gCDSC; 
 	}
   
-	public void AssociazioneDocenteCorso(String codiceCorso, String matricolaDocente) throws OperationException{
+	public void AssociationTeacherCourse(String courseCode, String teacherID) throws OperationException{
 		EntityDocente eD = null;
 		EntityCorso eC = null;
 		
 		try {
-			eD = DocenteDAO.readDocente(matricolaDocente);
-			eC = CorsoDAO.readCorso(codiceCorso);
+			eD = DocenteDAO.readTeacher(teacherID);
+			eC = CorsoDAO.readCourse(courseCode);
 			if(eD == null || eC == null) {
 				throw new OperationException("Teacher or Course not found");
 			}
-			eC.matricolaDocente=CorsoDAO.readAssociazioneDocenteCorso(codiceCorso);
+			eC.teacherID=CorsoDAO.readAssociationTeacherCourse(courseCode);
 			
-		   if(eC.matricolaDocente != null) {
+		   if(eC.teacherID != null) {
 				throw new OperationException("Course already assigned");
 			}
-		   CorsoDAO.updateAssociazioneDocenteCorso(codiceCorso, matricolaDocente);
+		   CorsoDAO.updateAssociationTeacherCourse(courseCode, teacherID);
 		}catch(DBConnectionException dbEx) {
 			throw new OperationException("\nInternal application problem encountered!\n");
 		}catch(DAOException ex) {
@@ -56,10 +56,10 @@ public class GestoreCorsiDiStudioConservatorio {
 		}
 	}
 		
-	public void createAndInsertEsame(int voto, boolean lode, String noteDocente, String codiceVerbale, String codiceCorso, String username) throws OperationException {
+	public void createAndInsertExam(int vote, boolean honors, String teacherNotes, String reportCode, String courseCode, String username) throws OperationException {
 		try {
-		EntityEsame esame = new EntityEsame(voto, lode, noteDocente, null, codiceVerbale, codiceCorso, username);
-        EsameDAO.createEsame(esame);
+		EntityEsame exam = new EntityEsame(vote, honors, teacherNotes, null, reportCode, courseCode, username);
+        EsameDAO.createExam(exam);
 		}catch(DBConnectionException dbEx) {
 	        throw new OperationException("\nInternal application problem encountered!\n");
 	    } catch(DAOException ex) {
@@ -67,10 +67,10 @@ public class GestoreCorsiDiStudioConservatorio {
 	    }
     }
 	
-	public void createAndInsertCorso(String codiceCorso, String denominazione, int CFU, String propDi, String propA) throws OperationException {
+	public void createAndInsertCourse(String courseCode, String courseName, int CFU, String preOf, String preFor) throws OperationException {
 	    try {
-	        EntityCorso corso = new EntityCorso(codiceCorso, denominazione, CFU, null, propDi, propA);
-	        CorsoDAO.createCorso(corso);
+	        EntityCorso course = new EntityCorso(courseCode, courseName, CFU, null, preOf, preFor);
+	        CorsoDAO.createCourse(course);
 	    } catch (DBConnectionException dbEx) {
 	        throw new OperationException("\nInternal application problem encountered!\n");
 	    } catch (DAOException ex) {
@@ -78,10 +78,10 @@ public class GestoreCorsiDiStudioConservatorio {
 	    }
 	}
 
-	public void createAndInsertDocente(String nomeDocente, String cognomeDocente, String matricola) throws OperationException {
+	public void createAndInsertTeacher(String teacherName, String teacherSurname, String ID) throws OperationException {
 		try {
-		EntityDocente docente = new EntityDocente(nomeDocente, cognomeDocente, matricola);
-        DocenteDAO.createDocente(docente);
+		EntityDocente teacher = new EntityDocente(teacherName, teacherSurname, ID);
+        DocenteDAO.createTeacher(teacher);
 		}catch(DBConnectionException dbEx) {
 	        throw new OperationException("\nInternal application problem encountered!\n");
 	    } catch(DAOException ex) {
@@ -89,10 +89,10 @@ public class GestoreCorsiDiStudioConservatorio {
 	    }
     }
 	
-	public void AperturaVerbale(String codiceVerbale, Date dataVerbale, String matricola) throws OperationException {
+	public void OpeningReport(String reportCode, Date reportDate, String ID) throws OperationException {
 	    try {
-	        EntityVerbale eB = new EntityVerbale(dataVerbale, codiceVerbale, matricola);
-	        VerbaleDAO.createVerbale(eB);
+	        EntityVerbale eB = new EntityVerbale(reportDate, reportCode, ID);
+	        VerbaleDAO.createReport(eB);
 	    } catch(DBConnectionException dbEx) {
 	        throw new OperationException("\nInternal application problem encountered!\n");
 	    } catch(DAOException ex) {
@@ -100,18 +100,18 @@ public class GestoreCorsiDiStudioConservatorio {
 	    }
 	}
 	
-	public void verificaVerbale(String codiceVerbale) throws OperationException {    
+	public void checkReport(String reportCode) throws OperationException {    
 		EntityVerbale eV = null;
 		try {
-		    eV = VerbaleDAO.readVerbale(codiceVerbale);
+		    eV = VerbaleDAO.readReport(reportCode);
 		
 		    if(eV == null) {
 			   throw new OperationException("Report not opened");
 		    }
 		    
-		    List<EntityEsame> esami = EsameDAO.readEsame(codiceVerbale);
-            for (EntityEsame esame : esami) {
-               if (esame.getDataSuperamento() != null) {
+		    List<EntityEsame> exams = EsameDAO.readExam(reportCode);
+            for (EntityEsame exam : exams) {
+               if (exam.getpassingDate() != null) {
                   throw new OperationException("Report already closed");
                }
             }
@@ -122,10 +122,10 @@ public class GestoreCorsiDiStudioConservatorio {
 		}
 	}
 	
-	public boolean controlloStudente(String username) throws OperationException {
+	public boolean checkStudent(String username) throws OperationException {
 		EntityStudente eS = null;
 	    try {
-	    	eS = StudenteDAO.readStudente(username);
+	    	eS = StudenteDAO.readStudent(username);
 	        if(eS == null) {
 				   return false;
 			    }
@@ -137,10 +137,10 @@ public class GestoreCorsiDiStudioConservatorio {
 		}
 	}
 	
-	public boolean controlloCorso(String codiceCorso) throws OperationException {
+	public boolean checkCourse(String courseCode) throws OperationException {
 		EntityCorso eC = null;
 	    try {
-	    	eC = CorsoDAO.readCorso(codiceCorso);
+	    	eC = CorsoDAO.readCourse(courseCode);
 	        if(eC == null) {
 				   return false;
 			    }
@@ -152,10 +152,10 @@ public class GestoreCorsiDiStudioConservatorio {
 		}
 	}
 	
-	public boolean controlloDocente(String matricola) throws OperationException {
+	public boolean checkTeacher(String ID) throws OperationException {
 		EntityDocente eD = null;
 	    try {
-	    	eD = DocenteDAO.readDocente(matricola);
+	    	eD = DocenteDAO.readTeacher(ID);
 	        if(eD == null) {
 				   return false;
 			    }
@@ -167,9 +167,9 @@ public class GestoreCorsiDiStudioConservatorio {
 		}
 	}
 	
-	public List<String> getUsernamesByVerbale(String codiceVerbale) throws OperationException {
+	public List<String> getUsernamesByReport(String reportCode) throws OperationException {
 	    try {
-	        return EsameDAO.getUsernamesByVerbale(codiceVerbale);
+	        return EsameDAO.getUsernamesByReport(reportCode);
 	    } catch(DBConnectionException dbEx) {
 			throw new OperationException("\nInternal application problem encountered!\n");
 		}catch(DAOException ex) {
@@ -177,9 +177,9 @@ public class GestoreCorsiDiStudioConservatorio {
 		}
 	}
 	
-	public void controlloPIN(int pinInserito, String codiceVerbale, String username) throws OperationException {
+	public void checkPIN(int insertedPin, String reportCode, String username) throws OperationException {
 	    try {
-	        EsameDAO.controlloPIN(pinInserito, codiceVerbale, username);
+	        EsameDAO.checkPIN(insertedPin, reportCode, username);
 	    } catch(DBConnectionException dbEx) {
 			throw new OperationException("\nInternal application problem encountered!\n");
 		}catch(DAOException ex) {
@@ -187,13 +187,13 @@ public class GestoreCorsiDiStudioConservatorio {
 		}
 	}
 
-	public void ChiusuraVerbale1(String codiceVerbale, String username) throws OperationException{
+	public void ClosingReport1(String reportCode, String username) throws OperationException{
         try {
-           EsameDAO.controlloPropedeuticita(codiceVerbale, username);
+           EsameDAO.checkPrerequisites(reportCode, username);
         } catch (PropedeuticitaException pEx) {
 	    System.out.println(pEx.getMessage());
 	    try {
-			EsameDAO.eliminaEsame(codiceVerbale, username);
+			EsameDAO.deleteExam(reportCode, username);
 		} catch (DAOException e) {
 			throw new OperationException("Oops, something went wrong...");
 		} catch (DBConnectionException e) {
@@ -207,9 +207,9 @@ public class GestoreCorsiDiStudioConservatorio {
 		}
     }
 	
-    public void ChiusuraVerbale2(String codiceVerbale) throws OperationException{
+    public void ClosingReport2(String reportCode) throws OperationException{
             try {
-               EsameDAO.controlloVoti(codiceVerbale);
+               EsameDAO.checkVotes(reportCode);
             } catch(DBConnectionException dbEx) {
     			throw new OperationException("\nInternal application problem encountered!\n");
     		}catch(DAOException ex) {

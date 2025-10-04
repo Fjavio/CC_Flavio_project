@@ -4,14 +4,14 @@ public class EntityStudente {
 	private String username;
 	private String password;
 	private int PIN;
-	private int idCorsodiStudio;
+	private int idCDS;
 		
-	public EntityStudente (String username, String password, int PIN, int idCorsodiStudio){
+	public EntityStudente (String username, String password, int PIN, int idCDS){
 			super();
 			this.username = username;
 			this.password = password;
 			this.PIN = PIN;
-			this.idCorsodiStudio = idCorsodiStudio;
+			this.idCDS = idCDS;
 		}
 	
 	public int getPIN() {
@@ -38,12 +38,12 @@ public class EntityStudente {
 		this.password = password;
 	}
 	
-	public int getIdCorsodiStudio() {
-		return idCorsodiStudio;
+	public int getidCDS() {
+		return idCDS;
 	}
 
-	public void setIdCorsodiStudio(int idCorsodiStudio) {
-		this.idCorsodiStudio = idCorsodiStudio;
+	public void setidCDS(int idCDS) {
+		this.idCDS = idCDS;
 	}
 	
 }

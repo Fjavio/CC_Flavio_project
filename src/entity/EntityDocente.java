@@ -1,33 +1,33 @@
 package entity;
 
 public class EntityDocente {
-	private String nomeDocente;
-	private String cognomeDocente;
-	private String matricola;
+	private String teacherName;
+	private String teacherSurname;
+	private String ID;
 	
-	public EntityDocente(String nomeDocente, String cognomeDocente, String matricola) {
+	public EntityDocente(String teacherName, String teacherSurname, String ID) {
 		super();
-		this.nomeDocente = nomeDocente;
-		this.cognomeDocente = cognomeDocente;
-		this.matricola = matricola;
+		this.teacherName = teacherName;
+		this.teacherSurname = teacherSurname;
+		this.ID = ID;
 	}
 	
-	public String getNomeDocente() {
-		return nomeDocente;
+	public String getteacherName() {
+		return teacherName;
 	}
-	public void setNomeDocente(String nomeDocente) {
-		this.nomeDocente = nomeDocente;
+	public void setteacherName(String teacherName) {
+		this.teacherName = teacherName;
 	}
-	public String getCognomeDocente() {
-		return cognomeDocente;
+	public String getteacherSurname() {
+		return teacherSurname;
 	}
-	public void setCognomeDocente(String cognomeDocente) {
-		this.cognomeDocente = cognomeDocente;
+	public void setteacherSurname(String teacherSurname) {
+		this.teacherSurname = teacherSurname;
 	}
-	public String getMatricola() {
-		return matricola;
+	public String getID() {
+		return ID;
 	}
-	public void setMatricola(String matricola) {
-		this.matricola = matricola;
+	public void setID(String ID) {
+		this.ID = ID;
 	}
 }

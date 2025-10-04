@@ -16,79 +16,79 @@ import exception.PropedeuticitaException;
 import exception.DBConnectionException;
 
 public class EsameDAO {
-public static void createEsame(EntityEsame eE) throws DAOException, DBConnectionException {
+public static void createExam(EntityEsame eE) throws DAOException, DBConnectionException {
     try {
         Connection conn = DBManager.getConnection();
 
-        String query = "INSERT INTO ESAME VALUES (?, ?, ?, ?, ?, ?, ?);";
+        String query = "INSERT INTO EXAM VALUES (?, ?, ?, ?, ?, ?, ?);";
 		
         try {
             PreparedStatement stmt = conn.prepareStatement(query);
 
-            stmt.setInt(1, eE.getVoto());
-            stmt.setBoolean(2, eE.getLode());
-            stmt.setString(3, eE.getNoteDocente());
+            stmt.setInt(1, eE.getvote());
+            stmt.setBoolean(2, eE.gethonors());
+            stmt.setString(3, eE.getteacherNotes());
             stmt.setDate(4, null);
-            stmt.setString(5, eE.getCodiceVerbale());
-            stmt.setString(6, eE.getCodiceCorso());
+            stmt.setString(5, eE.getreportCode());
+            stmt.setString(6, eE.getcourseCode());
             stmt.setString(7, eE.getUsername());
 
             stmt.executeUpdate();
 
         } catch (SQLException e) {
-            throw new DAOException("Errore scrittura esame");
+            throw new DAOException("Exam writing error");
         } finally {
             DBManager.closeConnection();
         }
 
     } catch (SQLException e) {
-        throw new DBConnectionException("Errore connessione database");
+        throw new DBConnectionException("DB connection error");
     }
 }
 
-public static List<EntityEsame> readEsame(String codiceVerbale) throws DAOException, DBConnectionException {
+public static List<EntityEsame> readExam(String reportCode) throws DAOException, DBConnectionException {
 
-	List<EntityEsame> esami = new ArrayList<>();
+	List<EntityEsame> exams = new ArrayList<>();
 
 	try {
 
 		Connection conn = DBManager.getConnection();
-		String query = "SELECT * FROM ESAME WHERE CODICEVERBALE=?;";
+		String query = "SELECT * FROM EXAM WHERE REPORTCODE=?;";
 		
 		try {
 
 			PreparedStatement stmt = conn.prepareStatement(query);
 
-			stmt.setString(1, codiceVerbale);
+			stmt.setString(1, reportCode);
 
 			ResultSet result = stmt.executeQuery();
 
 			while(result.next()) {
-				EntityEsame esame = new EntityEsame(result.getInt(1), result.getBoolean(2), result.getString(3), result.getDate(4), codiceVerbale, result.getString(6), result.getString(7));
-				esami.add(esame);
+				EntityEsame exam = new EntityEsame(result.getInt(1), result.getBoolean(2), result.getString(3), result.getDate(4), reportCode, result.getString(6), result.getString(7));
+				exams.add(exam);
 			}
 
 		}catch(SQLException e) {
-			throw new DAOException("Errore lettura esame");
+			throw new DAOException("Exam reading error");
 		}finally {
 			DBManager.closeConnection();
 		}
 		
 	}catch(SQLException e) {
-		throw new DBConnectionException("Errore di connessione DB");
+		throw new DBConnectionException("DB connection error");
 	}
 
-	return esami;
+	return exams;
 }
 
-public static List<EntityEsame> readEsamiPassati(Connection conn, String username) throws DAOException, DBConnectionException {
+public static List<EntityEsame> readPassedExams(Connection conn, String username) throws DAOException, DBConnectionException {
 
-	List<EntityEsame> esami = new ArrayList<>();
+	List<EntityEsame> exams = new ArrayList<>();
 	
 	//try {
 
 		//Connection conn = DBManager.getConnection();
-		String query = "SELECT * FROM ESAME WHERE USERNAME=? AND DATASUPERAMENTO IS NOT NULL;";
+		String query = "SELECT * FROM EXAM WHERE USERNAME=? AND PASSINGDATE IS NOT NULL;";
 
 		try {
 	
@@ -99,188 +99,188 @@ public static List<EntityEsame> readEsamiPassati(Connection conn, String usernam
 			ResultSet result = stmt.executeQuery();
 
 			while(result.next()) {
-				EntityEsame esame = new EntityEsame(result.getInt(1), result.getBoolean(2), result.getString(3), result.getDate(4), result.getString(5), result.getString(6), username);
-				esami.add(esame);
+				EntityEsame exam = new EntityEsame(result.getInt(1), result.getBoolean(2), result.getString(3), result.getDate(4), result.getString(5), result.getString(6), username);
+				exams.add(exam);
 			}
 
 		}catch(SQLException e) {
-			throw new DAOException("Errore lettura esami dello studente");
+			throw new DAOException("Error reading student exams");
 		}/*finally {
 			DBManager.closeConnection();
 		}*/
 		
 	/*}catch(SQLException e) {
-		throw new DBConnectionException("Errore di connessione DB");
+		throw new DBConnectionException("DB connection error");
 	}*/
 
-	return esami;
+	return exams;
 }
 
-public static List<String> getUsernamesByVerbale(String codiceVerbale) throws DAOException, DBConnectionException {
+public static List<String> getUsernamesByReport(String reportCode) throws DAOException, DBConnectionException {
     List<String> usernames = new ArrayList<>();
     try {
         Connection conn = DBManager.getConnection();
-        String query = "SELECT USERNAME FROM ESAME WHERE CODICEVERBALE = ?;";
+        String query = "SELECT USERNAME FROM EXAM WHERE REPORTCODE = ?;";
         try {
             PreparedStatement stmt = conn.prepareStatement(query);
-            stmt.setString(1, codiceVerbale);
+            stmt.setString(1, reportCode);
             ResultSet rs = stmt.executeQuery();
             while (rs.next()) {
                 usernames.add(rs.getString("username"));
             }
         } catch (SQLException e) {
-            throw new DAOException("Errore recupero usernames");
+            throw new DAOException("Error retrieving usernames");
         } finally {
             DBManager.closeConnection();
         }
     } catch (SQLException e) {
-        throw new DBConnectionException("Errore di connessione DB");
+        throw new DBConnectionException("DB connection error");
     }
     return usernames;
 }
 
-public static void controlloVoti(String codiceVerbale) throws DAOException, DBConnectionException {     
+public static void checkVotes(String reportCode) throws DAOException, DBConnectionException {     
 	  try {  
-		  EntityVerbale verbale = VerbaleDAO.readVerbale(codiceVerbale);
+		  EntityVerbale report = VerbaleDAO.readReport(reportCode);
 		  Connection conn = DBManager.getConnection();  
-		  // Recuperiamo tutti gli esami con data superamento null e codice verbale specificato      
-		  String querySelect = "SELECT * FROM ESAME WHERE CODICEVERBALE = ?;";   
+		  //Retrieve all exams with null passing date and specified verbal code    
+		  String querySelect = "SELECT * FROM EXAM WHERE REPORTCODE = ?;";   
 		  try {
 		  PreparedStatement stmtSelect = conn.prepareStatement(querySelect);     
-		  stmtSelect.setString(1, codiceVerbale); 
+		  stmtSelect.setString(1, reportCode); 
 		  ResultSet result = stmtSelect.executeQuery();        
 		  while(result.next()) {     
-			  int voto = result.getInt(1);            
-			  boolean lode = result.getBoolean(2);   
+			  int vote = result.getInt(1);            
+			  boolean honors = result.getBoolean(2);   
 			  String username = result.getString(7);    
-			  // Controlliamo i criteri per eliminare gli esami              
-			  if (voto < 18 || (lode && voto != 30) || voto>30) {        
-				  String queryDelete = "DELETE FROM ESAME WHERE CODICEVERBALE = ? AND USERNAME = ?;";        
+			  //Let's check the criteria for deleting exams      
+			  if (vote < 18 || (honors && vote != 30) || vote>30) {        
+				  String queryDelete = "DELETE FROM EXAM WHERE REPORTCODE = ? AND USERNAME = ?;";        
 				  PreparedStatement stmtDelete = conn.prepareStatement(queryDelete);    
-				  stmtDelete.setString(1, codiceVerbale);                   
+				  stmtDelete.setString(1, reportCode);                   
 				  stmtDelete.setString(2, username); 
 				  stmtDelete.executeUpdate();          
 				  }  
 			  } 
-		    java.util.Date dataVerbaleUtil = verbale.getDataVerbale();
-		    Date dataVerbaleSql = new Date(dataVerbaleUtil.getTime());
-		    String queryUpdate = "UPDATE ESAME SET DATASUPERAMENTO = ? WHERE CODICEVERBALE = ?;";
+		    java.util.Date dateReportUtil = report.getreportDate();
+		    Date dateReportSql = new Date(dateReportUtil.getTime());
+		    String queryUpdate = "UPDATE EXAM SET PASSINGDATE = ? WHERE REPORTCODE = ?;";
 		        PreparedStatement stmtUpdate = conn.prepareStatement(queryUpdate);
-		        stmtUpdate.setDate(1, dataVerbaleSql); 
-		        stmtUpdate.setString(2, codiceVerbale);
+		        stmtUpdate.setDate(1, dateReportSql); 
+		        stmtUpdate.setString(2, reportCode);
 		        stmtUpdate.executeUpdate();
 		  }  catch (SQLException e) {
-		            throw new DAOException("Errore durante l'aggiornamento degli esami");
+		            throw new DAOException("Error while updating exams");
 		        } finally {
 		            DBManager.closeConnection();
 		        }
 
 		    } catch (SQLException e) {
-		        throw new DBConnectionException("Errore connessione database");
+		        throw new DBConnectionException("DB connection error");
 		    }
 }
 
-public static void controlloPropedeuticita(String codiceVerbale, String username) throws DAOException, DBConnectionException, PropedeuticitaException {
+public static void checkPrerequisites(String reportCode, String username) throws DAOException, DBConnectionException, PropedeuticitaException {
     try {
     	Connection conn = DBManager.getConnection();
-        String querySelect = "SELECT * FROM ESAME WHERE CODICEVERBALE = ? AND USERNAME = ?;";
+        String querySelect = "SELECT * FROM EXAM WHERE REPORTCODE = ? AND USERNAME = ?;";
         try {
         	PreparedStatement stmtSelect = conn.prepareStatement(querySelect);
-            stmtSelect.setString(1, codiceVerbale);
+            stmtSelect.setString(1, reportCode);
             stmtSelect.setString(2, username);
             ResultSet result = stmtSelect.executeQuery();
 
             if(result.next()) {
-                String codiceCorso = result.getString(6);
+                String courseCode = result.getString(6);
                 
-                List<EntityEsame> esamiPassati = readEsamiPassati(conn, username);
+                List<EntityEsame> passedExams = readPassedExams(conn, username);
                 
-                String propDiString = CorsoDAO.propDi(conn, codiceCorso);
+                String preOfString = CorsoDAO.preOf(conn, courseCode);
                 
-                //niente propedeuticita
-                if (propDiString == null || propDiString.trim().isEmpty()) {
+                //no preparatory exams
+                if (preOfString == null || preOfString.trim().isEmpty()) {
                     return;
                 }
                 
-                boolean allPropedeuticiPresenti = true;
-                String[] codiciCorsi = propDiString.split(" ");
+                boolean allPreparatoryPresent = true;
+                String[] coursesCodes = preOfString.split(" ");
               
-                for (String codice : codiciCorsi) {
-                    boolean trovato = false;
-                    for (EntityEsame esamePassato : esamiPassati) {
-                        if (esamePassato.getCodiceCorso().equals(codice)) {
-                            trovato = true;
+                for (String code : coursesCodes) {
+                    boolean find = false;
+                    for (EntityEsame passedExam : passedExams) {
+                        if (passedExam.getcourseCode().equals(code)) {
+                            find = true;
                             break;
                         }
                     }
-                    if (!trovato) {
-                        allPropedeuticiPresenti = false;
+                    if (!find) {
+                        allPreparatoryPresent = false;
                         break;
                     }
                 }
 
-                if (!allPropedeuticiPresenti) {
-                	throw new PropedeuticitaException("Le propedeuticità non sono rispettate");
+                if (!allPreparatoryPresent) {
+                	throw new PropedeuticitaException("The prerequisites are not respected");
                 }
             }
         } catch (SQLException e) {
-            throw new DAOException("Errore durante il controllo dei prerequisiti degli esami");
+            throw new DAOException("Error while checking exam prerequisites");
         } finally {
             DBManager.closeConnection();
         }
     } catch (SQLException e) {
-        throw new DBConnectionException("Errore di connessione al DB");
+        throw new DBConnectionException("DB connection error");
     }
 }
 
 
-public static void controlloPIN(int PinInserito, String codiceVerbale, String username) throws DAOException, DBConnectionException {
+public static void checkPIN(int insertedPin, String reportCode, String username) throws DAOException, DBConnectionException {
     try {
-    	EntityStudente studente = StudenteDAO.readStudente(username);
-        int pinStudente = studente.getPIN();
+    	EntityStudente student = StudenteDAO.readStudent(username);
+        int studentPin = student.getPIN();
         Connection conn = DBManager.getConnection();
-        String querySelect = "SELECT * FROM ESAME WHERE USERNAME = ? AND CODICEVERBALE = ?;";
+        String querySelect = "SELECT * FROM EXAM WHERE USERNAME = ? AND REPORTCODE = ?;";
         try {
             PreparedStatement stmtSelect = conn.prepareStatement(querySelect);
             stmtSelect.setString(1, username);
-            stmtSelect.setString(2, codiceVerbale);
+            stmtSelect.setString(2, reportCode);
             ResultSet rs = stmtSelect.executeQuery();
             if (rs.next()) {
-                if (pinStudente != PinInserito) {
-                    String queryDelete = "DELETE FROM ESAME WHERE USERNAME = ? AND CODICEVERBALE = ?;";
+                if (studentPin != insertedPin) {
+                    String queryDelete = "DELETE FROM EXAM WHERE USERNAME = ? AND REPORTCODE = ?;";
                     PreparedStatement stmtDelete = conn.prepareStatement(queryDelete);
                     stmtDelete.setString(1, username);
-                    stmtDelete.setString(2, codiceVerbale);
-                    System.out.println("Eliminato esame dello studente " + username + " per errato Pin");
+                    stmtDelete.setString(2, reportCode);
+                    System.out.println("Student " + username + " 's exam eliminated due to incorrect PIN");
                     stmtDelete.executeUpdate();
                 }
             }
         } catch (SQLException e) {
-            throw new DAOException("Errore durante il controllo dei PIN e l'eliminazione degli esami");
+            throw new DAOException("Error checking PINs and deleting exams");
         } finally {
             DBManager.closeConnection();
         }
     } catch (SQLException e) {
-        throw new DBConnectionException("Errore connessione database");
+        throw new DBConnectionException("DB connection error");
     }
 }
 
-public static void eliminaEsame(String codiceVerbale, String username) throws DAOException, DBConnectionException {
+public static void deleteExam(String reportCode, String username) throws DAOException, DBConnectionException {
     try {
         Connection conn = DBManager.getConnection();
-        String queryDelete = "DELETE FROM ESAME WHERE USERNAME = ? AND CODICEVERBALE = ?;";
+        String queryDelete = "DELETE FROM EXAM WHERE USERNAME = ? AND REPORTCODE = ?;";
         try {
             PreparedStatement stmtDelete = conn.prepareStatement(queryDelete);
             stmtDelete.setString(1, username);
-            stmtDelete.setString(2, codiceVerbale);
+            stmtDelete.setString(2, reportCode);
             stmtDelete.executeUpdate();
         } catch (SQLException e) {
-            throw new DAOException("Errore durante l'eliminazione dell'esame");
+            throw new DAOException("Error while deleting exam");
         } finally {
             DBManager.closeConnection();
         }
     } catch (SQLException e) {
-        throw new DBConnectionException("Errore di connessione al DB");
+        throw new DBConnectionException("DB connection error");
     }
 }
 

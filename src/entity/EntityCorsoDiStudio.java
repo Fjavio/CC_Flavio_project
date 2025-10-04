@@ -4,123 +4,120 @@ import java.util.List;
 import java.util.ArrayList;
 
 public class EntityCorsoDiStudio {
-	private String codiceCds;
-	private String nomeCds;
-	private Date annoAccademico;
-	private int creditiTotali;
-	private List<EntityCorso> corsiContenuti;
+	private String codeCds;
+	private String nameCds;
+	private Date academicYear;
+	private int totalCredits;
+	private List<EntityCorso> coursesOffered;
 	
-	public EntityCorsoDiStudio (String codiceCds, String nomeCds, Date annoAccademico, int creditiTotali){
+	public EntityCorsoDiStudio (String codeCds, String nameCds, Date academicYear, int totalCredits){
 		super();
-		this.codiceCds = codiceCds;
-		this.nomeCds = nomeCds;
-		this.annoAccademico = annoAccademico;
-		this.creditiTotali = creditiTotali;
-		this.corsiContenuti = new ArrayList<>();
+		this.codeCds = codeCds;
+		this.nameCds = nameCds;
+		this.academicYear = academicYear;
+		this.totalCredits = totalCredits;
+		this.coursesOffered = new ArrayList<>();
 	}
 	
-	public String getCodiceCds() {
-		return codiceCds;
+	public String getcodeCds() {
+		return codeCds;
 	}
 
-	public void setPIN(String codiceCds) {
-		this.codiceCds = codiceCds;
+	public void setPIN(String codeCds) {
+		this.codeCds = codeCds;
 	}
 	
-	public String getNomeCds() {
-		return nomeCds;
+	public String getnameCds() {
+		return nameCds;
 	}
 
-	public void setNomeCds(String nomeCds) {
-		this.nomeCds = nomeCds;
+	public void setnameCds(String nameCds) {
+		this.nameCds = nameCds;
 	}
 	
-	public Date getAnnoAccademico() {
-		return annoAccademico;
+	public Date getacademicYear() {
+		return academicYear;
 	}
 
-	public void setAnnoAccademico(Date annoAccademico) {
-		this.annoAccademico = annoAccademico;
+	public void setacademicYear(Date academicYear) {
+		this.academicYear = academicYear;
 	}
 	
-	public int getCreditiTotali() {
-		return creditiTotali;
+	public int gettotalCredits() {
+		return totalCredits;
 	}
 
-	public void setCreditiTotali(int creditiTotali) {
-		this.creditiTotali = creditiTotali;
+	public void settotalCredits(int totalCredits) {
+		this.totalCredits = totalCredits;
 	}
 	
-	public List<EntityCorso> getCorsiContenuti() {
-        return corsiContenuti;
+	public List<EntityCorso> getcoursesOffered() {
+        return coursesOffered;
     }
 	
-	public void setCorsiContenuti(List<EntityCorso> corsiContenuti) {
-		this.corsiContenuti = corsiContenuti;
+	public void setcoursesOffered(List<EntityCorso> coursesOffered) {
+		this.coursesOffered = coursesOffered;
 	}
 	
 }
 
- // entitycanto (e le altre specializz) se le fai public le vuole su un file separato
-// se ti serve a qualcosa fallo
-
-class entitycanto extends EntityCorsoDiStudio{
-	public entitycanto(String codiceCds, String nomeCds, Date annoAccademico, int creditiTotali) {
-		super(codiceCds, nomeCds, annoAccademico, creditiTotali);
+class entitysinging extends EntityCorsoDiStudio{
+	public entitysinging(String codeCds, String nameCds, Date academicYear, int totalCredits) {
+		super(codeCds, nameCds, academicYear, totalCredits);
 	}
 }
 
-class entitycomposizione extends EntityCorsoDiStudio{
-	public entitycomposizione(String codiceCds, String nomeCds, Date annoAccademico, int creditiTotali) {
-		super(codiceCds, nomeCds, annoAccademico, creditiTotali);
+class entitycomposition extends EntityCorsoDiStudio{
+	public entitycomposition(String codeCds, String nameCds, Date academicYear, int totalCredits) {
+		super(codeCds, nameCds, academicYear, totalCredits);
 	}
 }
 
-class entitymusicadinsieme extends EntityCorsoDiStudio{
-	public entitymusicadinsieme(String codiceCds, String nomeCds, Date annoAccademico, int creditiTotali) {
-		super(codiceCds, nomeCds, annoAccademico, creditiTotali);
+class entityensemblemusic extends EntityCorsoDiStudio{
+	public entityensemblemusic(String codeCds, String nameCds, Date academicYear, int totalCredits) {
+		super(codeCds, nameCds, academicYear, totalCredits);
 	}
 }
 
-class entitystrumento extends EntityCorsoDiStudio{
-	public entitystrumento(String codiceCds, String nomeCds, Date annoAccademico, int creditiTotali) {
-		super(codiceCds, nomeCds, annoAccademico, creditiTotali);
+class entityinstruments extends EntityCorsoDiStudio{
+	public entityinstruments(String codeCds, String nameCds, Date academicYear, int totalCredits) {
+		super(codeCds, nameCds, academicYear, totalCredits);
 	}
 }
 
-class entitydidatticamusica extends EntityCorsoDiStudio{
-	public entitydidatticamusica(String codiceCds, String nomeCds, Date annoAccademico, int creditiTotali) {
-		super(codiceCds, nomeCds, annoAccademico, creditiTotali);
+class entitymusiceducation extends EntityCorsoDiStudio{
+	public entitymusiceducation(String codeCds, String nameCds, Date academicYear, int totalCredits) {
+		super(codeCds, nameCds, academicYear, totalCredits);
 	}
 }
 
-class entitycantolirico extends entitycanto{
-	public entitycantolirico(String codiceCds, String nomeCds, Date annoAccademico, int creditiTotali) {
-		super(codiceCds, nomeCds, annoAccademico, creditiTotali);
+class entitysinginglyrical extends entitysinging{
+	public entitysinginglyrical(String codeCds, String nameCds, Date academicYear, int totalCredits) {
+		super(codeCds, nameCds, academicYear, totalCredits);
 	}
 }
 
-class entitycantojazz extends entitycanto{
-	public entitycantojazz(String codiceCds, String nomeCds, Date annoAccademico, int creditiTotali) {
-		super(codiceCds, nomeCds, annoAccademico, creditiTotali);
+class entitysingingjazz extends entitysinging{
+	public entitysingingjazz(String codeCds, String nameCds, Date academicYear, int totalCredits) {
+		super(codeCds, nameCds, academicYear, totalCredits);
 	}
 }
 
-class entitypianoforte extends entitystrumento{
-	public entitypianoforte(String codiceCds, String nomeCds, Date annoAccademico, int creditiTotali) {
-		super(codiceCds, nomeCds, annoAccademico, creditiTotali);
+class entitypiano extends entityinstruments{
+	public entitypiano(String codeCds, String nameCds, Date academicYear, int totalCredits) {
+		super(codeCds, nameCds, academicYear, totalCredits);
 	}
 }
 
-class entityviolino extends entitystrumento{
-	public entityviolino(String codiceCds, String nomeCds, Date annoAccademico, int creditiTotali) {
-		super(codiceCds, nomeCds, annoAccademico, creditiTotali);
+class entityviolin extends entityinstruments{
+	public entityviolin(String codeCds, String nameCds, Date academicYear, int totalCredits) {
+		super(codeCds, nameCds, academicYear, totalCredits);
 	}
 }
 
-class entitychitarra extends entitystrumento{
-	public entitychitarra(String codiceCds, String nomeCds, Date annoAccademico, int creditiTotali) {
-		super(codiceCds, nomeCds, annoAccademico, creditiTotali);
+class entityguitar extends entityinstruments{
+	public entityguitar(String codeCds, String nameCds, Date academicYear, int totalCredits) {
+		super(codeCds, nameCds, academicYear, totalCredits);
 	}
 }
 

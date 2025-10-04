@@ -11,63 +11,63 @@ import exception.DBConnectionException;
 
 public class VerbaleDAO {
 	
-		public static EntityVerbale readVerbale(String codiceVerbale) throws DAOException, DBConnectionException {
+		public static EntityVerbale readReport(String reportCode) throws DAOException, DBConnectionException {
 			EntityVerbale eV = null;
 
 			try {
 
 				Connection conn = DBManager.getConnection();
 
-				String query = "SELECT * FROM VERBALE WHERE CODICEVERBALE=?;";
+				String query = "SELECT * FROM REPORT WHERE REPORTCODE=?;";
 
 				try {
 					PreparedStatement stmt = conn.prepareStatement(query);
 
-					stmt.setString(1, codiceVerbale);
+					stmt.setString(1, reportCode);
 
 					ResultSet result = stmt.executeQuery();
 
 					if(result.next()) {
-						eV = new EntityVerbale(result.getDate(1), codiceVerbale, result.getString(3));	
+						eV = new EntityVerbale(result.getDate(1), reportCode, result.getString(3));	
 					}
 				}catch(SQLException e) {
-					throw new DAOException("Errore lettura verbale");
+					throw new DAOException("Report reading error");
 				} finally {
 					DBManager.closeConnection();
 				}
 
 			}catch(SQLException e) {
-				throw new DBConnectionException("Errore di connessione DB");
+				throw new DBConnectionException("DB connection error");
 			}
 
 			return eV;
 		}
 		
-	public static void createVerbale(EntityVerbale eB) throws DAOException, DBConnectionException {
+	public static void createReport(EntityVerbale eB) throws DAOException, DBConnectionException {
 			
 			try {
 				
 				Connection conn = DBManager.getConnection();
 
-				String query = "INSERT INTO VERBALE VALUES (?,?,?);";
+				String query = "INSERT INTO REPORT VALUES (?,?,?);";
 
 				try {
 					PreparedStatement stmt = conn.prepareStatement(query);
 					
-					stmt.setDate(1, new Date(eB.getDataVerbale().getTime()));
-					stmt.setString(2, eB.getCodiceVerbale());
-					stmt.setString(3, eB.getMatricolaDocente());
+					stmt.setDate(1, new Date(eB.getreportDate().getTime()));
+					stmt.setString(2, eB.getreportCode());
+					stmt.setString(3, eB.getteacherID());
 
 					stmt.executeUpdate();
 
 				}catch(SQLException e) {
-					throw new DAOException("Errore scrittura verbale");
+					throw new DAOException("Report writing error");
 				} finally {
 					DBManager.closeConnection();
 				}
 
 			}catch(SQLException e) {
-				throw new DBConnectionException("Errore connessione database");
+				throw new DBConnectionException("DB connection error");
 			}
 
 	}         
