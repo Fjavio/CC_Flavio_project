@@ -14,6 +14,9 @@ The platform will support several roles:
 - **Teachers**: manage courses, enter exam results, and validate them through electronic signatures (PIN verification).  
 - **Administration**: manage academic data, update students and teachers, and assign courses to teachers each academic year.  
 
+Specifically the system covers five main areas of study: singing, instruments, composition, ensemble music, and music education.  
+Some categories, such as singing (lyrical and jazz) and instruments (piano, violin, guitar, etc.), offer different specializations. 
+
 In this implementation, we focus on **a subset of the main functionalities**, which may be part of a larger real case, including:
 - Management of courses, teachers, and students through DAO and Entity classes.
 - Teacher operations for opening and closing exam reports.
