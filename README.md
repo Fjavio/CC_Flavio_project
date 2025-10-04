@@ -37,4 +37,6 @@ The system is organized according to the **DAO–Entity–Control–Boundary** a
 - **Boundary classes** for user interaction: console-based menus for Teachers and Administration:  
   - `BoundaryDocente` → Teachers (open/close reports, insert exam results)  
   - `BoundarySegreteriaStudenti` → Administration (add teachers, add courses, associate teacher-course)  
-  - GUI menus (extensions of the console menus) 
+  - GUI menus (extensions of the console menus)
+- **MySQL Database** to persist all information (courses, teachers, students, exams, reports)  
+- **XAMPP** used to run and manage the MySQL database locally 
