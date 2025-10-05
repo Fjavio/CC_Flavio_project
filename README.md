@@ -3,14 +3,14 @@ Project for Cloud Computing exam
  
 # TITLE - Conservatory Degree Courses Management System
 
-## Reference 
+## Overview
+This project is a Java-based management system for academic degree courses at a Conservatory of Music.
+It simulates real-world administrative and academic processes — including teacher/course management, exam registration, and validation — and stores all data in a MySQL relational database.
 The project chosen to be implemented in the cloud was taken from a project assigned to me for the Software Engineering exam.
 
 ## Description
-This project aims to develop a small example of a management system for degree courses at a conservatory.
-
 The platform will support several roles:  
-- **Students**: manage personal study plans, access their exam records, view grades and both arithmetic and weighted averages. (!!NOT IMPLEMENTED!!)  
+- **Students**: manage personal study plans, access their exam records, view grades and both arithmetic and weighted averages.   
 - **Teachers**: manage courses, enter exam results, and validate them through electronic signatures (PIN verification).  
 - **Administration**: manage academic data, update students and teachers, and assign courses to teachers each academic year.  
 
@@ -29,17 +29,36 @@ In this implementation, we focus on **a subset of the main functionalities**, wh
 - Allow secure and verified exam registration through PIN validation and prerequisite checks.  
 - Support administration tasks such as course creation, teacher assignment, and yearly course scheduling.  
 - Store all information about students, teachers, courses and any connections between them, in a well-related database
-- Demonstrate the integration of different layers (Entity, DAO, Control, Boundary) in Java.
+- Demonstrate separation of concerns via the DAO–Entity–Control–Boundary pattern.
   
-## Project Structure
-The system is organized according to the **DAO–Entity–Control–Boundary** architectural pattern and supports basic **CRUD** operations together with specific business rules (e.g., prerequisite validation, vote validation, PIN verification).
+## Project Architecture
+The system is organized according to the **DAO–Entity–Control–Boundary** architectural pattern, a simplified MVC-style organization designed for modularity and testability, and supports basic **CRUD** operations together with specific business rules (e.g., prerequisite validation, vote validation, PIN verification).
 - **Java** (core language for implementation)  
-- **DAO pattern** for database interaction (CRUD and custom queries)  
-- **Entity classes** for domain modeling (`Course`, `Teacher`, `Student`, `Exam`, `Report`)  
-- **Control classes** for business logic (validation, orchestration of operations)   
+- **DAO pattern**: handles all interaction with the database (CRUD operations and custom queries)  
+- **Entity classes**: represents real-world objects as data structures: (`Course`, `Teacher`, `Student`, `Exam`, `Report`); mirrors DB tables.   
+- **Control classes**: `GestoreCorsiDiStudioConservatorio` implements business rules and coordinates DAO calls: validation and orchestration of operations, enforces prerequisites, ensures integrity.   
 - **Boundary classes** for user interaction: console-based menus for Teachers and Administration:  
   - `BoundaryDocente` → Teachers (open/close reports, insert exam results)  
   - `BoundarySegreteriaStudenti` → Administration (add teachers, add courses, associate teacher-course)  
   - GUI menus (extensions of the console menus)
 - **MySQL Database** to persist all information (courses, teachers, students, exams, reports)  
-- **XAMPP** used to run and manage the MySQL database locally 
+- **XAMPP** used to run and manage the MySQL database locally
+
+## Installation and Setup Guide
+1 Requirements:
+- Java JDK 17+
+- Eclipse IDE (or IntelliJ, NetBeans, etc.)
+- MySQL Database (via XAMPP or standalone)
+- JDBC Driver for MySQL (mysql-connector-j-8.x.x.jar)
+
+2 Database Setup (via XAMPP):
+- Open XAMPP Control Panel → Start Apache and MySQL.
+- Open phpMyAdmin (http://localhost/phpmyadmin).
+- Create a new database, e.g. conservatory_db, and creates tables that represent the entities
+
+3 Eclipse
+- Update your database configuration file in DBManager.java with your connection details: conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/gestionecorsidistudioconservatorio", "root", "");
+
+## Future Improvements
+- Implement interface with student features (login, view grades, averages).
+- Migrate to cloud database
