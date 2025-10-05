@@ -42,7 +42,6 @@ The system is organized according to the **DAO–Entity–Control–Boundary** a
   - `BoundarySegreteriaStudenti` → Administration (add teachers, add courses, associate teacher-course)  
   - GUI menus (extensions of the console menus)
 - **MySQL Database** to persist all information (courses, teachers, students, exams, reports)  
-- **XAMPP** used to run and manage the MySQL database locally
 
 ## Installation and Setup Guide
 1 Requirements:
@@ -60,5 +59,4 @@ The system is organized according to the **DAO–Entity–Control–Boundary** a
 - Update your database configuration file in DBManager.java with your connection details: conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/gestionecorsidistudioconservatorio", "root", "");
 
 ## Future Improvements
-- Implement interface with student features (login, view grades, averages).
 - Migrate to cloud database
