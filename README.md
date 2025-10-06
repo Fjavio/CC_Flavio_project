@@ -57,7 +57,7 @@ Progress tracking of the project during the Software Engineering Exam
 - [Milestone: Hito 4 - Implement GUI menus](https://github.com/Fjavio/CC_Flavio_project/milestone/4)
 ---------------------------------------------------------------------------------------------------------------
 Progress tracking of the project during the Cloud Computing Exam
-- [Milestone: Hito 1 - Repositorio de prácticas y definición del proyecto]
+- Milestone: Hito 1 - Repositorio de prácticas y definición del proyecto: refer to the milestones of the first part
 - [Milestone: Hito 2 -  Integración continua]
 
 ## Installation and Setup Guide
