@@ -49,8 +49,8 @@ This project uses GitHub Issues and Milestones for progress tracking.
   - [Issue #1: Implement ENTITY Layer](https://github.com/Fjavio/CC_Flavio_project/issues/1) ✅ Closed
   - [Issue #2: Implement DAO Layer](https://github.com/Fjavio/CC_Flavio_project/issues/2) ✅ Closed
 - [Milestone: Hito 2 - Advanced DAO functionalities](https://github.com/Fjavio/CC_Flavio_project/milestone/2):
-  - [Issue #1: Advanced courseDAO](https://github.com/Fjavio/CC_Flavio_project/issues/1) ✅ Closed
-  - [Issue #2: Advanced examDAO](https://github.com/Fjavio/CC_Flavio_project/issues/2) ✅ Closed
+  - [Issue #1: Advanced courseDAO](https://github.com/Fjavio/CC_Flavio_project/issues/4) ✅ Closed
+  - [Issue #2: Advanced examDAO](https://github.com/Fjavio/CC_Flavio_project/issues/3) ✅ Closed
 
 ## Installation and Setup Guide
 1 Requirements:
