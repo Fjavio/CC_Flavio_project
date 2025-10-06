@@ -46,15 +46,15 @@ The system is organized according to the **DAO–Entity–Control–Boundary** a
 ## Project Management
 This project uses GitHub Issues and Milestones for progress tracking.
 - [Milestone: Hito 1 - Base Architecture](https://github.com/Fjavio/CC_Flavio_project/milestone/1):
-  - [Issue #1: Implement ENTITY Layer](https://github.com/Fjavio/CC_Flavio_project/issues/1) ✅ Closed
-  - [Issue #2: Implement DAO Layer](https://github.com/Fjavio/CC_Flavio_project/issues/2) ✅ Closed
+  - [Issue #1: Implement ENTITY Layer](https://github.com/Fjavio/CC_Flavio_project/issues/1) 
+  - [Issue #2: Implement DAO Layer](https://github.com/Fjavio/CC_Flavio_project/issues/2) 
 - [Milestone: Hito 2 - Advanced DAO functionalities](https://github.com/Fjavio/CC_Flavio_project/milestone/2):
-  - [Issue #1: Advanced courseDAO](https://github.com/Fjavio/CC_Flavio_project/issues/4) ✅ Closed
-  - [Issue #2: Advanced examDAO](https://github.com/Fjavio/CC_Flavio_project/issues/3) ✅ Closed
-- [Milestone: Hito 3 - Implements Control and Boundary layers](https://github.com/Fjavio/CC_Flavio_project/milestone/3):
-  - [Issue #1: Implements Control layer](https://github.com/Fjavio/CC_Flavio_project/issues/5) ✅ Closed
-  - [Issue #2: Implements Boundary layer](https://github.com/Fjavio/CC_Flavio_project/issues/6) ✅ Closed
-- [Milestone: Hito 4 - Implements GUI menus](https://github.com/Fjavio/CC_Flavio_project/milestone/4):
+  - [Issue #1: Advanced courseDAO](https://github.com/Fjavio/CC_Flavio_project/issues/4) 
+  - [Issue #2: Advanced examDAO](https://github.com/Fjavio/CC_Flavio_project/issues/3) 
+- [Milestone: Hito 3 - Implement Control and Boundary layers](https://github.com/Fjavio/CC_Flavio_project/milestone/3):
+  - [Issue #1: Implement Control layer](https://github.com/Fjavio/CC_Flavio_project/issues/5) 
+  - [Issue #2: Implement Boundary layer](https://github.com/Fjavio/CC_Flavio_project/issues/6) 
+- [Milestone: Hito 4 - Implement GUI menus](https://github.com/Fjavio/CC_Flavio_project/milestone/4)
 
 ## Installation and Setup Guide
 1 Requirements:
