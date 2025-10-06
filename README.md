@@ -45,9 +45,9 @@ The system is organized according to the **DAO–Entity–Control–Boundary** a
 
 ## Project Management
 This project uses GitHub Issues and Milestones for progress tracking.
-- [Issue #1: Implement ENTITY Layer](https://github.com/Fjavio/CC_Flavio_project/issues/1) ✅ Closed
-- [Issue #2: Implement DAO Layer](https://github.com/Fjavio/CC_Flavio_project/issues/2) ✅ Closed
-- [Milestone: Hito 1 - Base Architecture](https://github.com/Fjavio/CC_Flavio_project/milestone/1)
+- [Milestone: Hito 1 - Base Architecture](https://github.com/Fjavio/CC_Flavio_project/milestone/1):
+  - [Issue #1: Implement ENTITY Layer](https://github.com/Fjavio/CC_Flavio_project/issues/1) ✅ Closed
+  - [Issue #2: Implement DAO Layer](https://github.com/Fjavio/CC_Flavio_project/issues/2) ✅ Closed
 
 ## Installation and Setup Guide
 1 Requirements:
