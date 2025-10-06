@@ -58,5 +58,11 @@ The system is organized according to the **DAO–Entity–Control–Boundary** a
 3 Eclipse
 - Update your database configuration file in DBManager.java with your connection details: conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/gestionecorsidistudioconservatorio", "root", "");
 
-## Future Improvements
-- Migrate to cloud database
+## Cloud Perspective
+This project is designed with a layered architecture that can easily be deployed in the cloud. In a cloud environment:
+- The **Control and DAO layers** would be hosted on a remote application server (e.g., AWS EC2, Azure App Service).  
+- The **MySQL database** could be migrated to a managed cloud database (e.g., AWS RDS, Google Cloud SQL).  
+- **User interfaces** (Boundaries) could be accessed remotely via a web or REST API layer.  
+
+The system’s modularity and business logic make it ideal for cloud deployment, allowing multiple users (students, teachers, administration) to access shared academic data securely and efficiently.
+
