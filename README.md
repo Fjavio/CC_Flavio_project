@@ -54,6 +54,7 @@ This project uses GitHub Issues and Milestones for progress tracking.
 - [Milestone: Hito 3 - Implements Control and Boundary layers](https://github.com/Fjavio/CC_Flavio_project/milestone/3):
   - [Issue #1: Implements Control layer](https://github.com/Fjavio/CC_Flavio_project/issues/5) ✅ Closed
   - [Issue #2: Implements Boundary layer](https://github.com/Fjavio/CC_Flavio_project/issues/6) ✅ Closed
+- [Milestone: Hito 4 - Implements GUI menus](https://github.com/Fjavio/CC_Flavio_project/milestone/4):
 
 ## Installation and Setup Guide
 1 Requirements:
