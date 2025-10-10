@@ -20,11 +20,11 @@
 	        <scope>test</scope>
         </dependency>
 
-        <!-- MySQL Connector -->
+        <!-- MySQL Connector (normally used 8.4.0 but maven support until 8.3.0) -->
         <dependency>
-            <groupId>mysql</groupId>
-            <artifactId>mysql-connector-java</artifactId>
-            <version>8.4.0</version>
+            <groupId>com.mysql</groupId>
+            <artifactId>mysql-connector-j</artifactId>
+            <version>8.3.0</version>
         </dependency>
 
         <!-- Mockito for unit tests with mocks (useful per external interactions (database) -->
