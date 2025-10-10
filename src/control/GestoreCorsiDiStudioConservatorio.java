@@ -32,6 +32,10 @@ public class GestoreCorsiDiStudioConservatorio {
 
 		return gCDSC; 
 	}
+	
+	public static void setInstance(GestoreCorsiDiStudioConservatorio instance) {
+	    gCDSC = instance;
+	}
   
 	public void AssociationTeacherCourse(String courseCode, String teacherID) throws OperationException{
 		EntityDocente eD = null;
