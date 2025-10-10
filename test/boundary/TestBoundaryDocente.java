@@ -39,7 +39,7 @@ class TestBoundaryDocente {
     }
 
     @Test
-    void testClosingReport_CompletamentoCorretto() throws Exception {
+    void testClosingReport_DoneCorrectly() throws Exception {
         //User input
         String simulatedInput = "REP01\n1234567\n";
         BoundaryDocente.scan = new Scanner(simulatedInput);
@@ -63,7 +63,7 @@ class TestBoundaryDocente {
     }
 
     @Test
-    void testClosingReport_ReportNonEsiste() throws Exception {
+    void testClosingReport_ReportNotExist() throws Exception {
         String simulatedInput = "XXXX\n";
         BoundaryDocente.scan = new Scanner(simulatedInput);
 
@@ -90,50 +90,3 @@ class TestBoundaryDocente {
         verify(gestoreMock, times(1)).ClosingReport2("REP01");
     }
 }
-
-
-//WITHOUT MOCK??
-/*
-public class TestBoundaryDocente {
-
-    private GestoreCorsiDiStudioConservatorio gestore;
-
-    @Before
-    public void setUp() {
-        gestore = GestoreCorsiDiStudioConservatorio.getInstance();
-    }
-
-    @Test
-    public void testOpeningReport_ValidInput() throws Exception {
-        String reportCode = "REP01";
-        String teacherID = "DOC0001";
-        Date date = Date.valueOf(LocalDate.now());
-
-        boolean teacherExists = gestore.checkTeacher(teacherID);
-        assertTrue("Teacher should exist in DB", teacherExists);
-
-        gestore.OpeningReport(reportCode, date, teacherID);
-
-        boolean reportExists = gestore.checkReport(reportCode);
-        assertTrue("Report should exist after creation", reportExists);
-    }
-
-    @Test
-    public void testClosingReport_Valid() throws Exception {
-        String reportCode = "REP01";
-        String username = "studente1";
-
-        assertTrue("Report must exist", gestore.checkReport(reportCode));
-
-        gestore.ClosingReport1(reportCode, username);
-        gestore.ClosingReport2(reportCode);
-
-        assertTrue("Report should be marked as closed", gestore.isReportClosed(reportCode));
-    }
-
-    @After
-    public void tearDown() {
-        System.out.println("END TEST");
-    }
-}
-*/

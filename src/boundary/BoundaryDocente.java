@@ -44,7 +44,7 @@ public class BoundaryDocente {
 		
 	}
 	
-            private static void OpeningReport() {
+            public static void OpeningReport() { //public to test with JUNIT
                 GestoreCorsiDiStudioConservatorio gestoreCorsiDiStudioConservatorio = GestoreCorsiDiStudioConservatorio.getInstance();
                 String reportCode = null;
                 String teacherID = null;
@@ -188,6 +188,7 @@ public class BoundaryDocente {
                     System.out.println();
                 }
             }
+            
 
 	public static void ClosingReport() { //public to test with JUNIT
         GestoreCorsiDiStudioConservatorio gestoreCorsiDiStudioConservatorio = GestoreCorsiDiStudioConservatorio.getInstance();
