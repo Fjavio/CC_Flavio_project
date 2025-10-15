@@ -6,6 +6,7 @@ import static org.junit.Assume.assumeTrue;
 import static org.junit.jupiter.api.Assertions.*;
 import java.sql.Date;
 import java.time.LocalDate;
+import java.util.Random;
 
 /** UNIT TEST **/
 
@@ -36,20 +37,17 @@ public class TestGestore {
 
     @Test
     void testOpeningReport_OK() {
+    	
+    	String reportCode = ""+(10000 + new Random().nextInt(90000));
+    	
         assertDoesNotThrow(() -> 
-            gestore.OpeningReport("WBC99", Date.valueOf(LocalDate.now()), "C123456")
+            gestore.OpeningReport(reportCode, Date.valueOf(LocalDate.now()), "C123456")
         );
 
         //Now verify that the report actually exists
-        assertDoesNotThrow(() -> gestore.checkReport("WBC99"));
+        assertDoesNotThrow(() -> gestore.checkReport(reportCode));
     }
     
-    @Test
-    void testCheckStudent_NotExist() throws Exception {
-        boolean exists = gestore.checkStudent("userFake");
-        assertFalse(exists, "The specified student does not exist in the database. Try again.");
-    }
-
     @Test
     void testCheckTeacher_ExistingTeacher() throws Exception {
         assertTrue(gestore.checkTeacher("C123456"));

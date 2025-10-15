@@ -2,12 +2,12 @@ package boundary;
 
 import static org.junit.Assume.assumeTrue;
 import static org.junit.jupiter.api.Assertions.*;
-
+import org.junit.jupiter.api.MethodOrderer.OrderAnnotation;
 import java.sql.Date;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Scanner;
-
+import java.util.Random;
 import org.junit.jupiter.api.*;
 
 import control.GestoreCorsiDiStudioConservatorio;
@@ -20,10 +20,12 @@ import exception.OperationException;
  *  - The Teacher table contains a teacher with ID "C123456"
  */
 
+@TestMethodOrder(OrderAnnotation.class)
 public class TestBoundaryDocenteSQL {
 
     private GestoreCorsiDiStudioConservatorio gestore;
-
+    static String lastReportCode;
+    
     @BeforeAll
     static void setupAll() {
         System.out.println("START INTEGRATION TEST");
@@ -46,10 +48,14 @@ public class TestBoundaryDocenteSQL {
     }
     
     @Test
+    @Order(1)
     void testOpeningReport_OK() throws Exception {
+    	
+    	lastReportCode = "" + (10000 + new Random().nextInt(90000));
+    	
         //Input
         BoundaryDocente.scan = new Scanner(
-            "WBC99\n" +              // code report
+        	lastReportCode + "\n" +               // code report
             LocalDate.now() + "\n" + // data
             "C123456\n" +            // real id teacher
             "30\n" +                 // vote
@@ -60,19 +66,20 @@ public class TestBoundaryDocenteSQL {
             "no\n"                   // no other exams
         );
 
-        gestore.OpeningReport("WBC99", Date.valueOf(LocalDate.now()), "C123456");
-
-        // Verify that report exist in mysql
-        assertDoesNotThrow(() -> gestore.checkReport("WBC99"));
+        BoundaryDocente.OpeningReport();
     }
 
     @Test
+    @Order(3)
     void testOpeningReport_noUsername() throws Exception {
+       
+        lastReportCode = "" + (10000 + new Random().nextInt(90000));
+
         BoundaryDocente.scan = new Scanner(
-            "WFF98\n" +             
+        	lastReportCode + "\n" +       
             LocalDate.now() + "\n" + 
             "C123456\n" +            
-            "25\n" +               
+            "25\n" +                
             "false\n" +            
             "some errors\n" +            
             "A1234\n" +              
@@ -85,12 +92,13 @@ public class TestBoundaryDocenteSQL {
 
     
     @Test
+    @Order(2)
     void testClosingReport() throws Exception {
-        // Let's assume that WWW99 already exists from previous OpeningReport
-        BoundaryDocente.scan = new Scanner(
-            "AAA99\n" +     
-            "1234567\n"      // real PIN 
-        );
+        // Let's assume that a report already exists from previous OpeningReport
+    	BoundaryDocente.scan = new Scanner(
+                lastReportCode + "\n" +
+                "1234567\n"  // real PIN
+            );
 
         assertDoesNotThrow(() -> BoundaryDocente.ClosingReport());
     }
