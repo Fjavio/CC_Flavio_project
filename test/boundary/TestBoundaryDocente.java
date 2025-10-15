@@ -2,7 +2,6 @@ package boundary;
 
 import static org.mockito.Mockito.*;
 import java.util.Arrays;
-import java.sql.Date;
 import java.util.Scanner;
 import org.junit.jupiter.api.*;
 import org.junit.jupiter.api.extension.ExtendWith;

@@ -1,11 +1,9 @@
 package boundary;
 
-import static org.junit.Assume.assumeTrue;
+import static org.junit.jupiter.api.Assumptions.assumeTrue;
 import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.MethodOrderer.OrderAnnotation;
-import java.sql.Date;
 import java.time.LocalDate;
-import java.util.List;
 import java.util.Scanner;
 import java.util.Random;
 import org.junit.jupiter.api.*;

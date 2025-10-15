@@ -2,7 +2,7 @@ package control;
 
 import org.junit.jupiter.api.*;
 
-import static org.junit.Assume.assumeTrue;
+import static org.junit.jupiter.api.Assumptions.assumeTrue;
 import static org.junit.jupiter.api.Assertions.*;
 import java.sql.Date;
 import java.time.LocalDate;
