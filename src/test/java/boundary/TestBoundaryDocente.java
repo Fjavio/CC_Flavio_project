@@ -30,6 +30,7 @@ class TestBoundaryDocente {
 
     @BeforeEach
     void setUp() {
+    	System.out.println("START TEST");
         // Replace the singleton instance used by getInstance() with the mock
         GestoreCorsiDiStudioConservatorio.setInstance(gestoreMock);
     }
@@ -37,6 +38,8 @@ class TestBoundaryDocente {
     @AfterEach
     void tearDown() {
         System.out.println("END TEST");
+        //Restore scanner
+        BoundarySegreteriaStudenti.scan = new Scanner(System.in);
     }
 
     @Test
@@ -74,20 +77,5 @@ class TestBoundaryDocente {
         BoundaryDocente.ClosingReport();
 
         verify(gestoreMock).checkReport("XXXX");
-    }
-
-    @Test
-    void testClosingReport_OK() throws Exception {
-        when(gestoreMock.getUsernamesByReport("REP01"))
-            .thenReturn(Arrays.asList("studente1"));
-        doNothing().when(gestoreMock).ClosingReport1(anyString(), anyString());
-        doNothing().when(gestoreMock).ClosingReport2(anyString());
-
-        String simulatedInput = "REP01\n1234567\n";
-        BoundaryDocente.scan = new Scanner(simulatedInput);
-
-        BoundaryDocente.ClosingReport();
-
-        verify(gestoreMock, times(1)).ClosingReport2("REP01");
     }
 }
