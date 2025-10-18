@@ -45,20 +45,20 @@ The system is organized according to the **DAO–Entity–Control–Boundary** a
 
 ## Project Management
 Progress tracking of the project during the Software Engineering Exam
-- [Milestone: Hito 1 - Base Architecture](https://github.com/Fjavio/CC_Flavio_project/milestone/1):
+- [Milestone: Hito 0.1 - Base Architecture](https://github.com/Fjavio/CC_Flavio_project/milestone/1):
   - [Issue #1: Implement ENTITY Layer](https://github.com/Fjavio/CC_Flavio_project/issues/1) 
   - [Issue #2: Implement DAO Layer](https://github.com/Fjavio/CC_Flavio_project/issues/2) 
-- [Milestone: Hito 2 - Advanced DAO functionalities](https://github.com/Fjavio/CC_Flavio_project/milestone/2):
+- [Milestone: Hito 0.2 - Advanced DAO functionalities](https://github.com/Fjavio/CC_Flavio_project/milestone/2):
   - [Issue #1: Advanced courseDAO](https://github.com/Fjavio/CC_Flavio_project/issues/4) 
   - [Issue #2: Advanced examDAO](https://github.com/Fjavio/CC_Flavio_project/issues/3) 
-- [Milestone: Hito 3 - Implement Control and Boundary layers](https://github.com/Fjavio/CC_Flavio_project/milestone/3):
+- [Milestone: Hito 0.3 - Implement Control and Boundary layers](https://github.com/Fjavio/CC_Flavio_project/milestone/3):
   - [Issue #1: Implement Control layer](https://github.com/Fjavio/CC_Flavio_project/issues/5) 
   - [Issue #2: Implement Boundary layer](https://github.com/Fjavio/CC_Flavio_project/issues/6) 
-- [Milestone: Hito 4 - Implement GUI menus](https://github.com/Fjavio/CC_Flavio_project/milestone/4)
+- [Milestone: Hito 0.4 - Implement GUI menus](https://github.com/Fjavio/CC_Flavio_project/milestone/4)
 ---------------------------------------------------------------------------------------------------------------
 Progress tracking of the project during the Cloud Computing Exam
 - Milestone: Hito 1 - Repositorio de prácticas y definición del proyecto: refer to the milestones of the first part
-- [Milestone: Hito 2 -  Integración continua]
+- [Milestone: Hito 2 -  Integración continua](https://github.com/Fjavio/CC_Flavio_project/milestone/5):
 
 ## Installation and Setup Guide
 1 Requirements:
