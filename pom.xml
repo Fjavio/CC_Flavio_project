@@ -12,6 +12,18 @@
     </properties>
 
     <dependencies>
+	    <dependency>
+	        <groupId>io.cucumber</groupId>
+	        <artifactId>cucumber-java</artifactId>
+	        <version>7.14.0</version>
+	        <scope>test</scope>
+	    </dependency>
+	    <dependency>
+	        <groupId>io.cucumber</groupId>
+	        <artifactId>cucumber-junit</artifactId>
+	        <version>7.14.0</version>
+	        <scope>test</scope>
+	    </dependency>
         <!-- JUnit 5 -->
         <dependency>
              <groupId>org.junit.jupiter</groupId>
@@ -27,7 +39,7 @@
             <version>8.3.0</version>
         </dependency>
 
-        <!-- Mockito for unit tests with mocks (useful per external interactions (database) -->
+        <!-- Mockito for unit tests with mocks, useful per external interactions (database) -->
         <dependency>
             <groupId>org.mockito</groupId>
             <artifactId>mockito-core</artifactId>
@@ -42,11 +54,17 @@
 	        <version>5.12.0</version>
 	        <scope>test</scope>
 	    </dependency>
+	    
+	    <!-- Mockito static -->
+	    <dependency>
+	        <groupId>org.mockito</groupId>
+	        <artifactId>mockito-inline</artifactId>
+	        <version>5.2.0</version>
+	        <scope>test</scope>
+        </dependency>
     </dependencies>
     
   <build>
-    <sourceDirectory>src</sourceDirectory>
-    <testSourceDirectory>test</testSourceDirectory>
     <plugins>
             <!-- Plugin for Java compilation -->
             <plugin>
