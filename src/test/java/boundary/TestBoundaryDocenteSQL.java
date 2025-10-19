@@ -9,7 +9,6 @@ import java.util.Random;
 import org.junit.jupiter.api.*;
 
 import control.GestoreCorsiDiStudioConservatorio;
-import exception.OperationException;
 
 /**
  * INTEGRATION TEST WITH REAL DATABASE

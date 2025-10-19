@@ -8,7 +8,7 @@ import java.sql.Date;
 import java.time.LocalDate;
 import java.util.Random;
 
-/** UNIT TEST **/
+/** INTEGRATION TEST **/
 
 public class TestGestore {
 
