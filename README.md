@@ -59,7 +59,8 @@ Progress tracking of the project during the Software Engineering Exam
 Progress tracking of the project during the Cloud Computing Exam
 - Milestone: Hito 1 - Repositorio de prácticas y definición del proyecto: refer to the milestones of the first part
 - [Milestone: Hito 2 -  Integración continua](https://github.com/Fjavio/CC_Flavio_project/milestone/5):
-  - [Issue #1: Set Up Build Automation with Maven](https://github.com/Fjavio/CC_Flavio_project/issues/7) 
+  - [Issue #1: Set Up Build Automation with Maven](https://github.com/Fjavio/CC_Flavio_project/issues/7)
+  - [Issue #2: Implement Unit Testing Strategy with JUnit 5](https://github.com/Fjavio/CC_Flavio_project/issues/8) 
 
 ## Installation and Setup Guide
 1 Requirements:
