@@ -10,7 +10,7 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import control.GestoreCorsiDiStudioConservatorio;
 import exception.OperationException;
 
-/* INTEGRATION TEST WITH FAKE DATABASE (MOCKITO) */
+/* TEST WITH FAKE DATABASE (MOCKITO) */
 
 @ExtendWith(MockitoExtension.class)
 class TestBoundaryDocente {
