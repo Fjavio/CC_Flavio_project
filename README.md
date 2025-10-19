@@ -61,7 +61,8 @@ Progress tracking of the project during the Cloud Computing Exam
 - [Milestone: Hito 2 -  Integración continua](https://github.com/Fjavio/CC_Flavio_project/milestone/5):
   - [Issue #1: Set Up Build Automation with Maven](https://github.com/Fjavio/CC_Flavio_project/issues/7)
   - [Issue #2: Implement Unit Testing Strategy with JUnit 5](https://github.com/Fjavio/CC_Flavio_project/issues/8)
-  - [Issue #3: Develop Integration Tests for System Components](https://github.com/Fjavio/CC_Flavio_project/issues/9) 
+  - [Issue #3: Develop Integration Tests for System Components](https://github.com/Fjavio/CC_Flavio_project/issues/9)
+  - [Issue #4: Create BDD Tests for Business Logic](https://github.com/Fjavio/CC_Flavio_project/issues/10) 
 
 ## Installation and Setup Guide
 1 Requirements:
