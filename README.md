@@ -44,18 +44,23 @@ The system is organized according to the **DAO–Entity–Control–Boundary** a
 - **MySQL Database** to persist all information (courses, teachers, students, exams, reports)  
 
 ## Installation and Setup Guide
-1 Requirements:
+1 GitHub Authentication Configuration, to ensure secure access and automation between GitHub and the environment:
+- Generate a Personal Access Token (PAT) on GitHub → Settings → Developer Settings → Personal Access Tokens
+- Generate a classic token with scopes: repo, workflow
+- Save the token.
+  
+2 Requirements:
 - Java JDK 17+
 - Eclipse IDE (or IntelliJ, NetBeans, etc.)
 - MySQL Database (via XAMPP or standalone)
 - JDBC Driver for MySQL (mysql-connector-j-8.x.x.jar)
 
-2 Database Setup (via XAMPP):
-- Open XAMPP Control Panel → Start Apache and MySQL.
-- Open phpMyAdmin (http://localhost/phpmyadmin).
+3 Database Setup (via XAMPP):
+- Open XAMPP Control Panel → Start Apache and MySQL
+- Open phpMyAdmin (http://localhost/phpmyadmin)
 - Create a new database, e.g. conservatory_db, and creates tables that represent the entities
 
-3 Eclipse
+4 Eclipse
 - Update your database configuration file in DBManager.java with your connection details: conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/gestionecorsidistudioconservatorio", "root", "");
 
 ## Cloud Perspective
