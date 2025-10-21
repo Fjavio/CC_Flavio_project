@@ -43,28 +43,6 @@ The system is organized according to the **DAO–Entity–Control–Boundary** a
   - GUI menus (extensions of the console menus)
 - **MySQL Database** to persist all information (courses, teachers, students, exams, reports)  
 
-## Project Management
-Progress tracking of the project during the Software Engineering Exam
-- [Milestone: Hito 0.1 - Base Architecture](https://github.com/Fjavio/CC_Flavio_project/milestone/1):
-  - [Issue #1: Implement ENTITY Layer](https://github.com/Fjavio/CC_Flavio_project/issues/1) 
-  - [Issue #2: Implement DAO Layer](https://github.com/Fjavio/CC_Flavio_project/issues/2) 
-- [Milestone: Hito 0.2 - Advanced DAO functionalities](https://github.com/Fjavio/CC_Flavio_project/milestone/2):
-  - [Issue #1: Advanced courseDAO](https://github.com/Fjavio/CC_Flavio_project/issues/4) 
-  - [Issue #2: Advanced examDAO](https://github.com/Fjavio/CC_Flavio_project/issues/3) 
-- [Milestone: Hito 0.3 - Implement Control and Boundary layers](https://github.com/Fjavio/CC_Flavio_project/milestone/3):
-  - [Issue #1: Implement Control layer](https://github.com/Fjavio/CC_Flavio_project/issues/5) 
-  - [Issue #2: Implement Boundary layer](https://github.com/Fjavio/CC_Flavio_project/issues/6) 
-- [Milestone: Hito 0.4 - Implement GUI menus](https://github.com/Fjavio/CC_Flavio_project/milestone/4)
----------------------------------------------------------------------------------------------------------------
-Progress tracking of the project during the Cloud Computing Exam
-- Milestone: Hito 1 - Repositorio de prácticas y definición del proyecto: refer to the milestones of the first part
-- [Milestone: Hito 2 -  Integración continua](https://github.com/Fjavio/CC_Flavio_project/milestone/5):
-  - [Issue #1: Set Up Build Automation with Maven](https://github.com/Fjavio/CC_Flavio_project/issues/7)
-  - [Issue #2: Implement Unit Testing Strategy with JUnit 5](https://github.com/Fjavio/CC_Flavio_project/issues/8)
-  - [Issue #3: Develop Integration Tests for System Components](https://github.com/Fjavio/CC_Flavio_project/issues/9)
-  - [Issue #4: Create BDD Tests for Business Logic](https://github.com/Fjavio/CC_Flavio_project/issues/10)
-  - [Issue #5: Configure Continuous Integration with GitHub Actions](https://github.com/Fjavio/CC_Flavio_project/issues/11) 
-
 ## Installation and Setup Guide
 1 Requirements:
 - Java JDK 17+
@@ -87,4 +65,26 @@ This project is designed with a layered architecture that can easily be deployed
 - **User interfaces** (Boundaries) could be accessed remotely via a web or REST API layer.  
 
 The system’s modularity and business logic make it ideal for cloud deployment, allowing multiple users (students, teachers, administration) to access shared academic data securely and efficiently.
+
+## Project Management
+Progress tracking of the project during the Software Engineering Exam
+- [Milestone: Hito 0.1 - Base Architecture](https://github.com/Fjavio/CC_Flavio_project/milestone/1):
+  - [Issue #1: Implement ENTITY Layer](https://github.com/Fjavio/CC_Flavio_project/issues/1) 
+  - [Issue #2: Implement DAO Layer](https://github.com/Fjavio/CC_Flavio_project/issues/2) 
+- [Milestone: Hito 0.2 - Advanced DAO functionalities](https://github.com/Fjavio/CC_Flavio_project/milestone/2):
+  - [Issue #1: Advanced courseDAO](https://github.com/Fjavio/CC_Flavio_project/issues/4) 
+  - [Issue #2: Advanced examDAO](https://github.com/Fjavio/CC_Flavio_project/issues/3) 
+- [Milestone: Hito 0.3 - Implement Control and Boundary layers](https://github.com/Fjavio/CC_Flavio_project/milestone/3):
+  - [Issue #1: Implement Control layer](https://github.com/Fjavio/CC_Flavio_project/issues/5) 
+  - [Issue #2: Implement Boundary layer](https://github.com/Fjavio/CC_Flavio_project/issues/6) 
+- [Milestone: Hito 0.4 - Implement GUI menus](https://github.com/Fjavio/CC_Flavio_project/milestone/4)
+---------------------------------------------------------------------------------------------------------------
+Progress tracking of the project during the Cloud Computing Exam
+- Milestone: Hito 1 - Repositorio de prácticas y definición del proyecto: refer to the milestones of the first part
+- [Milestone: Hito 2 -  Integración continua](https://github.com/Fjavio/CC_Flavio_project/milestone/5):
+  - [Issue #1: Set Up Build Automation with Maven](https://github.com/Fjavio/CC_Flavio_project/issues/7)
+  - [Issue #2: Implement Unit Testing Strategy with JUnit 5](https://github.com/Fjavio/CC_Flavio_project/issues/8)
+  - [Issue #3: Develop Integration Tests for System Components](https://github.com/Fjavio/CC_Flavio_project/issues/9)
+  - [Issue #4: Create BDD Tests for Business Logic](https://github.com/Fjavio/CC_Flavio_project/issues/10)
+  - [Issue #5: Configure Continuous Integration with GitHub Actions](https://github.com/Fjavio/CC_Flavio_project/issues/11) 
 
