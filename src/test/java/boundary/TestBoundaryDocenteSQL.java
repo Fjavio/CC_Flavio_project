@@ -1,14 +1,17 @@
 package boundary;
 
-import static org.junit.jupiter.api.Assumptions.assumeTrue;
 import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.MethodOrderer.OrderAnnotation;
 import java.time.LocalDate;
 import java.util.Scanner;
+import java.util.List;
 import java.util.Random;
 import org.junit.jupiter.api.*;
 
-import control.GestoreCorsiDiStudioConservatorio;
+import database.VerbaleDAO;
+import entity.EntityEsame;
+import entity.EntityVerbale;
+import database.EsameDAO;
 
 /**
  * INTEGRATION TEST WITH REAL DATABASE
@@ -20,34 +23,33 @@ import control.GestoreCorsiDiStudioConservatorio;
 @TestMethodOrder(OrderAnnotation.class)
 public class TestBoundaryDocenteSQL {
 
-    private GestoreCorsiDiStudioConservatorio gestore;
     static String lastReportCode;
     
     @BeforeAll
     static void setupAll() {
-        System.out.println("START INTEGRATION TEST");
+        System.out.println("START TEST SUITE");
     }
 
     @BeforeEach
     void setup() {
-        gestore = GestoreCorsiDiStudioConservatorio.getInstance();
+    	System.out.println("START TEST");
     }
 
     @AfterEach
     void tearDown() {
-    	gestore = null;
-		assumeTrue(gestore == null);
+    	System.out.println("END TEST");
     }
 
     @AfterAll
     static void tearDownAll() {
-        System.out.println("END INTEGRATION TEST");
+        System.out.println("END TEST SUITE");
     }
     
     @Test
     @Order(1)
     void testOpeningReport_OK() throws Exception {
     	
+    	//PHASE 1 - ACTION
     	lastReportCode = "" + (10000 + new Random().nextInt(90000));
     	
         //Input
@@ -64,6 +66,18 @@ public class TestBoundaryDocenteSQL {
         );
 
         BoundaryDocente.OpeningReport();
+        
+        //PHASE 2 - VERIFICATION
+        //Read directly from the database to make sure the data is correct
+        EntityVerbale reportCreated = VerbaleDAO.readReport(lastReportCode);
+        List<EntityEsame> inseredExams = EsameDAO.readExam(lastReportCode);
+
+        assertNotNull(reportCreated, "The report should have been created in the DB");
+        assertEquals("C123456", reportCreated.getteacherID(), "The teacher ID in the report is incorrect");
+        
+        assertFalse(inseredExams.isEmpty(), "At least one exam should have been included");
+        assertEquals("flavio", inseredExams.get(0).getUsername(), "The student's username in the exam is incorrect");
+        assertEquals(30, inseredExams.get(0).getvote(), "The exam vote is incorrect");
     }
 
     @Test
@@ -85,6 +99,11 @@ public class TestBoundaryDocenteSQL {
         );
 
         BoundaryDocente.OpeningReport();
+        EntityVerbale reportCreated = VerbaleDAO.readReport(lastReportCode);
+        List<EntityEsame> inseredExams = EsameDAO.readExam(lastReportCode);
+
+        assertNotNull(reportCreated, "The report should have been created in the DB");
+        assertTrue(inseredExams.isEmpty(), "Anyone exam should have been included (username not exist)");
     }
 
     

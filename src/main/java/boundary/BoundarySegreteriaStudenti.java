@@ -114,7 +114,7 @@ public class BoundarySegreteriaStudenti {
 		}
 	}
 	
-	private static void AddTeacher() {
+	protected static void AddTeacher() { //protected = same package visibility
         GestoreCorsiDiStudioConservatorio gestoreCorsiDiStudioConservatorio = GestoreCorsiDiStudioConservatorio.getInstance();
         try {
             System.out.println("Teacher name:");
@@ -133,7 +133,7 @@ public class BoundarySegreteriaStudenti {
 		}
 	}
 	
-	private static void AddCourse() {
+	protected static void AddCourse() { //protected = same package visibility
 	    GestoreCorsiDiStudioConservatorio gestoreCorsiDiStudioConservatorio = GestoreCorsiDiStudioConservatorio.getInstance();
 	    String preOf = "";
 	    String preFor = "";
