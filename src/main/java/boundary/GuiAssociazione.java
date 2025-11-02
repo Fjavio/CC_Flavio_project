@@ -80,7 +80,7 @@ public class GuiAssociazione {
             public void actionPerformed(ActionEvent e) {
                 courseCode = courseCodeField.getText();
                 teacherID = teacherIDField.getText();
-                GestoreCorsiDiStudioConservatorio gestore = GestoreCorsiDiStudioConservatorio.getInstance();
+                GestoreCorsiDiStudioConservatorio gestore = new GestoreCorsiDiStudioConservatorio();
 
                 try {
                     if (courseCode.length() != 5 || !courseCode.matches("[a-zA-Z0-9]+")) {

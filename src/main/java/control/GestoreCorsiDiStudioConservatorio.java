@@ -23,7 +23,12 @@ import exception.DBConnectionException;
 import exception.OperationException;
 
 public class GestoreCorsiDiStudioConservatorio {
-	private static GestoreCorsiDiStudioConservatorio gCDSC = null;
+	
+	public GestoreCorsiDiStudioConservatorio() {
+		
+	}
+	
+	/*private static GestoreCorsiDiStudioConservatorio gCDSC = null;
 	
 	public static GestoreCorsiDiStudioConservatorio getInstance() 
 	{ 
@@ -35,7 +40,7 @@ public class GestoreCorsiDiStudioConservatorio {
 	
 	public static void setInstance(GestoreCorsiDiStudioConservatorio instance) {
 	    gCDSC = instance;
-	}
+	}*/
   
 	public void AssociationTeacherCourse(String courseCode, String teacherID) throws OperationException{
 		EntityDocente eD = null;

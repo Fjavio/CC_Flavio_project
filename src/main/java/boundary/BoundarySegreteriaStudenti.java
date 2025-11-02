@@ -1,14 +1,4 @@
 package boundary;
-import java.sql.Connection;
-import java.sql.Date;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Time;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Scanner;
 
 import control.GestoreCorsiDiStudioConservatorio;
@@ -16,8 +6,12 @@ import exception.OperationException;
 
 public class BoundarySegreteriaStudenti {
 	static Scanner scan = new Scanner(System.in);
+	static GestoreCorsiDiStudioConservatorio gestore;
 
-	public static void main(String[] args) {		
+	public static void main(String[] args) {
+		
+		//Main creates the REAL instance for normal execution
+		gestore = new GestoreCorsiDiStudioConservatorio();
 		boolean exit = false;
 		
 		while(!exit) {
@@ -47,10 +41,15 @@ public class BoundarySegreteriaStudenti {
 		
 	}
 	
+	//Method to allow tests to INJECT the MOCK
+    public static void setGestore(GestoreCorsiDiStudioConservatorio gestoreToUse) {
+        gestore = gestoreToUse;
+    }
+	
 	public static void AssociationTeacherCourse(){ //public to test with JUNIT
-		 GestoreCorsiDiStudioConservatorio gestoreCorsiDiStudioConservatorio = GestoreCorsiDiStudioConservatorio.getInstance();
-		 String course = null;
-		 String teacher = null;
+		
+		String course = null;
+		String teacher = null;
 		try {
 			boolean validCourse = false;
             while (!validCourse) {
@@ -59,7 +58,7 @@ public class BoundarySegreteriaStudenti {
                 try {
                 	if (course.length() == 5) {
                         if (course.matches("[a-zA-Z0-9]+")) {
-                            if (gestoreCorsiDiStudioConservatorio.checkCourse(course)) {
+                            if (gestore.checkCourse(course)) {
                                 validCourse = true;
                             } else {
                                 System.out.println("The specified course does not exist in the database. Try again.");
@@ -85,7 +84,7 @@ public class BoundarySegreteriaStudenti {
                 try {
                 	if (teacher.length() == 7) {
                         if (teacher.matches("[a-zA-Z0-9]+")) {
-                            if (gestoreCorsiDiStudioConservatorio.checkTeacher(teacher)) {
+                            if (gestore.checkTeacher(teacher)) {
                                 validTeacherID = true;
                             } else {
                                 System.out.println("The specified teacher does not exist in the database. Try again.");
@@ -104,7 +103,7 @@ public class BoundarySegreteriaStudenti {
                 }
             }
 			
-			gestoreCorsiDiStudioConservatorio.AssociationTeacherCourse(course, teacher);
+            gestore.AssociationTeacherCourse(course, teacher);
 		}catch (OperationException oE) {
 			System.out.println(oE.getMessage());
 			System.out.println("Try again..\n");
@@ -115,7 +114,7 @@ public class BoundarySegreteriaStudenti {
 	}
 	
 	protected static void AddTeacher() { //protected = same package visibility
-        GestoreCorsiDiStudioConservatorio gestoreCorsiDiStudioConservatorio = GestoreCorsiDiStudioConservatorio.getInstance();
+		
         try {
             System.out.println("Teacher name:");
             String name = scan.nextLine();
@@ -123,7 +122,7 @@ public class BoundarySegreteriaStudenti {
             String surname = scan.nextLine();
             System.out.println("teacher id:");
             String id = scan.nextLine();
-            gestoreCorsiDiStudioConservatorio.createAndInsertTeacher(name, surname, id);
+            gestore.createAndInsertTeacher(name, surname, id);
         }catch (OperationException oE) {
 			System.out.println(oE.getMessage());
 			System.out.println("Try again..\n");
@@ -134,7 +133,7 @@ public class BoundarySegreteriaStudenti {
 	}
 	
 	protected static void AddCourse() { //protected = same package visibility
-	    GestoreCorsiDiStudioConservatorio gestoreCorsiDiStudioConservatorio = GestoreCorsiDiStudioConservatorio.getInstance();
+		
 	    String preOf = "";
 	    String preFor = "";
 	    //String preOf = null;
@@ -183,7 +182,7 @@ public class BoundarySegreteriaStudenti {
 	            }
 	        }
 
-	        gestoreCorsiDiStudioConservatorio.createAndInsertCourse(courseCode, courseName, CFU, preOf, preFor);
+	        gestore.createAndInsertCourse(courseCode, courseName, CFU, preOf, preFor);
 	    } catch (OperationException oE) {
 	        System.out.println(oE.getMessage());
 	        System.out.println("Try again..\n");

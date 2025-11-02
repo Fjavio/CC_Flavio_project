@@ -33,7 +33,8 @@ class TestBoundarySegreteriaStudenti {
     @BeforeEach
     void setUp() {
     	System.out.println("START TEST");
-        GestoreCorsiDiStudioConservatorio.setInstance(gestoreMock);
+    	//Use "setter" method to INJECT the mock into the Boundary
+        BoundarySegreteriaStudenti.setGestore(gestoreMock);
     }
     
     @AfterEach

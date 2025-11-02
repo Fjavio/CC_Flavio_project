@@ -21,7 +21,7 @@ public class TestGestore {
 
     @BeforeEach
     void setup() {
-        gestore = GestoreCorsiDiStudioConservatorio.getInstance();
+    	gestore = new GestoreCorsiDiStudioConservatorio();
     }
     
     @AfterEach

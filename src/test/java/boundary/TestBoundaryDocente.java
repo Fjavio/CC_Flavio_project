@@ -31,8 +31,8 @@ class TestBoundaryDocente {
     @BeforeEach
     void setUp() {
     	System.out.println("START TEST");
-        // Replace the singleton instance used by getInstance() with the mock
-        GestoreCorsiDiStudioConservatorio.setInstance(gestoreMock);
+    	//Use "setter" method to INJECT the mock into the Boundary
+        BoundaryDocente.setGestore(gestoreMock);
     }
 
     @AfterEach

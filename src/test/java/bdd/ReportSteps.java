@@ -26,14 +26,14 @@ import io.cucumber.java.en.When;
 
 public class ReportSteps {
 
-    private GestoreCorsiDiStudioConservatorio gestore = GestoreCorsiDiStudioConservatorio.getInstance();
+	private final GestoreCorsiDiStudioConservatorio gestore;
     private EntityStudente currentStudent;
     private String currentReportCode;
     private String currentCourseCode;
 
     //Add a constructor to initialize the state
     public ReportSteps() {
-        this.gestore = GestoreCorsiDiStudioConservatorio.getInstance();
+    	this.gestore = new GestoreCorsiDiStudioConservatorio();
         this.currentStudent = null;
         this.currentReportCode = null;
         this.currentCourseCode = null;

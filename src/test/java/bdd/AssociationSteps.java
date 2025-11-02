@@ -17,12 +17,12 @@ import io.cucumber.java.en.When;
 
 public class AssociationSteps {
 
-	private GestoreCorsiDiStudioConservatorio gestore;
+	private final GestoreCorsiDiStudioConservatorio gestore;
 	private OperationException caughtException;
 	    
 	// Add a constructor to initialize the state for each new scenario
     public AssociationSteps() {
-        this.gestore = GestoreCorsiDiStudioConservatorio.getInstance();
+    	this.gestore = new GestoreCorsiDiStudioConservatorio();
         this.caughtException = null; // Explicitly reset the exception state
     }
     

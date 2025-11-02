@@ -90,7 +90,7 @@ public class GuiChiusura {
         btnCheck.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 reportCode = reportCodeField.getText();
-                GestoreCorsiDiStudioConservatorio gestore = GestoreCorsiDiStudioConservatorio.getInstance();
+                GestoreCorsiDiStudioConservatorio gestore = new GestoreCorsiDiStudioConservatorio();
                 try {
                     gestore.checkReport(reportCode);
                     usernames = gestore.getUsernamesByReport(reportCode);
@@ -115,7 +115,7 @@ public class GuiChiusura {
                     if (length != 7) {
                         throw new NumberFormatException();
                     }
-                    GestoreCorsiDiStudioConservatorio gestore = GestoreCorsiDiStudioConservatorio.getInstance();
+                    GestoreCorsiDiStudioConservatorio gestore = new GestoreCorsiDiStudioConservatorio();
                     String username = usernames.get(currentUserIndex);
                     gestore.checkPIN(pin, reportCode, username);
                     gestore.ClosingReport1(reportCode, username);
@@ -139,7 +139,7 @@ public class GuiChiusura {
         btnConfirm.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 try {
-                    GestoreCorsiDiStudioConservatorio gestore = GestoreCorsiDiStudioConservatorio.getInstance();
+                	GestoreCorsiDiStudioConservatorio gestore = new GestoreCorsiDiStudioConservatorio();
                     gestore.ClosingReport2(reportCode);
                     JOptionPane.showMessageDialog(frame, "Report closed successfully!", "Success", JOptionPane.INFORMATION_MESSAGE);
                 } catch (OperationException ex) {
