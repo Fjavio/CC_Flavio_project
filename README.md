@@ -92,5 +92,5 @@ Progress tracking of the project during the Cloud Computing Exam
   - [Issue #3: Develop Integration Tests for System Components](https://github.com/Fjavio/CC_Flavio_project/issues/9)
   - [Issue #4: Create BDD Tests for Business Logic](https://github.com/Fjavio/CC_Flavio_project/issues/10)
   - [Issue #5: Configure Continuous Integration with GitHub Actions](https://github.com/Fjavio/CC_Flavio_project/issues/11) 
-- [Milestone: Hito 3 -  Diseño de microservicios](https://github.com/Fjavio/CC_Flavio_project/milestone/5):
+- [Milestone: Hito 3 -  Diseño de microservicios](https://github.com/Fjavio/CC_Flavio_project/milestone/6):
   - [Issue #1: Refactoring](https://github.com/Fjavio/CC_Flavio_project/issues/12)
