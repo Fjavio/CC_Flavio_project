@@ -78,7 +78,7 @@ public class BoundaryDocente {
                             System.out.println("The report must be without symbols. Try again.");
                         }
                     } else {
-                        System.out.println("The report must be 5 characters. Try again.");
+                        System.out.println("The report must be 5 characters long. Try again.");
                     }
                 } catch (Exception e) {
                     System.out.println("Unexpected error, try again..");
@@ -112,10 +112,10 @@ public class BoundaryDocente {
                                 System.out.println("The specified teacher does not exist in the database. Try again.");
                             }
                         } else {
-                            System.out.println("Id must be without symbols. Try again.");
+                            System.out.println("Teacher ID must be without symbols. Try again.");
                         }
                     } else {
-                        System.out.println("Id must be 7 characters long. Try again.");
+                        System.out.println("Teacher ID must be 7 characters long. Try again.");
                     }
                 } catch (OperationException oE) {
                     System.out.println(oE.getMessage());
@@ -153,7 +153,7 @@ public class BoundaryDocente {
                                 System.out.println("CourseCode must be without symbols. Try again.");
                             }
                         } else {
-                            System.out.println("CourseCode must be 5 characters. Try again.");
+                            System.out.println("CourseCode must be 5 characters long. Try again.");
                         }
                     } catch (OperationException oE) {
                         System.out.println(oE.getMessage());
@@ -224,7 +224,7 @@ public class BoundaryDocente {
                         	if (length == 7) {
                                  validPin = true;
                             } else {
-                                System.out.println("PIN must be 7 numbers. Try again.");
+                                System.out.println("PIN must be 7 numbers long. Try again.");
                             }
                         } catch (Exception e) {
                             System.out.println("Unexpected error, try again..");
@@ -238,7 +238,7 @@ public class BoundaryDocente {
                     gestore.ClosingReport1(reportCode, username);
                 }
                 gestore.ClosingReport2(reportCode);
-                System.out.println("Report closed successfully!");
+                System.out.println("Report closed successfully");
         } catch (OperationException oE) {
 			System.out.println(oE.getMessage());
 			System.out.println("Try again..\n");

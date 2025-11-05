@@ -9,25 +9,25 @@ import conservatory.exception.OperationException;
 
 import java.util.Map;
 
-@ControllerAdvice // Indica a Spring che questa classe gestisce eccezioni globalmente
+@ControllerAdvice //Tells Spring that this class handles exceptions globally
 public class GlobalExceptionHandler {
 
     @ExceptionHandler(OperationException.class)
     public ResponseEntity<Map<String, String>> handleOperationException(OperationException ex) {
-        // Se un'operazione di business fallisce (es. corso già assegnato)
-        return new ResponseEntity<>(Map.of("errore", ex.getMessage()), HttpStatus.CONFLICT); // 409
+    	//If a business operation fails (e.g. course already assigned)
+        return new ResponseEntity<>(Map.of("error", ex.getMessage()), HttpStatus.CONFLICT); // 409
     }
 
     @ExceptionHandler(IllegalArgumentException.class)
     public ResponseEntity<Map<String, String>> handleIllegalArgumentException(IllegalArgumentException ex) {
-        // Se i dati in input hanno un formato errato
-        return new ResponseEntity<>(Map.of("errore", ex.getMessage()), HttpStatus.BAD_REQUEST); // 400
+    	//If the input data is in an incorrect format
+        return new ResponseEntity<>(Map.of("error", ex.getMessage()), HttpStatus.BAD_REQUEST); // 400
     }
 
     @ExceptionHandler(Exception.class)
     public ResponseEntity<Map<String, String>> handleGenericException(Exception ex) {
-        // Per qualsiasi altro errore non previsto
-        ex.printStackTrace(); // È importante loggare l'errore completo
-        return new ResponseEntity<>(Map.of("errore", "Si è verificato un errore interno."), HttpStatus.INTERNAL_SERVER_ERROR); // 500
+    	//For any other unexpected errors
+        ex.printStackTrace(); //The complete error
+        return new ResponseEntity<>(Map.of("error", "An internal error occurred"), HttpStatus.INTERNAL_SERVER_ERROR); // 500
     }
 }

@@ -1,4 +1,4 @@
-package control;
+package conservatory.control;
 
 import org.junit.jupiter.api.*;
 

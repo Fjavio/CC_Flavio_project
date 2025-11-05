@@ -1,4 +1,4 @@
-package control;
+package conservatory.control;
 import static org.mockito.Mockito.*;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.junit.jupiter.api.*;

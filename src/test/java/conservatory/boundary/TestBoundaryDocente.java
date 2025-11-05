@@ -1,4 +1,4 @@
-package boundary;
+package conservatory.boundary;
 
 import static org.mockito.Mockito.*;
 import java.util.Arrays;

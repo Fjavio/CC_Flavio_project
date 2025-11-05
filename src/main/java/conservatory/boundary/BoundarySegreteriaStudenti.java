@@ -72,7 +72,7 @@ public class BoundarySegreteriaStudenti {
                             System.out.println("CourseCode must be without symbols. Try again.");
                         }
                     } else {
-                        System.out.println("CourseCode must be 5 characters. Try again.");
+                        System.out.println("CourseCode must be 5 characters long. Try again.");
                     }
                 } catch (OperationException oE) {
                     System.out.println(oE.getMessage());
@@ -95,10 +95,10 @@ public class BoundarySegreteriaStudenti {
                                 System.out.println("The specified teacher does not exist in the database. Try again.");
                             }
                         } else {
-                            System.out.println("Registration number must be without symbols. Try again.");
+                            System.out.println("Teacher ID must be without symbols. Try again.");
                         }
                     } else {
-                        System.out.println("Registration number must be 7 characters long. Try again.");
+                        System.out.println("Teacher ID must be 7 characters long. Try again.");
                     }
                 } catch (OperationException oE) {
                     System.out.println(oE.getMessage());

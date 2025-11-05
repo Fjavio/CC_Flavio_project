@@ -9,7 +9,7 @@ import conservatory.exception.OperationException;
 
 @RestController
 @RequestMapping("/api/docente")
-public class DocenteController {
+public class DocenteController { //teacher
 
     private final GestoreCorsiDiStudioConservatorio gestore;
 
@@ -18,29 +18,29 @@ public class DocenteController {
     }
 
     @PostMapping("/verbali")
-    public ResponseEntity<String> apriVerbale(@RequestBody OpenReportRequest request) 
+    public ResponseEntity<String> openReport(@RequestBody OpenReportRequest request) 
             throws OperationException {
         gestore.OpeningReport(request.getReportCode(), request.getReportDate(), request.getTeacherId());
-        return ResponseEntity.ok("Verbale aperto con successo.");
+        return ResponseEntity.ok("Report opened successfully");
     }
 
     @PostMapping("/verbali/{reportCode}/esami")
-    public ResponseEntity<String> aggiungiEsame(@PathVariable String reportCode, @RequestBody AddExamRequest request) 
+    public ResponseEntity<String> addExam(@PathVariable String reportCode, @RequestBody AddExamRequest request) 
             throws OperationException {
         gestore.createAndInsertExam(request.getVote(), request.isHonors(), request.getNotes(), 
                                   reportCode, request.getCourseCode(), request.getUsername());
-        return ResponseEntity.ok("Esame aggiunto al verbale.");
+        return ResponseEntity.ok("Exam added to the report");
     }
     
     @PostMapping("/verbali/{reportCode}/chiusura")
-    public ResponseEntity<String> chiudiVerbale(@PathVariable String reportCode, @RequestBody CloseReportRequest request) 
+    public ResponseEntity<String> closeReport(@PathVariable String reportCode, @RequestBody CloseReportRequest request) 
             throws OperationException {
-        // La logica di chiusura itera su tutti gli studenti e i PIN inviati
+    	//The closing logic iterates over all students and submitted PINs
         for (StudentPinDto studentPin : request.getStudentPins()) {
             gestore.checkPIN(studentPin.getPin(), reportCode, studentPin.getUsername());
             gestore.ClosingReport1(reportCode, studentPin.getUsername());
         }
         gestore.ClosingReport2(reportCode);
-        return ResponseEntity.ok("Verbale chiuso con successo.");
+        return ResponseEntity.ok("Report closed successfully");
     }
 }

@@ -1,4 +1,4 @@
-package boundary;
+package conservatory.boundary;
 
 import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.MethodOrderer.OrderAnnotation;

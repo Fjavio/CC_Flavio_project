@@ -9,34 +9,34 @@ import conservatory.control.GestoreCorsiDiStudioConservatorio;
 import conservatory.exception.OperationException;
 
 @RestController
-@RequestMapping("/api/segreteria") // Tutte le rotte qui iniziano con /api/segreteria
-public class SegreteriaController {
+@RequestMapping("/api/segreteria")
+public class SegreteriaController { //secretariat
 
     private final GestoreCorsiDiStudioConservatorio gestore;
 
-    // Spring inietta automaticamente il Bean "Gestore" creato in Application.java
+    //Spring automatically injects the "Gestore" Bean created in Application.java
     public SegreteriaController(GestoreCorsiDiStudioConservatorio gestore) {
         this.gestore = gestore;
     }
 
     @PostMapping("/docenti")
-    public ResponseEntity<String> creaDocente(@RequestBody CreaDocenteRequest request) 
+    public ResponseEntity<String> createTeacher(@RequestBody CreaDocenteRequest request) 
             throws OperationException {
         gestore.createAndInsertTeacher(request.getName(), request.getSurname(), request.getId());
-        return new ResponseEntity<>("Docente creato con successo", HttpStatus.CREATED);
+        return new ResponseEntity<>("Teacher successfully created", HttpStatus.CREATED);
     }
 
     @PostMapping("/corsi")
-    public ResponseEntity<String> creaCorso(@RequestBody CreaCorsoRequest request) 
+    public ResponseEntity<String> createCourse(@RequestBody CreaCorsoRequest request) 
             throws OperationException {
         gestore.createAndInsertCourse(request.getCode(), request.getName(), request.getCfu(), request.getPreOf(), request.getPreFor());
-        return new ResponseEntity<>("Corso creato con successo", HttpStatus.CREATED);
+        return new ResponseEntity<>("Course successfully created", HttpStatus.CREATED);
     }
     
     @PutMapping("/corsi/{courseCode}/docente")
-    public ResponseEntity<String> associaDocente(@PathVariable String courseCode, @RequestBody AssociationRequest request) 
+    public ResponseEntity<String> associateTeacher(@PathVariable String courseCode, @RequestBody AssociationRequest request) 
     		throws OperationException {
         gestore.AssociationTeacherCourse(courseCode, request.getTeacherId());
-        return ResponseEntity.ok("Associazione completata con successo");
+        return ResponseEntity.ok("Association successfully completed");
     }
 }

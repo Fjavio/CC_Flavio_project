@@ -1,4 +1,4 @@
-package bdd;
+package conservatory.bdd;
 
 import static org.junit.Assert.*;
 import static org.mockito.Mockito.*;
