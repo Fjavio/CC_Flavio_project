@@ -15,4 +15,4 @@ Feature: Course and Teacher Association
     And a course with code "B1234" exists
     And the course "B1234" is already assigned to teacher "BB12345"
     When the secretariat tries to associate teacher "AA12345" with course "B1234"
-    Then the operation fails with the message "Course already assigned"
+    Then the operation fails with the message "Course has already been assigned to a teacher"
