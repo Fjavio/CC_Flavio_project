@@ -17,7 +17,7 @@ public class StudenteDAO {
 		try {
 
 			Connection conn = DBManager.getConnection();
-			String query = "SELECT * FROM STUDENT WHERE USERNAME=?;";
+			String query = "SELECT * FROM student WHERE username=?;";
 			
 			try {
 
@@ -48,7 +48,7 @@ public class StudenteDAO {
         try {
             Connection conn = DBManager.getConnection();
 
-            String query = "INSERT INTO STUDENT VALUES (?, ?, ?, ?);";
+            String query = "INSERT INTO student VALUES (?, ?, ?, ?);";
 
             try {
                 PreparedStatement stmt = conn.prepareStatement(query);

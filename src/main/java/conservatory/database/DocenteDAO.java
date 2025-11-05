@@ -14,7 +14,7 @@ public class DocenteDAO {
 	    try {
 	        Connection conn = DBManager.getConnection();
 
-	        String query = "INSERT INTO TEACHER VALUES (?, ?, ?);";
+	        String query = "INSERT INTO teacher VALUES (?, ?, ?);";
 			
 	        try {
 	            PreparedStatement stmt = conn.prepareStatement(query);
@@ -43,7 +43,7 @@ public class DocenteDAO {
 		try {
 
 			Connection conn = DBManager.getConnection();
-			String query = "SELECT * FROM TEACHER WHERE ID=?;";
+			String query = "SELECT * FROM teacher WHERE ID=?;";
 			
 			try {
 

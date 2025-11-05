@@ -19,7 +19,7 @@ public class VerbaleDAO {
 
 				Connection conn = DBManager.getConnection();
 
-				String query = "SELECT * FROM REPORT WHERE REPORTCODE=?;";
+				String query = "SELECT * FROM report WHERE reportCode=?;";
 
 				try {
 					PreparedStatement stmt = conn.prepareStatement(query);
@@ -50,7 +50,7 @@ public class VerbaleDAO {
 				
 				Connection conn = DBManager.getConnection();
 
-				String query = "INSERT INTO REPORT VALUES (?,?,?);";
+				String query = "INSERT INTO report VALUES (?,?,?);";
 
 				try {
 					PreparedStatement stmt = conn.prepareStatement(query);

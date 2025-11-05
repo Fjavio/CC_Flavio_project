@@ -21,7 +21,7 @@ public static void createExam(EntityEsame eE) throws DAOException, DBConnectionE
     try {
         Connection conn = DBManager.getConnection();
 
-        String query = "INSERT INTO EXAM VALUES (?, ?, ?, ?, ?, ?, ?);";
+        String query = "INSERT INTO exam VALUES (?, ?, ?, ?, ?, ?, ?);";
 		
         try {
             PreparedStatement stmt = conn.prepareStatement(query);
@@ -54,7 +54,7 @@ public static List<EntityEsame> readExam(String reportCode) throws DAOException,
 	try {
 
 		Connection conn = DBManager.getConnection();
-		String query = "SELECT * FROM EXAM WHERE REPORTCODE=?;";
+		String query = "SELECT * FROM exam WHERE reportCode=?;";
 		
 		try {
 
@@ -89,7 +89,7 @@ public static List<EntityEsame> readPassedExams(Connection conn, String username
 	//try {
 
 		//Connection conn = DBManager.getConnection();
-		String query = "SELECT * FROM EXAM WHERE USERNAME=? AND PASSINGDATE IS NOT NULL;";
+		String query = "SELECT * FROM exam WHERE username=? AND passingDate IS NOT NULL;";
 
 		try {
 	
@@ -121,7 +121,7 @@ public static List<String> getUsernamesByReport(String reportCode) throws DAOExc
     List<String> usernames = new ArrayList<>();
     try {
         Connection conn = DBManager.getConnection();
-        String query = "SELECT USERNAME FROM EXAM WHERE REPORTCODE = ?;";
+        String query = "SELECT username FROM exam WHERE reportCode = ?;";
         try {
             PreparedStatement stmt = conn.prepareStatement(query);
             stmt.setString(1, reportCode);
@@ -145,7 +145,7 @@ public static void checkVotes(String reportCode) throws DAOException, DBConnecti
 		  EntityVerbale report = VerbaleDAO.readReport(reportCode);
 		  Connection conn = DBManager.getConnection();  
 		  //Retrieve all exams with null passing date and specified verbal code    
-		  String querySelect = "SELECT * FROM EXAM WHERE REPORTCODE = ?;";   
+		  String querySelect = "SELECT * FROM exam WHERE reportCode = ?;";   
 		  try {
 		  PreparedStatement stmtSelect = conn.prepareStatement(querySelect);     
 		  stmtSelect.setString(1, reportCode); 
@@ -156,7 +156,7 @@ public static void checkVotes(String reportCode) throws DAOException, DBConnecti
 			  String username = result.getString(7);    
 			  //Let's check the criteria for deleting exams      
 			  if (vote < 18 || (honors && vote != 30) || vote>30) {        
-				  String queryDelete = "DELETE FROM EXAM WHERE REPORTCODE = ? AND USERNAME = ?;";        
+				  String queryDelete = "DELETE FROM exam WHERE reportCode = ? AND username = ?;";        
 				  PreparedStatement stmtDelete = conn.prepareStatement(queryDelete);    
 				  stmtDelete.setString(1, reportCode);                   
 				  stmtDelete.setString(2, username); 
@@ -165,7 +165,7 @@ public static void checkVotes(String reportCode) throws DAOException, DBConnecti
 			  } 
 		    java.util.Date dateReportUtil = report.getreportDate();
 		    Date dateReportSql = new Date(dateReportUtil.getTime());
-		    String queryUpdate = "UPDATE EXAM SET PASSINGDATE = ? WHERE REPORTCODE = ?;";
+		    String queryUpdate = "UPDATE exam SET passingDate = ? WHERE reportCode = ?;";
 		        PreparedStatement stmtUpdate = conn.prepareStatement(queryUpdate);
 		        stmtUpdate.setDate(1, dateReportSql); 
 		        stmtUpdate.setString(2, reportCode);
@@ -184,7 +184,7 @@ public static void checkVotes(String reportCode) throws DAOException, DBConnecti
 public static void checkPrerequisites(String reportCode, String username) throws DAOException, DBConnectionException, PropedeuticitaException {
     try {
     	Connection conn = DBManager.getConnection();
-        String querySelect = "SELECT * FROM EXAM WHERE REPORTCODE = ? AND USERNAME = ?;";
+        String querySelect = "SELECT * FROM exam WHERE reportCode = ? AND username = ?;";
         try {
         	PreparedStatement stmtSelect = conn.prepareStatement(querySelect);
             stmtSelect.setString(1, reportCode);
@@ -240,7 +240,7 @@ public static void checkPIN(int insertedPin, String reportCode, String username)
     	EntityStudente student = StudenteDAO.readStudent(username);
         int studentPin = student.getPIN();
         Connection conn = DBManager.getConnection();
-        String querySelect = "SELECT * FROM EXAM WHERE USERNAME = ? AND REPORTCODE = ?;";
+        String querySelect = "SELECT * FROM exam WHERE username = ? AND reportCode = ?;";
         try {
             PreparedStatement stmtSelect = conn.prepareStatement(querySelect);
             stmtSelect.setString(1, username);
@@ -248,7 +248,7 @@ public static void checkPIN(int insertedPin, String reportCode, String username)
             ResultSet rs = stmtSelect.executeQuery();
             if (rs.next()) {
                 if (studentPin != insertedPin) {
-                    String queryDelete = "DELETE FROM EXAM WHERE USERNAME = ? AND REPORTCODE = ?;";
+                    String queryDelete = "DELETE FROM exam WHERE username = ? AND reportCode = ?;";
                     PreparedStatement stmtDelete = conn.prepareStatement(queryDelete);
                     stmtDelete.setString(1, username);
                     stmtDelete.setString(2, reportCode);
@@ -269,7 +269,7 @@ public static void checkPIN(int insertedPin, String reportCode, String username)
 public static void deleteExam(String reportCode, String username) throws DAOException, DBConnectionException {
     try {
         Connection conn = DBManager.getConnection();
-        String queryDelete = "DELETE FROM EXAM WHERE USERNAME = ? AND REPORTCODE = ?;";
+        String queryDelete = "DELETE FROM exam WHERE username = ? AND reportCode = ?;";
         try {
             PreparedStatement stmtDelete = conn.prepareStatement(queryDelete);
             stmtDelete.setString(1, username);

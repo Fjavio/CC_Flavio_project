@@ -16,7 +16,7 @@ public class CorsoDAO {
 		try {
 
 			Connection conn = DBManager.getConnection();
-			String query = "SELECT * FROM COURSE WHERE COURSECODE=?;";
+			String query = "SELECT * FROM course WHERE courseCode=?;";
 			
 			try {
 
@@ -47,7 +47,7 @@ public class CorsoDAO {
 	    try {
 	        Connection conn = DBManager.getConnection();
 
-	        String query = "INSERT INTO COURSE VALUES (?, ?, ?, ?, ?, ?);";
+	        String query = "INSERT INTO course VALUES (?, ?, ?, ?, ?, ?);";
 			
 	        try {
 	            PreparedStatement stmt = conn.prepareStatement(query);
@@ -76,7 +76,7 @@ public class CorsoDAO {
 	    String preOf = null;
 
 	    //try (Connection conn = DBManager.getConnection()) {
-	        String query = "SELECT PREOF FROM COURSE WHERE COURSECODE = ?;";
+	        String query = "SELECT preOf FROM course WHERE courseCode = ?;";
 	        try (PreparedStatement stmt = conn.prepareStatement(query)) {
 	            stmt.setString(1, courseCode);
 	            ResultSet result = stmt.executeQuery();
@@ -99,7 +99,7 @@ public static String readAssociationTeacherCourse(String courseCode) throws DAOE
 
         try {
             Connection conn = DBManager.getConnection();
-            String query = "SELECT TEACHERID FROM COURSE WHERE COURSECODE = ?;";
+            String query = "SELECT teacherID FROM course WHERE courseCode = ?;";
             try {
                 PreparedStatement stmt = conn.prepareStatement(query);
                 stmt.setString(1, courseCode);
@@ -124,7 +124,7 @@ public static String readAssociationTeacherCourse(String courseCode) throws DAOE
 public static void updateAssociationTeacherCourse(String courseCode, String teacherID) throws DAOException, DBConnectionException {
     try {
         Connection conn = DBManager.getConnection();
-        String query = "UPDATE COURSE SET TEACHERID = ? WHERE COURSECODE = ?;";
+        String query = "UPDATE course SET teacherID = ? WHERE courseCode = ?;";
         try {
             PreparedStatement stmt = conn.prepareStatement(query);
             stmt.setString(1, teacherID);
