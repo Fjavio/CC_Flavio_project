@@ -47,7 +47,7 @@ public class DocenteApiTest { //teacher
         OpenReportRequest openRequest = new OpenReportRequest();
         openRequest.setReportCode(testReportCode);
         openRequest.setReportDate(Date.valueOf(LocalDate.now()));
-        openRequest.setTeacherId("C123456"); //Make sure this teacher exists in the DB
+        openRequest.setTeacherId("C123456"); //exists in data.sql
 
         given()
             .contentType(ContentType.JSON)
@@ -63,8 +63,8 @@ public class DocenteApiTest { //teacher
         examRequest.setVote(28);
         examRequest.setHonors(false);
         examRequest.setNotes("very good");
-        examRequest.setCourseCode("A1234"); //Make sure it exists
-        examRequest.setUsername("flavio");  //Make sure it exists
+        examRequest.setCourseCode("A1234"); //exists in data.sql
+        examRequest.setUsername("flavio");  //exists in data.sql
 
         given()
             .contentType(ContentType.JSON)

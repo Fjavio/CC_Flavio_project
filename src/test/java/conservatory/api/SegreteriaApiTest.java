@@ -77,8 +77,7 @@ public class SegreteriaApiTest { //secretariat
     @Test
     void testAssociateTeacher_Fail_AssignedCourse() {
     	
-        // This test assumes that the course 'A1234' is already assigned to someone in the DB
-        String courseCode = "A1234"; 
+    	String courseCode = "A5555"; //assigned in data.sql
         String teacherId = "C123456"; //A valid teacher
 
         given()
@@ -89,5 +88,22 @@ public class SegreteriaApiTest { //secretariat
         .then()
             .statusCode(HttpStatus.CONFLICT.value()) //Check code 400
             .body("error", equalTo("Course has already been assigned to a teacher")); //Check the error
+    }
+
+    @Test
+    void testAssociateTeacher_Success_FreeCourse() {
+        
+        //Using course 'A1234', which data.sql created specifically with teacherID = NULL
+        String courseCode = "A1234";
+        String teacherId = "C123456"; 
+
+        given()
+            .contentType(ContentType.JSON)
+            .body("{ \"teacherId\": \"" + teacherId + "\" }")
+        .when()
+            .put("/api/segreteria/corsi/" + courseCode + "/docente")
+        .then()
+            .statusCode(HttpStatus.OK.value()) // 200 OK
+            .body(equalTo("Association successfully completed")); 
     }
 }
