@@ -10,9 +10,9 @@ INSERT INTO student (username, password, PIN, idCDS) VALUES ('flavio', 'ugrcorre
 -- Courses required for the tests:
 
 -- 1)A course without teacher (for the association tests)
-INSERT INTO course (COURSECODE, courseName, CFU, teacherID, preOf, preFor) 
+INSERT INTO course (courseCode, courseName, CFU, teacherID, preOf, preFor) 
 VALUES ('A1234', 'CloudComputing', 6, NULL, NULL, NULL);
 
 -- A course already assigned to test failures
-INSERT INTO course (COURSECODE, courseName, CFU, teacherID, preOf, preFor) 
+INSERT INTO course (courseCode, courseName, CFU, teacherID, preOf, preFor) 
 VALUES ('A5555', 'MachineLearning', 6, 'DUMMY01', NULL, NULL);

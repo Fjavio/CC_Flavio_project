@@ -19,7 +19,7 @@ CREATE TABLE student (
 );
 
 CREATE TABLE course (
-    COURSECODE VARCHAR(5) PRIMARY KEY,
+    courseCode VARCHAR(5) PRIMARY KEY,
     courseName VARCHAR(255),
     CFU INT,
     teacherID VARCHAR(7),
@@ -51,7 +51,7 @@ CREATE TABLE exam (
 ALTER TABLE course ADD FOREIGN KEY (teacherID) REFERENCES teacher(ID);
 ALTER TABLE report ADD FOREIGN KEY (teacherID) REFERENCES teacher(ID);
 ALTER TABLE exam ADD FOREIGN KEY (reportCode) REFERENCES report(reportCode);
-ALTER TABLE exam ADD FOREIGN KEY (courseCode) REFERENCES course(COURSECODE);
+ALTER TABLE exam ADD FOREIGN KEY (courseCode) REFERENCES course(courseCode);
 ALTER TABLE exam ADD FOREIGN KEY (username) REFERENCES student(username);
 
 -- Reactivate constraints
