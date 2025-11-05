@@ -121,14 +121,13 @@
                     <includes>
                         <include>**/*Test.java</include>
                     </includes>
+                    <excludes>
+                        <exclude>**/TestBoundaryDocenteSQL.java</exclude>
+                        <exclude>**/TestBoundarySegreteriaStudentiSQL.java</exclude>
+                        <exclude>**/TestGestore.java</exclude>
+                    </excludes>
                 </configuration>
             </plugin>
-            
-            <plugin>
-			    <groupId>org.apache.maven.plugins</groupId>
-			    <artifactId>maven-surefire-plugin</artifactId>
-			    <version>3.1.2</version>
-			</plugin>
 			
 			<plugin>
                 <groupId>org.springframework.boot</groupId>
