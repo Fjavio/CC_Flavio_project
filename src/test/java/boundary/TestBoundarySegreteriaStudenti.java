@@ -11,8 +11,10 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
-import control.GestoreCorsiDiStudioConservatorio;
-import exception.OperationException;
+
+import conservatory.boundary.BoundarySegreteriaStudenti;
+import conservatory.control.GestoreCorsiDiStudioConservatorio;
+import conservatory.exception.OperationException;
 
 @ExtendWith(MockitoExtension.class)
 class TestBoundarySegreteriaStudenti {
@@ -41,14 +43,14 @@ class TestBoundarySegreteriaStudenti {
     void tearDown() {
     	System.out.println("END TEST");
     	//Restore scanner
-        BoundarySegreteriaStudenti.scan = new Scanner(System.in);
+        BoundarySegreteriaStudenti.setScanner(new Scanner(System.in));
     }
 
     @Test
     void testAssociationTeacherCourse_Success() throws Exception {
     	
         String simulatedInput = "A1234\nC123456\n"; //All valid
-        BoundarySegreteriaStudenti.scan = new Scanner(simulatedInput);
+        BoundarySegreteriaStudenti.setScanner(new Scanner(simulatedInput));
 
         //Boundary calls checkCourse/checkTeacher to validate input
         when(gestoreMock.checkCourse("A1234")).thenReturn(true);
@@ -67,7 +69,7 @@ class TestBoundarySegreteriaStudenti {
     void testAssociationTeacherCourse_FailsBecauseCourseAlreadyAssigned() throws Exception {
         
         String simulatedInput = "A1234\nC123456\n";
-        BoundarySegreteriaStudenti.scan = new Scanner(simulatedInput);
+        BoundarySegreteriaStudenti.setScanner(new Scanner(simulatedInput));
 
         when(gestoreMock.checkCourse("A1234")).thenReturn(true);
         when(gestoreMock.checkTeacher("C123456")).thenReturn(true);

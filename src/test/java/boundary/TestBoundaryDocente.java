@@ -7,8 +7,10 @@ import org.junit.jupiter.api.*;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.*;
 import org.mockito.junit.jupiter.MockitoExtension;
-import control.GestoreCorsiDiStudioConservatorio;
-import exception.OperationException;
+
+import conservatory.boundary.BoundaryDocente;
+import conservatory.control.GestoreCorsiDiStudioConservatorio;
+import conservatory.exception.OperationException;
 
 /* TEST WITH FAKE DATABASE (MOCKITO) */
 
@@ -39,14 +41,14 @@ class TestBoundaryDocente {
     void tearDown() {
         System.out.println("END TEST");
         //Restore scanner
-        BoundarySegreteriaStudenti.scan = new Scanner(System.in);
+        BoundaryDocente.setScanner(new Scanner(System.in));
     }
 
     @Test
     void testClosingReport_DoneCorrectly() throws Exception {
         //User input
         String simulatedInput = "REP01\n1234567\n";
-        BoundaryDocente.scan = new Scanner(simulatedInput);
+        BoundaryDocente.setScanner(new Scanner(simulatedInput));
 
         // Mock behaviors
         when(gestoreMock.getUsernamesByReport("REP01"))
@@ -69,7 +71,7 @@ class TestBoundaryDocente {
     @Test
     void testClosingReport_ReportNotExist() throws Exception {
         String simulatedInput = "XXXX\n";
-        BoundaryDocente.scan = new Scanner(simulatedInput);
+        BoundaryDocente.setScanner(new Scanner(simulatedInput));
 
         doThrow(new OperationException("Report not found"))
             .when(gestoreMock).checkReport("XXXX");

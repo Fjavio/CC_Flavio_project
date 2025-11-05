@@ -4,10 +4,10 @@ import static org.mockito.Mockito.mockStatic;
 
 import org.mockito.MockedStatic;
 
-import database.CorsoDAO;
-import database.DocenteDAO;
-import database.EsameDAO;
-import database.StudenteDAO;
+import conservatory.database.CorsoDAO;
+import conservatory.database.DocenteDAO;
+import conservatory.database.EsameDAO;
+import conservatory.database.StudenteDAO;
 import io.cucumber.java.After;
 import io.cucumber.java.Before;
 

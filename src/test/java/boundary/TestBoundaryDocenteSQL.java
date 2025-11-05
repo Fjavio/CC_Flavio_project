@@ -2,16 +2,18 @@ package boundary;
 
 import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.MethodOrderer.OrderAnnotation;
+
+import conservatory.boundary.BoundaryDocente;
+import conservatory.database.EsameDAO;
+import conservatory.database.VerbaleDAO;
+import conservatory.entity.EntityEsame;
+import conservatory.entity.EntityVerbale;
+
 import java.time.LocalDate;
 import java.util.Scanner;
 import java.util.List;
 import java.util.Random;
 import org.junit.jupiter.api.*;
-
-import database.VerbaleDAO;
-import entity.EntityEsame;
-import entity.EntityVerbale;
-import database.EsameDAO;
 
 /**
  * INTEGRATION TEST WITH REAL DATABASE
@@ -33,11 +35,14 @@ public class TestBoundaryDocenteSQL {
     @BeforeEach
     void setup() {
     	System.out.println("START TEST");
+    	BoundaryDocente.setGestore(new conservatory.control.GestoreCorsiDiStudioConservatorio());
     }
 
     @AfterEach
     void tearDown() {
     	System.out.println("END TEST");
+    	//Restore scanner
+        BoundaryDocente.setScanner(new Scanner(System.in));
     }
 
     @AfterAll
@@ -53,7 +58,7 @@ public class TestBoundaryDocenteSQL {
     	lastReportCode = "" + (10000 + new Random().nextInt(90000));
     	
         //Input
-        BoundaryDocente.scan = new Scanner(
+    	String simulatedInput =
         	lastReportCode + "\n" +               // code report
             LocalDate.now() + "\n" + // data
             "C123456\n" +            // real id teacher
@@ -62,9 +67,9 @@ public class TestBoundaryDocenteSQL {
             "excellent\n" +       // notes
             "A1234\n" +             // real course code
             "flavio\n" +          // real username
-            "no\n"                   // no other exams
-        );
+            "no\n";                   // no other exams
 
+    	BoundaryDocente.setScanner(new Scanner(simulatedInput));
         BoundaryDocente.OpeningReport();
         
         //PHASE 2 - VERIFICATION
@@ -86,7 +91,7 @@ public class TestBoundaryDocenteSQL {
        
         lastReportCode = "" + (10000 + new Random().nextInt(90000));
 
-        BoundaryDocente.scan = new Scanner(
+        String simulatedInput =
         	lastReportCode + "\n" +       
             LocalDate.now() + "\n" + 
             "C123456\n" +            
@@ -95,9 +100,9 @@ public class TestBoundaryDocenteSQL {
             "some errors\n" +            
             "A1234\n" +              
             "fakeUser\n" +         
-            "no\n"                   
-        );
-
+            "no\n";                   
+     
+        BoundaryDocente.setScanner(new Scanner(simulatedInput));
         BoundaryDocente.OpeningReport();
         EntityVerbale reportCreated = VerbaleDAO.readReport(lastReportCode);
         List<EntityEsame> inseredExams = EsameDAO.readExam(lastReportCode);
@@ -111,11 +116,11 @@ public class TestBoundaryDocenteSQL {
     @Order(2)
     void testClosingReport() throws Exception {
         // Let's assume that a report already exists from previous OpeningReport
-    	BoundaryDocente.scan = new Scanner(
+    	String simulatedInput =
                 lastReportCode + "\n" +
-                "1234567\n"  // real PIN
-            );
-
+                "1234567\n";  // real PIN
+           
+    	BoundaryDocente.setScanner(new Scanner(simulatedInput));
         assertDoesNotThrow(() -> BoundaryDocente.ClosingReport());
     }
 }

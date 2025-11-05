@@ -11,14 +11,15 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.MethodOrderer.OrderAnnotation;
 
+import conservatory.boundary.BoundarySegreteriaStudenti;
+import conservatory.database.CorsoDAO;
+import conservatory.database.DocenteDAO;
+import conservatory.entity.EntityCorso;
+import conservatory.entity.EntityDocente;
+
 import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestMethodOrder;
-
-import database.CorsoDAO;
-import database.DocenteDAO;
-import entity.EntityCorso;
-import entity.EntityDocente;
 
 // INTEGRATION TEST REAL DATABASE
 
@@ -41,13 +42,14 @@ public class TestBoundarySegreteriaStudentiSQL {
     @BeforeEach
     void setUp() {
     	System.out.println("START TEST");
+    	BoundarySegreteriaStudenti.setGestore(new conservatory.control.GestoreCorsiDiStudioConservatorio());
     }
     
     @AfterEach
     void tearDown() {
-    	 System.out.println("END TEST");
-        // Restore
-        BoundarySegreteriaStudenti.scan = new Scanner(System.in);
+    	System.out.println("END TEST");
+    	//Restore scanner
+    	BoundarySegreteriaStudenti.setScanner(new Scanner(System.in));
     }
 
     @Test
@@ -59,7 +61,7 @@ public class TestBoundarySegreteriaStudentiSQL {
         String surname = "Fish";
 
         String simulatedInput = name + "\n" + surname + "\n" + lastTeacherID + "\n";
-        BoundarySegreteriaStudenti.scan = new Scanner(simulatedInput);
+        BoundarySegreteriaStudenti.setScanner(new Scanner(simulatedInput));
         
         BoundarySegreteriaStudenti.AddTeacher();
 
@@ -85,7 +87,7 @@ public class TestBoundarySegreteriaStudentiSQL {
                                 "no\n" +   //"Do you want to add prerequisites of?"
                                 "no\n";    //"Do you want to add prerequisites for?" 
         
-        BoundarySegreteriaStudenti.scan = new Scanner(simulatedInput);
+        BoundarySegreteriaStudenti.setScanner(new Scanner(simulatedInput));
 
         BoundarySegreteriaStudenti.AddCourse();
 
@@ -106,7 +108,7 @@ public class TestBoundarySegreteriaStudentiSQL {
         assertNotNull(lastCourseCode, "CourseCode not available from previous test");
 
         String simulatedInput = lastCourseCode + "\n" + lastTeacherID + "\n";
-        BoundarySegreteriaStudenti.scan = new Scanner(simulatedInput);
+        BoundarySegreteriaStudenti.setScanner(new Scanner(simulatedInput));
 
         BoundarySegreteriaStudenti.AssociationTeacherCourse();
 
@@ -125,7 +127,7 @@ public class TestBoundarySegreteriaStudentiSQL {
         String otherTeacherID = "C123456"; //Teacher who exists in the DB
         
         String simulatedInput = lastCourseCode + "\n" + otherTeacherID + "\n";
-        BoundarySegreteriaStudenti.scan = new Scanner(simulatedInput);
+        BoundarySegreteriaStudenti.setScanner(new Scanner(simulatedInput));
 
         BoundarySegreteriaStudenti.AssociationTeacherCourse();
 

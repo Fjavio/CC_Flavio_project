@@ -2,6 +2,8 @@ package control;
 
 import org.junit.jupiter.api.*;
 
+import conservatory.control.GestoreCorsiDiStudioConservatorio;
+
 import static org.junit.jupiter.api.Assumptions.assumeTrue;
 import static org.junit.jupiter.api.Assertions.*;
 import java.sql.Date;

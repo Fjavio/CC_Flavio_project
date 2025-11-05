@@ -3,10 +3,13 @@ import static org.mockito.Mockito.*;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.junit.jupiter.api.*;
 import org.mockito.junit.jupiter.MockitoExtension;
-import database.DocenteDAO;
-import entity.EntityCorso;
-import entity.EntityDocente;
-import database.CorsoDAO;
+
+import conservatory.control.GestoreCorsiDiStudioConservatorio;
+import conservatory.database.CorsoDAO;
+import conservatory.database.DocenteDAO;
+import conservatory.entity.EntityCorso;
+import conservatory.entity.EntityDocente;
+
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.mockStatic;
 import org.mockito.*;
