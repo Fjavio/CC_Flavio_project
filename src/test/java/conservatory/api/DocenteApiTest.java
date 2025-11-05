@@ -36,11 +36,12 @@ public class DocenteApiTest { //teacher
         RestAssured.port = port;
         
         //A unique report code
-        testReportCode = "VER" + (100 + new Random().nextInt(900));
+        testReportCode = "VR" + (100 + new Random().nextInt(800));
     }
 
+    //Each error message will depend on what gestore throws
     @Test
-    void testFlussoVerbaleCompleto() throws Exception {
+    void testCompleteReportFlow() throws Exception {
         
         //OPEN REPORT
         OpenReportRequest openRequest = new OpenReportRequest();
@@ -55,24 +56,24 @@ public class DocenteApiTest { //teacher
             .post("/api/docente/verbali")
         .then()
             .statusCode(HttpStatus.OK.value())
-            .body(equalTo("Verbale aperto con successo."));
+            .body(equalTo("Report opened successfully"));
 
         //ADD EXAM
-        AddExamRequest esameRequest = new AddExamRequest();
-        esameRequest.setVote(28);
-        esameRequest.setHonors(false);
-        esameRequest.setNotes("Buon esame");
-        esameRequest.setCourseCode("A1234"); //Make sure it exists
-        esameRequest.setUsername("flavio");  //Make sure it exists
+        AddExamRequest examRequest = new AddExamRequest();
+        examRequest.setVote(28);
+        examRequest.setHonors(false);
+        examRequest.setNotes("very good");
+        examRequest.setCourseCode("A1234"); //Make sure it exists
+        examRequest.setUsername("flavio");  //Make sure it exists
 
         given()
             .contentType(ContentType.JSON)
-            .body(esameRequest)
+            .body(examRequest)
         .when()
             .post("/api/docente/verbali/" + testReportCode + "/esami")
         .then()
             .statusCode(HttpStatus.OK.value())
-            .body(equalTo("Esame aggiunto al verbale."));
+            .body(equalTo("Exam added to the report"));
 
         //CLOSE REPORT
         StudentPinDto pinDto = new StudentPinDto();
@@ -89,31 +90,29 @@ public class DocenteApiTest { //teacher
             .post("/api/docente/verbali/" + testReportCode + "/chiusura")
         .then()
             .statusCode(HttpStatus.OK.value())
-            .body(equalTo("Verbale chiuso con successo."));
+            .body(equalTo("Report closed successfully"));
     }
     
     @Test
-    void testAggiungiEsame_Fail_VerbaleNonAperto() {
+    void testAddExam_Fail_ReportNotOpen() {
         
     	//Add an exam to a report that doesn't exist
         String reportCodeInexistent = "XXXXX";
         
-        AddExamRequest esameRequest = new AddExamRequest();
-        esameRequest.setVote(30);
-        esameRequest.setHonors(true);
-        esameRequest.setNotes("Test fallimento");
-        esameRequest.setCourseCode("A1234");
-        esameRequest.setUsername("flavio");
+        AddExamRequest examRequest = new AddExamRequest();
+        examRequest.setVote(30);
+        examRequest.setHonors(true);
+        examRequest.setNotes("ok");
+        examRequest.setCourseCode("A1234");
+        examRequest.setUsername("flavio");
 
         given()
             .contentType(ContentType.JSON)
-            .body(esameRequest)
+            .body(examRequest)
         .when()
             .post("/api/docente/verbali/" + reportCodeInexistent + "/esami")
         .then()
             .statusCode(HttpStatus.CONFLICT.value()) // 409 Conflict
-            // Il messaggio di errore esatto dipende da cosa lancia il tuo Gestore
-            // Assumiamo che createAndInsertExam lanci un'eccezione se il verbale non esiste
-            .body("errore", equalTo("Errore durante la creazione dell'esame")); // ADATTA QUESTO MESSAGGIO
+            .body("error", equalTo("Oops, something went wrong..."));
     }
 }

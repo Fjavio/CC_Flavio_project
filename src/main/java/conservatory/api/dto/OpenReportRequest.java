@@ -1,5 +1,4 @@
 package conservatory.api.dto;
-
 import java.sql.Date;
 
 public class OpenReportRequest {

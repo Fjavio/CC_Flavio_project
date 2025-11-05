@@ -32,6 +32,7 @@ public class SegreteriaApiTest { //secretariat
         RestAssured.port = port;
     }
 
+    //Each error message will depend on what gestore throws
     @Test
     void testCreateTeacher_Success() {
         
@@ -70,7 +71,7 @@ public class SegreteriaApiTest { //secretariat
             .post("/api/segreteria/docenti")
         .then()
             .statusCode(HttpStatus.BAD_REQUEST.value()) //Check code 400
-            .body("error", equalTo("The teacher ID must be 7 characters long")); //Check the error
+            .body("error", equalTo("Teacher ID must be 7 characters long")); //Check the error
     }
     
     @Test
