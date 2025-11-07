@@ -4,65 +4,66 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import javax.sql.DataSource; //for spring
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 
 import conservatory.entity.EntityDocente;
 import conservatory.exception.DAOException;
-import conservatory.exception.DBConnectionException;
 
+@Repository //Bean of spring
 public class DocenteDAO {
-	public static void createTeacher(EntityDocente eD) throws DAOException, DBConnectionException {
-	    try {
-	        Connection conn = DBManager.getConnection();
-
-	        String query = "INSERT INTO teacher VALUES (?, ?, ?);";
-			
-	        try {
-	            PreparedStatement stmt = conn.prepareStatement(query);
-
-	            stmt.setString(1, eD.getteacherName());
-	            stmt.setString(2, eD.getteacherSurname());
-	            stmt.setString(3, eD.getID());
-
-	            stmt.executeUpdate();
-
-	        } catch (SQLException e) {
-	            throw new DAOException("Teacher writing error");
-	        } finally {
-	            DBManager.closeConnection();
-	        }
-
-	    } catch (SQLException e) {
-	        throw new DBConnectionException("DB connection error");
-	    }
-	}
 	
-	public static EntityDocente readTeacher(String ID) throws DAOException, DBConnectionException {
+	//Spring will inject Connection Pool here: H2 in testing, MySQL in production
+    private final DataSource dataSource;
 
-		EntityDocente eD = null;
+    //The constructor receives the DataSource (Dependency Injection)
+    @Autowired
+    public DocenteDAO(DataSource dataSource) {
+        this.dataSource = dataSource;
+    }
+    
+    public void createTeacher(EntityDocente eD) throws DAOException {
+        
+        String query = "INSERT INTO teacher VALUES (?, ?, ?);";
 
-		try {
+        try (Connection conn = dataSource.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(query)) {
 
-			Connection conn = DBManager.getConnection();
-			String query = "SELECT * FROM teacher WHERE ID=?;";
-			
-			try {
+            stmt.setString(1, eD.getID());
+            stmt.setString(2, eD.getteacherName()); 
+            stmt.setString(3, eD.getteacherSurname());
 
-				PreparedStatement stmt = conn.prepareStatement(query);
-				stmt.setString(1, ID);
-				ResultSet result = stmt.executeQuery();
+            stmt.executeUpdate();
 
-				if(result.next()) {
-					eD = new EntityDocente(result.getString(1), result.getString(2), ID);	
-				}
-			}catch(SQLException e) {
-				throw new DAOException("Teacher reading error");
-			}finally {
-				DBManager.closeConnection();
-			}
-		}catch(SQLException e) {
-			throw new DBConnectionException("DB connection error");
-		}
-		return eD;
-	}
+        } catch (SQLException e) {
+            //throw new DAOException("Errore DB durante la scrittura del docente: " + e.getMessage());
+            throw new DAOException("Teacher writing error");
+        }
+    }
+	
+    public EntityDocente readTeacher(String ID) throws DAOException {
+        EntityDocente eD = null;
+        String query = "SELECT * FROM teacher WHERE ID = ?;";
 
+        try (Connection conn = dataSource.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(query)) {
+
+            stmt.setString(1, ID);
+            ResultSet result = stmt.executeQuery();
+
+            if (result.next()) {
+                eD = new EntityDocente(
+                    result.getString("teacherName"), 
+                    result.getString("teacherSurname"), 
+                    ID
+                );
+            }
+        } catch (SQLException e) {
+            //throw new DAOException("Errore DB durante la lettura del docente: " + e.getMessage());
+            throw new DAOException("Teacher reading error");
+        }
+        return eD;
+    }
 }

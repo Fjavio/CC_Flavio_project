@@ -1,13 +1,12 @@
 package conservatory.control;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+
 import java.sql.Date;
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
 import conservatory.database.CorsoDAO;
-import conservatory.database.DBManager;
 import conservatory.database.DocenteDAO;
 import conservatory.database.EsameDAO;
 import conservatory.database.StudenteDAO;
@@ -18,15 +17,29 @@ import conservatory.entity.EntityEsame;
 import conservatory.entity.EntityStudente;
 import conservatory.entity.EntityVerbale;
 import conservatory.exception.DAOException;
-import conservatory.exception.DBConnectionException;
 import conservatory.exception.OperationException;
 import conservatory.exception.PropedeuticitaException;
 
+@Service //Bean of Spring
 public class GestoreCorsiDiStudioConservatorio {
 	
-	public GestoreCorsiDiStudioConservatorio() {
-		
-	}
+	private final CorsoDAO courseDAO;
+    private final DocenteDAO teacherDAO;
+    private final EsameDAO examDAO;
+    private final StudenteDAO studentDAO;
+    private final VerbaleDAO reportDAO;
+
+    // Dependy injection
+    @Autowired
+    public GestoreCorsiDiStudioConservatorio(CorsoDAO courseDAO, DocenteDAO teacherDAO, 
+                                            EsameDAO examDAO, StudenteDAO studentDAO, 
+                                            VerbaleDAO reportDAO) {
+        this.courseDAO = courseDAO;
+        this.teacherDAO = teacherDAO;
+        this.examDAO = examDAO;
+        this.studentDAO = studentDAO;
+        this.reportDAO = reportDAO;
+    }
   
 	public void AssociationTeacherCourse(String courseCode, String teacherID) throws OperationException, IllegalArgumentException {
 		
@@ -42,20 +55,18 @@ public class GestoreCorsiDiStudioConservatorio {
         }
 
         try {
-            eD = DocenteDAO.readTeacher(teacherID);
-            eC = CorsoDAO.readCourse(courseCode);
+            eD = teacherDAO.readTeacher(teacherID);
+            eC = courseDAO.readCourse(courseCode);
 
             if (eD == null || eC == null) {
                 throw new OperationException("Teacher or Course not found");
             }
-            if (CorsoDAO.readAssociationTeacherCourse(courseCode) != null) {
+            if (courseDAO.readAssociationTeacherCourse(courseCode) != null) {
                 throw new OperationException("Course has already been assigned to a teacher");
             }
 
-            CorsoDAO.updateAssociationTeacherCourse(courseCode, teacherID);
-        } catch(DBConnectionException dbEx) {
-			throw new OperationException("\nInternal application problem encountered!\n");
-		}catch(DAOException ex) {
+            courseDAO.updateAssociationTeacherCourse(courseCode, teacherID);
+        } catch(DAOException ex) {
 			throw new OperationException("Oops, something went wrong...");
 		}
     }
@@ -81,10 +92,8 @@ public class GestoreCorsiDiStudioConservatorio {
         
 		try {
 		    EntityEsame exam = new EntityEsame(vote, honors, teacherNotes, null, reportCode, courseCode, username);
-            EsameDAO.createExam(exam);
-		} catch(DBConnectionException dbEx) {
-	        throw new OperationException("\nInternal application problem encountered!\n");
-	    } catch(DAOException ex) {
+            examDAO.createExam(exam);
+		} catch(DAOException ex) {
 	        throw new OperationException("Oops, something went wrong...");
 	    }
     }
@@ -104,9 +113,7 @@ public class GestoreCorsiDiStudioConservatorio {
 
 	    try {
 	        EntityCorso course = new EntityCorso(courseCode, courseName, CFU, null, preOf, preFor);
-	        CorsoDAO.createCourse(course);
-	    } catch (DBConnectionException dbEx) {
-	        throw new OperationException("\nInternal application problem encountered!\n");
+	        courseDAO.createCourse(course);
 	    } catch (DAOException ex) {
 	        throw new OperationException("Oops, something went wrong...");
 	    }
@@ -124,10 +131,8 @@ public class GestoreCorsiDiStudioConservatorio {
 
 		try {
 		    EntityDocente teacher = new EntityDocente(teacherName, teacherSurname, ID);
-            DocenteDAO.createTeacher(teacher);
-		} catch(DBConnectionException dbEx) {
-	        throw new OperationException("\nInternal application problem encountered!\n");
-	    } catch(DAOException ex) {
+            teacherDAO.createTeacher(teacher);
+		} catch(DAOException ex) {
 	        throw new OperationException("Oops, something went wrong...");
 	    }
     }
@@ -146,11 +151,10 @@ public class GestoreCorsiDiStudioConservatorio {
 
 	    try {
 	        EntityVerbale eB = new EntityVerbale(reportDate, reportCode, ID);
-	        VerbaleDAO.createReport(eB);
-	    } catch(DBConnectionException dbEx) {
-	        throw new OperationException("\nInternal application problem encountered!\n");
+	        reportDAO.createReport(eB);
 	    } catch(DAOException ex) {
-	        throw new OperationException("Oops, something went wrong...");
+	        //throw new OperationException("Oops, something went wrong...");
+	    	throw new OperationException("Error while opening report: " + ex.getMessage());
 	    }
 	}
 	
@@ -163,21 +167,19 @@ public class GestoreCorsiDiStudioConservatorio {
         }
         
 		try {
-		    eV = VerbaleDAO.readReport(reportCode);
+		    eV = reportDAO.readReport(reportCode);
 		
 		    if(eV == null) {
 			   throw new OperationException("Report not found or not yet opened.");
 		    }
 		    
-		    List<EntityEsame> exams = EsameDAO.readExam(reportCode);
+		    List<EntityEsame> exams = examDAO.readExam(reportCode);
             for (EntityEsame exam : exams) {
                if (exam.getpassingDate() != null) {
                   throw new OperationException("Report is already closed and finalized.");
                }
             }
-		} catch(DBConnectionException dbEx) {
-			throw new OperationException("\nInternal application problem encountered!\n");
-		}catch(DAOException ex) {
+		} catch(DAOException ex) {
 			throw new OperationException("Oops, something went wrong...");
 		}
 	}
@@ -191,11 +193,9 @@ public class GestoreCorsiDiStudioConservatorio {
 		
         
 	    try {
-	    	eS = StudenteDAO.readStudent(username);
+	    	eS = studentDAO.readStudent(username);
 	        return (eS != null);
-	    } catch(DBConnectionException dbEx) {
-			throw new OperationException("\nInternal application problem encountered!\n");
-		}catch(DAOException ex) {
+	    } catch(DAOException ex) {
 			throw new OperationException("Oops, something went wrong...");
 		}
 	}
@@ -208,11 +208,9 @@ public class GestoreCorsiDiStudioConservatorio {
         }
         
 	    try {
-	    	eC = CorsoDAO.readCourse(courseCode);
+	    	eC = courseDAO.readCourse(courseCode);
 	        return (eC != null);
-	    } catch(DBConnectionException dbEx) {
-			throw new OperationException("\nInternal application problem encountered!\n");
-		}catch(DAOException ex) {
+	    } catch(DAOException ex) {
 			throw new OperationException("Oops, something went wrong...");
 		}
 	}
@@ -225,11 +223,9 @@ public class GestoreCorsiDiStudioConservatorio {
         }
         
 	    try {
-	    	eD = DocenteDAO.readTeacher(ID);
+	    	eD = teacherDAO.readTeacher(ID);
 	        return (eD != null);
-	    } catch(DBConnectionException dbEx) {
-			throw new OperationException("\nInternal application problem encountered!\n");
-		}catch(DAOException ex) {
+	    } catch(DAOException ex) {
 			throw new OperationException("Oops, something went wrong...");
 		}
 	}
@@ -241,10 +237,8 @@ public class GestoreCorsiDiStudioConservatorio {
         }
         
 	    try {
-	        return EsameDAO.getUsernamesByReport(reportCode);
-	    } catch(DBConnectionException dbEx) {
-			throw new OperationException("\nInternal application problem encountered!\n");
-		}catch(DAOException ex) {
+	        return examDAO.getUsernamesByReport(reportCode);
+	    } catch(DAOException ex) {
 			throw new OperationException("Oops, something went wrong...");
 		}
 	}
@@ -262,10 +256,8 @@ public class GestoreCorsiDiStudioConservatorio {
         }
         
 	    try {
-	        EsameDAO.checkPIN(insertedPin, reportCode, username);
-	    } catch(DBConnectionException dbEx) {
-			throw new OperationException("\nInternal application problem encountered!\n");
-		}catch(DAOException ex) {
+	        examDAO.checkPIN(insertedPin, reportCode, username);
+	    } catch(DAOException ex) {
 			throw new OperationException("Oops, something went wrong...");
 		}
 	}
@@ -280,20 +272,16 @@ public class GestoreCorsiDiStudioConservatorio {
         }
 
         try {
-           EsameDAO.checkPrerequisites(reportCode, username);
+           examDAO.checkPrerequisites(reportCode, username);
         } catch (PropedeuticitaException pEx) {
         	System.out.println(pEx.getMessage());
             try {
-                EsameDAO.deleteExam(reportCode, username);
+                examDAO.deleteExam(reportCode, username);
             } catch (DAOException e) {
     			throw new OperationException("Oops, something went wrong...");
-    		} catch (DBConnectionException e) {
-    			throw new OperationException("\nInternal application problem encountered!\n");
-    		}
+    		} 
     	    }
-            catch(DBConnectionException dbEx) {
-    			throw new OperationException("\nInternal application problem encountered!\n");
-    		}catch(DAOException ex) {
+            catch(DAOException ex) {
     			throw new OperationException("Oops, something went wrong...");
     		}
     }
@@ -305,10 +293,8 @@ public class GestoreCorsiDiStudioConservatorio {
         }
 
         try {
-           EsameDAO.checkVotes(reportCode);
-        } catch(DBConnectionException dbEx) {
-			throw new OperationException("\nInternal application problem encountered!\n");
-		}catch(DAOException ex) {
+           examDAO.checkVotes(reportCode);
+        } catch(DAOException ex) {
 			throw new OperationException("Oops, something went wrong...");
 		}
     }

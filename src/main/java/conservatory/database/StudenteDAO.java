@@ -4,72 +4,71 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import javax.sql.DataSource;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 
 import conservatory.entity.EntityStudente;
 import conservatory.exception.DAOException;
-import conservatory.exception.DBConnectionException;
 
+@Repository //Bean of Spring
 public class StudenteDAO {
-	public static EntityStudente readStudent(String username) throws DAOException, DBConnectionException {
 
-		EntityStudente eS = null;
+    //Spring will inject Connection Pool here
+    private final DataSource dataSource;
 
-		try {
+    //The constructor receives the DataSource (Dependency Injection)
+    @Autowired
+    public StudenteDAO(DataSource dataSource) {
+        this.dataSource = dataSource;
+    }
 
-			Connection conn = DBManager.getConnection();
-			String query = "SELECT * FROM student WHERE username=?;";
-			
-			try {
+    public EntityStudente readStudent(String username) throws DAOException {
+    	
+        EntityStudente eS = null;
+        String query = "SELECT * FROM student WHERE username = ?;";
 
-				PreparedStatement stmt = conn.prepareStatement(query);
+        try (Connection conn = dataSource.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(query)) {
 
-				stmt.setString(1, username);
+            stmt.setString(1, username);
+            ResultSet result = stmt.executeQuery();
 
-				ResultSet result = stmt.executeQuery();
-
-				if(result.next()) {
-					eS = new EntityStudente(username, result.getString(2), result.getInt(3), result.getInt(4));	
-				}
-
-			}catch(SQLException e) {
-				throw new DAOException("Student reading error");
-			}finally {
-				DBManager.closeConnection();
-			}
-			
-		}catch(SQLException e) {
-			throw new DBConnectionException("DB connection error");
-		}
-
-		return eS;
-	}
-	
-	public static void createStudent(EntityStudente eS) throws DAOException, DBConnectionException {
-        try {
-            Connection conn = DBManager.getConnection();
-
-            String query = "INSERT INTO student VALUES (?, ?, ?, ?);";
-
-            try {
-                PreparedStatement stmt = conn.prepareStatement(query);
-
-                stmt.setString(1, eS.getUsername());
-                stmt.setString(2, eS.getPassword());
-                stmt.setInt(3, eS.getPIN());
-                stmt.setInt(4, eS.getidCDS());
-
-                stmt.executeUpdate();
-
-            } catch (SQLException e) {
-                throw new DAOException("Student writing error");
-            } finally {
-                DBManager.closeConnection();
+            if (result.next()) {
+                eS = new EntityStudente(
+                    username, 
+                    result.getString("password"), 
+                    result.getInt("PIN"), 
+                    result.getInt("idCDS")
+                );	
             }
+        } catch (SQLException e) {
+            //throw new DAOException("Errore DB during la lettura dello studente: " + e.getMessage());
+            throw new DAOException("Student reading error");
+        }
+        return eS;
+    }
+
+    public void createStudent(EntityStudente eS) throws DAOException {
+       
+        String query = "INSERT INTO student VALUES (?, ?, ?, ?);";
+
+        try (Connection conn = dataSource.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(query)) {
+
+            stmt.setString(1, eS.getUsername());
+            stmt.setString(2, eS.getPassword());
+            stmt.setInt(3, eS.getPIN());
+            stmt.setInt(4, eS.getidCDS());
+
+            stmt.executeUpdate();
 
         } catch (SQLException e) {
-            throw new DBConnectionException("DB connection error");
+            //throw new DAOException("Errore DB during la scrittura dello studente: " + e.getMessage());
+            throw new DAOException("Student writing error");
         }
     }
-	
-}
-
+}					
+               
+            

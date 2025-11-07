@@ -15,9 +15,8 @@ import static io.restassured.RestAssured.given;
 import static org.hamcrest.Matchers.equalTo;
 
 
-/* End-to-End (E2E) integration test for the Secretariat API. 
- * This test launches the entire Spring Boot application and interacts with the live database.
- * So make sure XAMPP (MySQL) is running */
+// End-to-End (E2E) integration test for the Secretariat API. 
+// This test interacts with H2 database.
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 public class SegreteriaApiTest { //secretariat

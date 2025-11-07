@@ -1,4 +1,4 @@
-package conservatory.boundary;
+/*package conservatory.boundary;
 
 import static org.mockito.Mockito.*;
 import java.util.Arrays;
@@ -12,7 +12,7 @@ import conservatory.boundary.BoundaryDocente;
 import conservatory.control.GestoreCorsiDiStudioConservatorio;
 import conservatory.exception.OperationException;
 
-/* TEST WITH FAKE DATABASE (MOCKITO) */
+//TEST WITH FAKE DATABASE (MOCKITO)
 
 @ExtendWith(MockitoExtension.class)
 class TestBoundaryDocente {
@@ -80,4 +80,4 @@ class TestBoundaryDocente {
 
         verify(gestoreMock).checkReport("XXXX");
     }
-}
+}*/

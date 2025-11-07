@@ -1,10 +1,5 @@
 -- Enter the essential test data
 
--- Empty tables before inserting them
-TRUNCATE TABLE teacher;
-TRUNCATE TABLE student;
-TRUNCATE TABLE course;
-
 -- Teachers required for the tests
 INSERT INTO teacher (ID, teacherName, teacherSurname) VALUES ('C123456', 'Claudia', 'Carrara');
 INSERT INTO teacher (ID, teacherName, teacherSurname) VALUES ('DUMMY01', 'July', 'Peach');

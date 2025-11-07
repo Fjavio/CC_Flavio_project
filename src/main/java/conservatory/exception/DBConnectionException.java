@@ -1,4 +1,4 @@
-package conservatory.exception;
+/*package conservatory.exception;
 
 public class DBConnectionException extends Exception{
     public DBConnectionException() {}
@@ -7,3 +7,4 @@ public class DBConnectionException extends Exception{
 		super(msg);
 	}
 }
+*/

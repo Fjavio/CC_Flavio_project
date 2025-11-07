@@ -19,14 +19,14 @@ public class DocenteController { //teacher
 
     @PostMapping("/verbali")
     public ResponseEntity<String> openReport(@RequestBody OpenReportRequest request) 
-            throws OperationException {
-        gestore.OpeningReport(request.getReportCode(), request.getReportDate(), request.getTeacherId());
+            throws OperationException, IllegalArgumentException {
+        gestore.OpeningReport(request.getReportCode(), request.getReportDate(), request.getTeacherID());
         return ResponseEntity.ok("Report opened successfully");
     }
 
     @PostMapping("/verbali/{reportCode}/esami")
     public ResponseEntity<String> addExam(@PathVariable String reportCode, @RequestBody AddExamRequest request) 
-            throws OperationException {
+            throws OperationException, IllegalArgumentException {
         gestore.createAndInsertExam(request.getVote(), request.isHonors(), request.getNotes(), 
                                   reportCode, request.getCourseCode(), request.getUsername());
         return ResponseEntity.ok("Exam added to the report");
@@ -34,7 +34,7 @@ public class DocenteController { //teacher
     
     @PostMapping("/verbali/{reportCode}/chiusura")
     public ResponseEntity<String> closeReport(@PathVariable String reportCode, @RequestBody CloseReportRequest request) 
-            throws OperationException {
+            throws OperationException, IllegalArgumentException {
     	//The closing logic iterates over all students and submitted PINs
         for (StudentPinDto studentPin : request.getStudentPins()) {
             gestore.checkPIN(studentPin.getPin(), reportCode, studentPin.getUsername());

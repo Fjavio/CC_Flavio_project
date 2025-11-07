@@ -1,4 +1,8 @@
-package conservatory.boundary;
+//CLIENT WILL USE IT AS A WEB APPLICATION AND NO MORE FROM TERMINAL
+//Furthermore, if the goal is to create a microservice, which by definition 
+//is a web application without a user interface, boundary is no longer necessary
+
+/*package conservatory.boundary;
 
 import java.sql.Connection;
 import java.sql.Date;
@@ -249,6 +253,6 @@ public class BoundaryDocente {
     }
 	
 }
-
+*/
 
 	

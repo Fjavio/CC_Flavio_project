@@ -1,4 +1,4 @@
-package conservatory.boundary;
+/*package conservatory.boundary;
 
 import java.awt.EventQueue;
 import javax.swing.JFrame;
@@ -65,4 +65,4 @@ public class MenuSegreteriaStudenti {
         frame.getContentPane().add(btnAssociationTeacherCourse);
     }
 }
-
+*/

@@ -1,14 +1,11 @@
-package conservatory.boundary;
+/*package conservatory.boundary;
 
 import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JTextField;
 
 import conservatory.control.GestoreCorsiDiStudioConservatorio;
-import conservatory.exception.DAOException;
-import conservatory.exception.DBConnectionException;
 import conservatory.exception.OperationException;
-import conservatory.exception.PropedeuticitaException;
 
 import javax.swing.JLabel;
 import javax.swing.JButton;
@@ -161,3 +158,4 @@ public class GuiChiusura {
         frame.getContentPane().add(btnReturn);
     }
 }
+*/

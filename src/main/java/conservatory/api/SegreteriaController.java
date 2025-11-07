@@ -21,21 +21,21 @@ public class SegreteriaController { //secretariat
 
     @PostMapping("/docenti")
     public ResponseEntity<String> createTeacher(@RequestBody CreaDocenteRequest request) 
-            throws OperationException {
+            throws OperationException, IllegalArgumentException {
         gestore.createAndInsertTeacher(request.getName(), request.getSurname(), request.getId());
         return new ResponseEntity<>("Teacher successfully created", HttpStatus.CREATED);
     }
 
     @PostMapping("/corsi")
     public ResponseEntity<String> createCourse(@RequestBody CreaCorsoRequest request) 
-            throws OperationException {
+            throws OperationException, IllegalArgumentException {
         gestore.createAndInsertCourse(request.getCode(), request.getName(), request.getCfu(), request.getPreOf(), request.getPreFor());
         return new ResponseEntity<>("Course successfully created", HttpStatus.CREATED);
     }
     
     @PutMapping("/corsi/{courseCode}/docente")
     public ResponseEntity<String> associateTeacher(@PathVariable String courseCode, @RequestBody AssociationRequest request) 
-    		throws OperationException {
+    		throws OperationException, IllegalArgumentException {
         gestore.AssociationTeacherCourse(courseCode, request.getTeacherId());
         return ResponseEntity.ok("Association successfully completed");
     }

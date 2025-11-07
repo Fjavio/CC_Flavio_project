@@ -1,4 +1,4 @@
-package conservatory.boundary;
+/*package conservatory.boundary;
 
 import static org.mockito.Mockito.*;
 import java.util.Scanner;
@@ -82,4 +82,4 @@ class TestBoundarySegreteriaStudenti {
         //Check that the association attempt has been made anyway
         verify(gestoreMock).AssociationTeacherCourse("A1234", "C123456");
     }
-}
+}*/

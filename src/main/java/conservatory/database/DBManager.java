@@ -1,4 +1,7 @@
-package conservatory.database;
+//Refactoring because hito says "single source of truth using dependency injection."
+//DBManager with the static connection and hardcoded URL is the exact opposite of this.
+
+/*package conservatory.database;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -27,3 +30,4 @@ private static Connection conn = null;
 			}
 	}
 }
+*/

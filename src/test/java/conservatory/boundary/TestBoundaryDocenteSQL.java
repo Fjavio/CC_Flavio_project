@@ -1,4 +1,4 @@
-package conservatory.boundary;
+/*package conservatory.boundary;
 
 import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.MethodOrderer.OrderAnnotation;
@@ -15,12 +15,9 @@ import java.util.List;
 import java.util.Random;
 import org.junit.jupiter.api.*;
 
-/**
- * INTEGRATION TEST WITH REAL DATABASE
- * Make sure that:
- *  - The database is running
- *  - The Teacher table contains a teacher with ID "C123456"
- */
+//INTEGRATION TEST WITH REAL DATABASE but make sure that:
+// - The database is running
+// - The Teacher table contains a teacher with ID "C123456"
 
 @TestMethodOrder(OrderAnnotation.class)
 public class TestBoundaryDocenteSQL {
@@ -124,3 +121,4 @@ public class TestBoundaryDocenteSQL {
         assertDoesNotThrow(() -> BoundaryDocente.ClosingReport());
     }
 }
+*/

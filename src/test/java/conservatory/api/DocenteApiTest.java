@@ -2,7 +2,7 @@ package conservatory.api;
 
 import io.restassured.RestAssured;
 import io.restassured.http.ContentType;
-import conservatory.api.dto.*; //Import all your DTOs
+import conservatory.api.dto.*;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -17,9 +17,8 @@ import java.util.Random;
 import static io.restassured.RestAssured.given;
 import static org.hamcrest.Matchers.equalTo;
 
-/* End-to-End (E2E) integration test for the Teacher API. 
- * This test launches the entire Spring Boot application and interacts with the live database.
- * So make sure XAMPP (MySQL) is running */
+//End-to-End (E2E) integration test for the Secretariat API. 
+//This test interacts with H2 database.
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 public class DocenteApiTest { //teacher
@@ -28,7 +27,8 @@ public class DocenteApiTest { //teacher
     private int port;
    
     //N.B. In E2E testing, it's best to make the tests independent, but for this flow it makes sense to create a report and then close it
-    private static String testReportCode;
+    //private static String testReportCode;
+    private String testReportCode;
 
     @BeforeEach
     public void setup() {
@@ -47,7 +47,7 @@ public class DocenteApiTest { //teacher
         OpenReportRequest openRequest = new OpenReportRequest();
         openRequest.setReportCode(testReportCode);
         openRequest.setReportDate(Date.valueOf(LocalDate.now()));
-        openRequest.setTeacherId("C123456"); //exists in data.sql
+        openRequest.setTeacherID("C123456"); //exists in data.sql
 
         given()
             .contentType(ContentType.JSON)

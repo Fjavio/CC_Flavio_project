@@ -1,77 +1,71 @@
 package conservatory.database;
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Date;
+import javax.sql.DataSource;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 
 import conservatory.entity.EntityVerbale;
 import conservatory.exception.DAOException;
-import conservatory.exception.DBConnectionException;
 
-import java.sql.Date;
-
-public class VerbaleDAO {
+@Repository //Bean of Spring
+public class VerbaleDAO { //report
 	
-		public static EntityVerbale readReport(String reportCode) throws DAOException, DBConnectionException {
-			EntityVerbale eV = null;
+    //Spring will inject Connection Pool here
+    private final DataSource dataSource;
 
-			try {
-
-				Connection conn = DBManager.getConnection();
-
-				String query = "SELECT * FROM report WHERE reportCode=?;";
-
-				try {
-					PreparedStatement stmt = conn.prepareStatement(query);
-
-					stmt.setString(1, reportCode);
-
-					ResultSet result = stmt.executeQuery();
-
-					if(result.next()) {
-						eV = new EntityVerbale(result.getDate(1), reportCode, result.getString(3));	
-					}
-				}catch(SQLException e) {
-					throw new DAOException("Report reading error");
-				} finally {
-					DBManager.closeConnection();
-				}
-
-			}catch(SQLException e) {
-				throw new DBConnectionException("DB connection error");
-			}
-
-			return eV;
-		}
+    //The constructor receives the DataSource (Dependency Injection)
+    @Autowired
+    public VerbaleDAO(DataSource dataSource) {
+        this.dataSource = dataSource;
+    }
 		
-	public static void createReport(EntityVerbale eB) throws DAOException, DBConnectionException {
-			
-			try {
-				
-				Connection conn = DBManager.getConnection();
+    public EntityVerbale readReport(String reportCode) throws DAOException {
+    	
+        EntityVerbale eV = null;
+        String query = "SELECT * FROM report WHERE reportCode = ?;";
 
-				String query = "INSERT INTO report VALUES (?,?,?);";
+        try (Connection conn = dataSource.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(query)) {
 
-				try {
-					PreparedStatement stmt = conn.prepareStatement(query);
-					
-					stmt.setDate(1, new Date(eB.getreportDate().getTime()));
-					stmt.setString(2, eB.getreportCode());
-					stmt.setString(3, eB.getteacherID());
+            stmt.setString(1, reportCode);
+            ResultSet result = stmt.executeQuery();
 
-					stmt.executeUpdate();
+            if (result.next()) {
+                eV = new EntityVerbale(
+                    result.getDate("reportDate"), 
+                    reportCode, 
+                    result.getString("teacherID")
+                );	
+            }
+        } catch (SQLException e) {
+            //throw new DAOException("Errore DB during la lettura del verbale: " + e.getMessage());
+            throw new DAOException("Report reading error");
+        }
+        return eV;
+    }
+		
+    public void createReport(EntityVerbale eB) throws DAOException {
+       
+        String query = "INSERT INTO report VALUES (?, ?, ?);";
 
-				}catch(SQLException e) {
-					throw new DAOException("Report writing error");
-				} finally {
-					DBManager.closeConnection();
-				}
+        try (Connection conn = dataSource.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(query)) {
+           
+            stmt.setString(1, eB.getreportCode());
+            stmt.setDate(2, new Date(eB.getreportDate().getTime()));
+            stmt.setString(3, eB.getteacherID());
 
-			}catch(SQLException e) {
-				throw new DBConnectionException("DB connection error");
-			}
+            stmt.executeUpdate();
 
-	}         
-                	        
-
+        } catch (SQLException e) {
+            throw new DAOException("Errore DB during la scrittura del verbale: " + e.getMessage());
+            //throw new DAOException("Report writing error");
+        }
+    }         
 }

@@ -1,55 +1,41 @@
-package conservatory.control;
+package conservatory.control; // O nel tuo package di test
 
 import org.junit.jupiter.api.*;
-
-import conservatory.control.GestoreCorsiDiStudioConservatorio;
-
-import static org.junit.jupiter.api.Assumptions.assumeTrue;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
 import static org.junit.jupiter.api.Assertions.*;
 import java.sql.Date;
 import java.time.LocalDate;
 import java.util.Random;
 
-/** INTEGRATION TEST **/
-
+/**
+ * INTEGRATION TEST (E2E) for gestore.
+ * Runs tests with the in-memory H2 database,
+ * populated by schema.sql and data.sql.
+*/
+@SpringBootTest
 public class TestGestore {
 
+	//Ask Spring to inject the REAL gestore (already connected to the real DAOs, which are connected to H2)
+    @Autowired
     private GestoreCorsiDiStudioConservatorio gestore;
 
-    @BeforeAll
-    static void setupAll() {
-        System.out.println("START UNIT TEST");
-    }
-
-    @BeforeEach
-    void setup() {
-    	gestore = new GestoreCorsiDiStudioConservatorio();
-    }
-    
-    @AfterEach
-	void tearDown() {
-		gestore = null;
-		assumeTrue(gestore == null);
-	}
-    
-    @AfterAll
-    static void tearDownAll() {
-        System.out.println("END UNIT TEST");
-    }
+    //The Before/After methods are no longer needed: spring manages gestore's lifecycle.
 
     @Test
     void testOpeningReport_OK() {
     	
-    	String reportCode = ""+(10000 + new Random().nextInt(90000));
+    	String reportCode = "" + (10000 + new Random().nextInt(90000));
     	
         assertDoesNotThrow(() -> 
             gestore.OpeningReport(reportCode, Date.valueOf(LocalDate.now()), "C123456")
         );
 
-        //Now verify that the report actually exists
+        // Verify that it has been written in the H2 database
         assertDoesNotThrow(() -> gestore.checkReport(reportCode));
     }
     
+    //Tests read from the data.sql file
     @Test
     void testCheckTeacher_ExistingTeacher() throws Exception {
         assertTrue(gestore.checkTeacher("C123456"));
@@ -80,7 +66,6 @@ public class TestGestore {
         assertFalse(gestore.checkStudent("fakeUser"));
     } 
 }
-
 
 
     

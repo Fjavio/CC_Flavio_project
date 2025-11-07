@@ -1,8 +1,9 @@
--- Disable foreign key constraints temporarily to avoid order errors
-SET FOREIGN_KEY_CHECKS=0;
-
 -- Empty tables if they already exist (to rerun tests)
-DROP TABLE IF EXISTS teacher, student, course, report, exam;
+DROP TABLE IF EXISTS exam;
+DROP TABLE IF EXISTS report;
+DROP TABLE IF EXISTS course;
+DROP TABLE IF EXISTS student;
+DROP TABLE IF EXISTS teacher;
 
 -- Creazione Tabelle
 CREATE TABLE teacher (
@@ -24,15 +25,15 @@ CREATE TABLE course (
     CFU INT,
     teacherID VARCHAR(7),
     preOf VARCHAR(255),
-    preFor VARCHAR(255)
-    -- Add the constraint for the teacher outside the table (FOREIGN KEY (teacherID) REFERENCES teacher(ID)) 
+    preFor VARCHAR(255),
+    FOREIGN KEY (teacherID) REFERENCES teacher(ID)
 );
 
 CREATE TABLE report (
     reportCode VARCHAR(5) PRIMARY KEY,
     reportDate DATE,
-    teacherID VARCHAR(7)
-    -- Add the constraint for the teacher outside the table (FOREIGN KEY (teacherID) REFERENCES teacher(ID))
+    teacherID VARCHAR(7),
+    FOREIGN KEY (teacherID) REFERENCES teacher(ID)
 );
 
 CREATE TABLE exam (
@@ -43,16 +44,8 @@ CREATE TABLE exam (
     reportCode VARCHAR(5),
     courseCode VARCHAR(5),
     username VARCHAR(255),
-    -- Composite primary key
-    PRIMARY KEY (reportCode, username)
+    PRIMARY KEY (reportCode, username),
+    FOREIGN KEY (reportCode) REFERENCES report(reportCode),
+    FOREIGN KEY (courseCode) REFERENCES course(courseCode),
+    FOREIGN KEY (username) REFERENCES student(username)
 );
-
--- Constraints Foreign Keys
-ALTER TABLE course ADD FOREIGN KEY (teacherID) REFERENCES teacher(ID);
-ALTER TABLE report ADD FOREIGN KEY (teacherID) REFERENCES teacher(ID);
-ALTER TABLE exam ADD FOREIGN KEY (reportCode) REFERENCES report(reportCode);
-ALTER TABLE exam ADD FOREIGN KEY (courseCode) REFERENCES course(courseCode);
-ALTER TABLE exam ADD FOREIGN KEY (username) REFERENCES student(username);
-
--- Reactivate constraints
-SET FOREIGN_KEY_CHECKS=1;
