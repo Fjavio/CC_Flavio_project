@@ -25,5 +25,3 @@ jobs:
 
     - name: Run tests
       run: mvn test
-	  
-	  
