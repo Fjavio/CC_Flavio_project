@@ -94,3 +94,5 @@ Progress tracking of the project during the Cloud Computing Exam
   - [Issue #5: Configure Continuous Integration with GitHub Actions](https://github.com/Fjavio/CC_Flavio_project/issues/11) 
 - [Milestone: Hito 3 -  Diseño de microservicios](https://github.com/Fjavio/CC_Flavio_project/milestone/6):
   - [Issue #1: Refactoring](https://github.com/Fjavio/CC_Flavio_project/issues/12)
+    - [Sub-issue #1: Refactoring DAOs](https://github.com/Fjavio/CC_Flavio_project/issues/13)
+    - [Sub-issue #2: Refactoring control](https://github.com/Fjavio/CC_Flavio_project/issues/14)
