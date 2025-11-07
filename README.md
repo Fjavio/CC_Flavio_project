@@ -102,3 +102,4 @@ Progress tracking of the project during the Cloud Computing Exam
     - [Sub-issue #1: Refactoring Unit Tests](https://github.com/Fjavio/CC_Flavio_project/issues/17)
     - [Sub-issue #2: Refactoring BDD Tests](https://github.com/Fjavio/CC_Flavio_project/issues/18)
     - [Sub-issue #3: Creating API Tests](https://github.com/Fjavio/CC_Flavio_project/issues/19)
+  - [Issue #4: Changing pom.xml](https://github.com/Fjavio/CC_Flavio_project/issues/21)
