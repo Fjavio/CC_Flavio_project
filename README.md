@@ -97,3 +97,5 @@ Progress tracking of the project during the Cloud Computing Exam
     - [Sub-issue #1: Refactoring DAOs](https://github.com/Fjavio/CC_Flavio_project/issues/13)
     - [Sub-issue #2: Refactoring control](https://github.com/Fjavio/CC_Flavio_project/issues/14)
   - [Issue #2: API REST Spring](https://github.com/Fjavio/CC_Flavio_project/issues/15)
+  - [Issue #3: Refactor-Test: update the Dependency Injection Test Suite and API](https://github.com/Fjavio/CC_Flavio_project/issues/16)
+    - [Sub-issue #1: Refactoring Unit Tests](https://github.com/Fjavio/CC_Flavio_project/issues/17)
