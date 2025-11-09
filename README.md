@@ -30,19 +30,36 @@ In this implementation, we focus on **a subset of the main functionalities**, wh
 - Support administration tasks such as course creation, teacher assignment, and yearly course scheduling.  
 - Store all information about students, teachers, courses and any connections between them, in a well-related database
 - Demonstrate separation of concerns via the DAO–Entity–Control–Boundary pattern.
-  
+
+### Cloud Perspective
+This project is designed with a layered architecture that can easily be deployed in the cloud. In a cloud environment:
+- The **Control and DAO layers** would be hosted on a remote application server (e.g., AWS EC2, Azure App Service).  
+- The **MySQL database** could be migrated to a managed cloud database (e.g., AWS RDS, Google Cloud SQL).  
+- **User interfaces** (Boundaries) could be accessed remotely via a web or REST API layer.  
+
+The system’s modularity and business logic make it ideal for cloud deployment, allowing multiple users (students, teachers, administration) to access shared academic data securely and efficiently.
+
 ## Project Architecture
 The system is organized according to the **DAO–Entity–Control–Boundary** architectural pattern, a simplified MVC-style organization designed for modularity and testability, and supports basic **CRUD** operations together with specific business rules (e.g., prerequisite validation, vote validation, PIN verification).
-- **Java** (core language for implementation)  
-- **DAO pattern**: handles all interaction with the database (CRUD operations and custom queries)  
-- **Entity classes**: represents real-world objects as data structures: (`Course`, `Teacher`, `Student`, `Exam`, `Report`); mirrors DB tables.   
-- **Control classes**: `GestoreCorsiDiStudioConservatorio` implements business rules and coordinates DAO calls: validation and orchestration of operations, enforces prerequisites, ensures integrity.   
+- **Java**: core language for implementation
+- **DAO pattern**: handles all interaction with the database (CRUD operations and custom queries)
+- **Entity classes**: represents real-world objects as data structures: (`Course`, `Teacher`, `Student`, `Exam`, `Report`); mirrors DB tables  
+- **Control classes**: `GestoreCorsiDiStudioConservatorio` implements business rules and coordinates DAO calls: validation and orchestration of operations, enforces prerequisites, ensures integrity
 - **Boundary classes** for user interaction: console-based menus for Teachers and Administration:  
   - `BoundaryDocente` → Teachers (open/close reports, insert exam results)  
   - `BoundarySegreteriaStudenti` → Administration (add teachers, add courses, associate teacher-course)  
   - GUI menus (extensions of the console menus)
 - **MySQL Database** to persist all information (courses, teachers, students, exams, reports)  
 
+New architecture HITO3:
+- **Java & Spring Boot**: Spring Boot is the core framework that manages the entire application lifecycle, starts the web server, and handles Dependency Injection (DI)
+- **DAO pattern**: handles all interaction with the database (CRUD operations and custom queries)  
+- **Entity classes**: represents real-world objects as data structures: (`Course`, `Teacher`, `Student`, `Exam`, `Report`); mirrors DB tables   
+- **Control classes**: `GestoreCorsiDiStudioConservatorio` implements business rules and coordinates DAO calls: validation and orchestration of operations, enforces prerequisites, ensures integrity
+- **Boundary classes** for user interaction: console-based menus for Teachers and Administration -> **OBSOLETED**
+- **NEW API Layer**: layer that exposes business logic to the outside world via a RESTful API. It uses Spring Controllers (@RestController) to map HTTP (JSON) requests to control layer methods
+- **MySQL & H2 Database** to persist all information (courses, teachers, students, exams, reports). H2 (an in-memory database) for automated testing (CI/CD) to ensure a clean and isolated testing environment
+  
 ## Installation and Setup Guide
 1 GitHub Authentication Configuration, to ensure secure access and automation between GitHub and the environment:
 - Generate a Personal Access Token (PAT) on GitHub → Settings → Developer Settings → Personal Access Tokens
@@ -61,15 +78,22 @@ The system is organized according to the **DAO–Entity–Control–Boundary** a
 - Create a new database, e.g. conservatory_db, and creates tables that represent the entities
 
 4 Eclipse
-- Update your database configuration file in DBManager.java with your connection details: conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/gestionecorsidistudioconservatorio", "root", "");
+- **(NO MORE NECESSARY)**: update your database configuration file in DBManager.java with your connection details: conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/gestionecorsidistudioconservatorio", "root", "");
+- **NOW**:
+  - eclipse -> application.java -> run as -> java application
+  - The only way to interact with the microservice is through an HTTP client: i recommend using Postman
 
-## Cloud Perspective
-This project is designed with a layered architecture that can easily be deployed in the cloud. In a cloud environment:
-- The **Control and DAO layers** would be hosted on a remote application server (e.g., AWS EC2, Azure App Service).  
-- The **MySQL database** could be migrated to a managed cloud database (e.g., AWS RDS, Google Cloud SQL).  
-- **User interfaces** (Boundaries) could be accessed remotely via a web or REST API layer.  
-
-The system’s modularity and business logic make it ideal for cloud deployment, allowing multiple users (students, teachers, administration) to access shared academic data securely and efficiently.
+5 Postman Example
+- AddTeacher:
+  - Method: POST
+  - URL: http://localhost:8081/api/segreteria/docenti
+  - Body: Select raw and JSON:
+     - {
+     - "id": "AA12345",
+     - "name": "Julia",
+     - "surname": "Fernandez"
+     - }
+  - Expected Result: a 201 Created status and the message "Teacher successfully created"
 
 ## Project Management
 Progress tracking of the project during the Software Engineering Exam
