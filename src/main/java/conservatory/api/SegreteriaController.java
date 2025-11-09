@@ -27,7 +27,7 @@ public class SegreteriaController { //secretariat
     public ResponseEntity<String> createTeacher(@RequestBody CreaDocenteRequest request) 
             throws OperationException, IllegalArgumentException {
         
-        //Log the incoming action
+        // Log the incoming action
         logger.info("Request received: createTeacher (ID: {})", request.getId());
         
         gestore.createAndInsertTeacher(request.getId(), request.getName(), request.getSurname());
