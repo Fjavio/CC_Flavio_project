@@ -119,7 +119,7 @@ public class GestoreCorsiDiStudioConservatorio {
 	    }
 	}
 	
-	public void createAndInsertTeacher(String teacherName, String teacherSurname, String ID) 
+	public void createAndInsertTeacher(String ID, String teacherName, String teacherSurname) 
             throws OperationException, IllegalArgumentException {
         
         if (ID == null || ID.length() != 7) {
@@ -130,7 +130,7 @@ public class GestoreCorsiDiStudioConservatorio {
         }
 
 		try {
-		    EntityDocente teacher = new EntityDocente(teacherName, teacherSurname, ID);
+		    EntityDocente teacher = new EntityDocente(ID, teacherName, teacherSurname);
             teacherDAO.createTeacher(teacher);
 		} catch(DAOException ex) {
 	        throw new OperationException("Oops, something went wrong...");
@@ -150,7 +150,7 @@ public class GestoreCorsiDiStudioConservatorio {
         }
 
 	    try {
-	        EntityVerbale eB = new EntityVerbale(reportDate, reportCode, ID);
+	        EntityVerbale eB = new EntityVerbale(reportCode, reportDate, ID);
 	        reportDAO.createReport(eB);
 	    } catch(DAOException ex) {
 	        //throw new OperationException("Oops, something went wrong...");

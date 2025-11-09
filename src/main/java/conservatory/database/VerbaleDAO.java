@@ -38,14 +38,13 @@ public class VerbaleDAO { //report
 
             if (result.next()) {
                 eV = new EntityVerbale(
-                    result.getDate("reportDate"), 
                     reportCode, 
+                    result.getDate("reportDate"), 
                     result.getString("teacherID")
                 );	
             }
         } catch (SQLException e) {
-            //throw new DAOException("Errore DB during la lettura del verbale: " + e.getMessage());
-            throw new DAOException("Report reading error");
+            throw new DAOException("DB error during report reading: " + e.getMessage());
         }
         return eV;
     }
@@ -64,8 +63,7 @@ public class VerbaleDAO { //report
             stmt.executeUpdate();
 
         } catch (SQLException e) {
-            throw new DAOException("Errore DB during la scrittura del verbale: " + e.getMessage());
-            //throw new DAOException("Report writing error");
+            throw new DAOException("DB error during report writing: " + e.getMessage());
         }
     }         
 }

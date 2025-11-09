@@ -30,7 +30,7 @@ public class SegreteriaController { //secretariat
         //Log the incoming action
         logger.info("Request received: createTeacher (ID: {})", request.getId());
         
-        gestore.createAndInsertTeacher(request.getName(), request.getSurname(), request.getId());
+        gestore.createAndInsertTeacher(request.getId(), request.getName(), request.getSurname());
         
         logger.info("Teacher {} successfully created", request.getId());
         return new ResponseEntity<>("Teacher successfully created", HttpStatus.CREATED);

@@ -6,10 +6,10 @@ public class EntityVerbale {
 	private String reportCode;
 	private String teacherID;
 	
-	public EntityVerbale(Date reportDate, String reportCode, String teacherID) {
+	public EntityVerbale(String reportCode, Date reportDate, String teacherID) {
 		super();
-		this.reportDate = reportDate;
 		this.reportCode = reportCode;
+		this.reportDate = reportDate;
 		this.teacherID = teacherID;
 	}
 	public Date getreportDate() {
