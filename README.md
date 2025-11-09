@@ -104,3 +104,4 @@ Progress tracking of the project during the Cloud Computing Exam
     - [Sub-issue #3: Creating API Tests](https://github.com/Fjavio/CC_Flavio_project/issues/19)
   - [Issue #4: Changing pom.xml](https://github.com/Fjavio/CC_Flavio_project/issues/21)
   - [Issue #5: Log System](https://github.com/Fjavio/CC_Flavio_project/issues/22)
+  - [Issue #6: Finalize the build](https://github.com/Fjavio/CC_Flavio_project/issues/23)
