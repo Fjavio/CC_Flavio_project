@@ -5,7 +5,7 @@ DROP TABLE IF EXISTS course;
 DROP TABLE IF EXISTS student;
 DROP TABLE IF EXISTS teacher;
 
--- Creazione Tabelle
+-- Tables
 CREATE TABLE teacher (
     ID VARCHAR(7) PRIMARY KEY,
     teacherName VARCHAR(255),
