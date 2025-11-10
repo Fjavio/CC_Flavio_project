@@ -46,7 +46,7 @@ public class GestoreCorsiDiStudioConservatorio {
 		EntityDocente eD = null;
 		EntityCorso eC = null;
 		
-        //NEW: Format validation (safeguard clauses because when API we can bypass boundary)
+        //NEW: Format validation (safeguard clauses because API calls directly control (no more boundary))
         if (courseCode == null || courseCode.length() != 5) {
             throw new IllegalArgumentException("Course code must be 5 characters long");
         }
