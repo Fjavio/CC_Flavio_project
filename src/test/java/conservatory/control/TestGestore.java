@@ -1,4 +1,4 @@
-package conservatory.control; // O nel tuo package di test
+package conservatory.control;
 
 import org.junit.jupiter.api.*;
 import org.springframework.beans.factory.annotation.Autowired;

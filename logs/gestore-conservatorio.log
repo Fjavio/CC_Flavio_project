@@ -1,457 +1,53 @@
-2025-11-09 13:11:02.345 [main] INFO  conservatory.Application - Starting Application using Java 21.0.8 with PID 23332 (C:\Users\flavi\eclipse-workspace-old\GestoreConservatorio\target\classes started by flavi in C:\Users\flavi\eclipse-workspace-old\GestoreConservatorio)
-2025-11-09 13:11:02.347 [main] INFO  conservatory.Application - No active profile set, falling back to 1 default profile: "default"
-2025-11-09 13:11:04.325 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8081"]
-2025-11-09 13:11:04.331 [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
-2025-11-09 13:11:04.332 [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.24]
-2025-11-09 13:11:04.451 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
-2025-11-09 13:11:05.089 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8081"]
-2025-11-09 13:11:05.132 [main] INFO  conservatory.Application - Started Application in 3.489 seconds (process running for 12.473)
-2025-11-09 13:14:11.568 [http-nio-8081-exec-2] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
-2025-11-09 13:14:11.947 [http-nio-8081-exec-2] INFO  conservatory.api.DocenteController - Request received: openReport (Code: VR001, Teacher: null)
-2025-11-09 13:14:11.956 [http-nio-8081-exec-2] WARN  c.a.exception.GlobalExceptionHandler - Invalid request (Bad Request 400): Teacher ID must be 7 characters long
-2025-11-09 13:14:48.219 [http-nio-8081-exec-5] INFO  conservatory.api.DocenteController - Request received: openReport (Code: VR001, Teacher: null)
-2025-11-09 13:14:48.222 [http-nio-8081-exec-5] WARN  c.a.exception.GlobalExceptionHandler - Invalid request (Bad Request 400): Teacher ID must be 7 characters long
-2025-11-09 13:15:08.075 [http-nio-8081-exec-4] INFO  conservatory.api.DocenteController - Request received: openReport (Code: VR001, Teacher: C123456)
-2025-11-09 13:15:08.084 [http-nio-8081-exec-4] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
-2025-11-09 13:15:08.674 [http-nio-8081-exec-4] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@1920eee6
-2025-11-09 13:15:08.681 [http-nio-8081-exec-4] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
-2025-11-09 13:15:08.829 [http-nio-8081-exec-4] WARN  c.a.exception.GlobalExceptionHandler - Business error (Conflict 409): Error while opening report: Errore DB during la scrittura del verbale: Data truncation: Incorrect date value: 'VR001' for column `gestionecorsidistudioconservatorio`.`report`.`reportDate` at row 1
-2025-11-09 13:15:44.686 [http-nio-8081-exec-7] INFO  conservatory.api.DocenteController - Request received: openReport (Code: VR002, Teacher: C123456)
-2025-11-09 13:15:44.690 [http-nio-8081-exec-7] WARN  c.a.exception.GlobalExceptionHandler - Business error (Conflict 409): Error while opening report: Errore DB during la scrittura del verbale: Data truncation: Incorrect date value: 'VR002' for column `gestionecorsidistudioconservatorio`.`report`.`reportDate` at row 1
-2025-11-09 13:18:47.373 [main] INFO  conservatory.api.DocenteApiTest - Starting DocenteApiTest using Java 21.0.8 with PID 25628 (started by flavi in C:\Users\flavi\eclipse-workspace-old\GestoreConservatorio)
-2025-11-09 13:18:47.375 [main] INFO  conservatory.api.DocenteApiTest - No active profile set, falling back to 1 default profile: "default"
-2025-11-09 13:18:49.008 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-auto-1"]
-2025-11-09 13:18:49.012 [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
-2025-11-09 13:18:49.013 [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.24]
-2025-11-09 13:18:49.098 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
-2025-11-09 13:18:49.681 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
-2025-11-09 13:18:49.947 [main] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection conn0: url=jdbc:h2:mem:testdb user=SA
-2025-11-09 13:18:49.949 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
-2025-11-09 13:18:50.145 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-auto-1"]
-2025-11-09 13:18:50.178 [main] INFO  conservatory.api.DocenteApiTest - Started DocenteApiTest in 3.237 seconds (process running for 15.831)
-2025-11-09 13:18:52.534 [http-nio-auto-1-exec-1] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
-2025-11-09 13:18:52.626 [http-nio-auto-1-exec-1] INFO  conservatory.api.DocenteController - Request received: addExam (Report: XXXXX, Student: flavio, Course: A1234)
-2025-11-09 13:18:52.636 [http-nio-auto-1-exec-1] WARN  c.a.exception.GlobalExceptionHandler - Business error (Conflict 409): Oops, something went wrong...
-2025-11-09 13:18:53.366 [http-nio-auto-1-exec-2] INFO  conservatory.api.DocenteController - Request received: openReport (Code: VR206, Teacher: C123456)
-2025-11-09 13:18:53.369 [http-nio-auto-1-exec-2] INFO  conservatory.api.DocenteController - Report VR206 opened successfully
-2025-11-09 13:18:53.402 [http-nio-auto-1-exec-3] INFO  conservatory.api.DocenteController - Request received: addExam (Report: VR206, Student: flavio, Course: A1234)
-2025-11-09 13:18:53.403 [http-nio-auto-1-exec-3] INFO  conservatory.api.DocenteController - Exam for the student flavio added to the report VR206
-2025-11-09 13:18:53.445 [http-nio-auto-1-exec-4] INFO  conservatory.api.DocenteController - Request received: closeReport (Verbale: VR206) per 1 studenti.
-2025-11-09 13:18:53.465 [http-nio-auto-1-exec-4] INFO  conservatory.api.DocenteController - Execute ClosingReport2 (check votes and finalize) for report VR206
-2025-11-09 13:18:53.474 [http-nio-auto-1-exec-4] INFO  conservatory.api.DocenteController - Report VR206 closed successfully
-2025-11-09 13:18:53.509 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
-2025-11-09 13:18:53.514 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
-2025-11-09 13:22:52.735 [http-nio-8081-exec-10] INFO  c.api.SegreteriaController - Request received: createTeacher (ID: DOC1234)
-2025-11-09 13:22:52.745 [http-nio-8081-exec-10] INFO  c.api.SegreteriaController - Teacher DOC1234 successfully created
-2025-11-09 13:26:38.585 [http-nio-8081-exec-3] INFO  conservatory.api.DocenteController - Request received: openReport (Code: VR002, Teacher: C123456)
-2025-11-09 13:26:38.598 [http-nio-8081-exec-3] WARN  c.a.exception.GlobalExceptionHandler - Business error (Conflict 409): Error while opening report: Errore DB during la scrittura del verbale: Data truncation: Incorrect date value: 'VR002' for column `gestionecorsidistudioconservatorio`.`report`.`reportDate` at row 1
-2025-11-09 13:30:42.501 [main] INFO  conservatory.Application - Starting Application using Java 21.0.8 with PID 7540 (C:\Users\flavi\eclipse-workspace-old\GestoreConservatorio\target\classes started by flavi in C:\Users\flavi\eclipse-workspace-old\GestoreConservatorio)
-2025-11-09 13:30:42.503 [main] INFO  conservatory.Application - No active profile set, falling back to 1 default profile: "default"
-2025-11-09 13:30:43.979 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8081"]
-2025-11-09 13:30:43.983 [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
-2025-11-09 13:30:43.983 [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.24]
-2025-11-09 13:30:44.056 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
-2025-11-09 13:30:44.677 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8081"]
-2025-11-09 13:30:44.710 [main] INFO  conservatory.Application - Started Application in 2.773 seconds (process running for 3.309)
-2025-11-09 13:30:54.321 [http-nio-8081-exec-2] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
-2025-11-09 13:30:54.666 [http-nio-8081-exec-2] INFO  conservatory.api.DocenteController - Request received: openReport (Code: VR002, Teacher: C123456)
-2025-11-09 13:30:54.686 [http-nio-8081-exec-2] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
-2025-11-09 13:30:56.130 [http-nio-8081-exec-2] WARN  c.a.exception.GlobalExceptionHandler - Business error (Conflict 409): Error while opening report: Errore DB during la scrittura del verbale: Communications link failure
-
-The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
-2025-11-09 13:31:25.471 [http-nio-8081-exec-3] INFO  conservatory.api.DocenteController - Request received: openReport (Code: VR002, Teacher: C123456)
-2025-11-09 13:31:25.472 [http-nio-8081-exec-3] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
-2025-11-09 13:31:25.702 [http-nio-8081-exec-3] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@55656d1
-2025-11-09 13:31:25.706 [http-nio-8081-exec-3] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
-2025-11-09 13:31:25.883 [http-nio-8081-exec-3] WARN  c.a.exception.GlobalExceptionHandler - Business error (Conflict 409): Error while opening report: Errore DB during la scrittura del verbale: Data truncation: Incorrect date value: 'VR002' for column `gestionecorsidistudioconservatorio`.`report`.`reportDate` at row 1
-2025-11-09 13:39:31.192 [main] INFO  conservatory.Application - Starting Application using Java 21.0.8 with PID 13376 (C:\Users\flavi\eclipse-workspace-old\GestoreConservatorio\target\classes started by flavi in C:\Users\flavi\eclipse-workspace-old\GestoreConservatorio)
-2025-11-09 13:39:31.195 [main] INFO  conservatory.Application - No active profile set, falling back to 1 default profile: "default"
-2025-11-09 13:39:33.850 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8081"]
-2025-11-09 13:39:33.856 [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
-2025-11-09 13:39:33.856 [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.24]
-2025-11-09 13:39:33.958 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
-2025-11-09 13:39:34.706 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8081"]
-2025-11-09 13:39:34.748 [main] INFO  conservatory.Application - Started Application in 4.668 seconds (process running for 5.623)
-2025-11-09 13:39:42.926 [http-nio-8081-exec-2] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
-2025-11-09 13:39:43.266 [http-nio-8081-exec-2] INFO  conservatory.api.DocenteController - Request received: openReport (Code: VR002, Teacher: C123456)
-2025-11-09 13:39:43.278 [http-nio-8081-exec-2] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
-2025-11-09 13:39:43.866 [http-nio-8081-exec-2] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@55ab90a0
-2025-11-09 13:39:43.871 [http-nio-8081-exec-2] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
-2025-11-09 13:39:44.041 [http-nio-8081-exec-2] WARN  c.a.exception.GlobalExceptionHandler - Business error (Conflict 409): Error while opening report: Errore DB during la scrittura del verbale: Data truncation: Incorrect date value: 'VR002' for column `gestionecorsidistudioconservatorio`.`report`.`reportDate` at row 1
-2025-11-09 13:47:45.637 [main] INFO  conservatory.Application - Starting Application using Java 21.0.8 with PID 2196 (C:\Users\flavi\eclipse-workspace-old\GestoreConservatorio\target\classes started by flavi in C:\Users\flavi\eclipse-workspace-old\GestoreConservatorio)
-2025-11-09 13:47:45.640 [main] INFO  conservatory.Application - No active profile set, falling back to 1 default profile: "default"
-2025-11-09 13:47:47.323 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8081"]
-2025-11-09 13:47:47.327 [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
-2025-11-09 13:47:47.327 [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.24]
-2025-11-09 13:47:47.405 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
-2025-11-09 13:47:48.198 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8081"]
-2025-11-09 13:47:48.212 [main] WARN  o.s.b.w.s.c.AnnotationConfigServletWebServerApplicationContext - Exception encountered during context initialization - cancelling refresh attempt: org.springframework.context.ApplicationContextException: Failed to start bean 'webServerStartStop'
-2025-11-09 13:47:48.277 [main] ERROR o.s.b.d.LoggingFailureAnalysisReporter - 
-
-***************************
-APPLICATION FAILED TO START
-***************************
-
-Description:
-
-Web server failed to start. Port 8081 was already in use.
-
-Action:
-
-Identify and stop the process that's listening on port 8081 or configure this application to listen on another port.
-
-2025-11-09 13:47:59.900 [http-nio-8081-exec-5] INFO  conservatory.api.DocenteController - Request received: openReport (Code: VR002, Teacher: C123456)
-2025-11-09 13:47:59.905 [http-nio-8081-exec-5] WARN  c.a.exception.GlobalExceptionHandler - Business error (Conflict 409): Error while opening report: Errore DB during la scrittura del verbale: Data truncation: Incorrect date value: 'VR002' for column `gestionecorsidistudioconservatorio`.`report`.`reportDate` at row 1
-2025-11-09 13:48:22.226 [main] INFO  conservatory.Application - Starting Application using Java 21.0.8 with PID 16008 (C:\Users\flavi\eclipse-workspace-old\GestoreConservatorio\target\classes started by flavi in C:\Users\flavi\eclipse-workspace-old\GestoreConservatorio)
-2025-11-09 13:48:22.229 [main] INFO  conservatory.Application - No active profile set, falling back to 1 default profile: "default"
-2025-11-09 13:48:23.803 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8081"]
-2025-11-09 13:48:23.806 [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
-2025-11-09 13:48:23.807 [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.24]
-2025-11-09 13:48:23.878 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
-2025-11-09 13:48:24.701 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8081"]
-2025-11-09 13:48:24.747 [main] INFO  conservatory.Application - Started Application in 3.099 seconds (process running for 3.553)
-2025-11-09 13:48:44.406 [http-nio-8081-exec-1] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
-2025-11-09 13:48:44.711 [http-nio-8081-exec-1] INFO  conservatory.api.DocenteController - Request received: openReport (Code: VR002, Teacher: C123456)
-2025-11-09 13:48:44.727 [http-nio-8081-exec-1] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
-2025-11-09 13:48:45.349 [http-nio-8081-exec-1] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@2b229a40
-2025-11-09 13:48:45.357 [http-nio-8081-exec-1] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
-2025-11-09 13:48:45.510 [http-nio-8081-exec-1] WARN  c.a.exception.GlobalExceptionHandler - Business error (Conflict 409): Error while opening report: DB error during report writing: Data truncation: Incorrect date value: 'VR002' for column `gestionecorsidistudioconservatorio`.`report`.`reportDate` at row 1
-2025-11-09 13:49:16.376 [http-nio-8081-exec-2] INFO  conservatory.api.DocenteController - Request received: openReport (Code: VR002, Teacher: C123456)
-2025-11-09 13:49:16.382 [http-nio-8081-exec-2] WARN  c.a.exception.GlobalExceptionHandler - Business error (Conflict 409): Error while opening report: DB error during report writing: Data truncation: Incorrect date value: 'VR002' for column `gestionecorsidistudioconservatorio`.`report`.`reportDate` at row 1
-2025-11-09 13:49:26.932 [http-nio-8081-exec-4] INFO  conservatory.api.DocenteController - Request received: openReport (Code: VR002, Teacher: C123456)
-2025-11-09 13:49:26.937 [http-nio-8081-exec-4] WARN  c.a.exception.GlobalExceptionHandler - Business error (Conflict 409): Error while opening report: DB error during report writing: Data truncation: Incorrect date value: 'VR002' for column `gestionecorsidistudioconservatorio`.`report`.`reportDate` at row 1
-2025-11-09 13:49:38.983 [http-nio-8081-exec-5] INFO  conservatory.api.DocenteController - Request received: openReport (Code: VR002, Teacher: C123456)
-2025-11-09 13:49:38.987 [http-nio-8081-exec-5] WARN  c.a.exception.GlobalExceptionHandler - Business error (Conflict 409): Error while opening report: DB error during report writing: Data truncation: Incorrect date value: 'VR002' for column `gestionecorsidistudioconservatorio`.`report`.`reportDate` at row 1
-2025-11-09 13:56:11.465 [main] INFO  conservatory.Application - Starting Application using Java 21.0.8 with PID 1812 (C:\Users\flavi\eclipse-workspace-old\GestoreConservatorio\target\classes started by flavi in C:\Users\flavi\eclipse-workspace-old\GestoreConservatorio)
-2025-11-09 13:56:11.468 [main] INFO  conservatory.Application - No active profile set, falling back to 1 default profile: "default"
-2025-11-09 13:56:13.107 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8081"]
-2025-11-09 13:56:13.111 [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
-2025-11-09 13:56:13.111 [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.24]
-2025-11-09 13:56:13.175 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
-2025-11-09 13:56:13.946 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8081"]
-2025-11-09 13:56:13.999 [main] INFO  conservatory.Application - Started Application in 3.118 seconds (process running for 3.6)
-2025-11-09 13:56:25.339 [http-nio-8081-exec-2] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
-2025-11-09 13:56:25.665 [http-nio-8081-exec-2] INFO  conservatory.api.DocenteController - Request received: openReport (Code: VR002, Teacher: C123456)
-2025-11-09 13:56:25.674 [http-nio-8081-exec-2] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
-2025-11-09 13:56:26.298 [http-nio-8081-exec-2] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@495776dd
-2025-11-09 13:56:26.305 [http-nio-8081-exec-2] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
-2025-11-09 13:56:26.475 [http-nio-8081-exec-2] WARN  c.a.exception.GlobalExceptionHandler - Business error (Conflict 409): Error while opening report: DB error during report writing: Data truncation: Incorrect date value: 'VR002' for column `gestionecorsidistudioconservatorio`.`report`.`reportDate` at row 1
-2025-11-09 14:01:24.108 [main] INFO  conservatory.Application - Starting Application using Java 21.0.8 with PID 28384 (C:\Users\flavi\eclipse-workspace-old\GestoreConservatorio\target\classes started by flavi in C:\Users\flavi\eclipse-workspace-old\GestoreConservatorio)
-2025-11-09 14:01:24.111 [main] INFO  conservatory.Application - No active profile set, falling back to 1 default profile: "default"
-2025-11-09 14:01:25.815 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8081"]
-2025-11-09 14:01:25.820 [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
-2025-11-09 14:01:25.820 [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.24]
-2025-11-09 14:01:25.887 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
-2025-11-09 14:01:26.660 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8081"]
-2025-11-09 14:01:26.704 [main] INFO  conservatory.Application - Started Application in 3.174 seconds (process running for 3.757)
-2025-11-09 14:01:39.876 [http-nio-8081-exec-1] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
-2025-11-09 14:01:40.172 [http-nio-8081-exec-1] INFO  c.api.SegreteriaController - Request received: createTeacher (ID: DOC1235)
-2025-11-09 14:01:40.182 [http-nio-8081-exec-1] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
-2025-11-09 14:01:40.825 [http-nio-8081-exec-1] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@4d79ed38
-2025-11-09 14:01:40.832 [http-nio-8081-exec-1] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
-2025-11-09 14:01:40.989 [http-nio-8081-exec-1] WARN  c.a.exception.GlobalExceptionHandler - Business error (Conflict 409): Oops, something went wrong...
-2025-11-09 14:02:06.767 [http-nio-8081-exec-5] INFO  c.api.SegreteriaController - Request received: createTeacher (ID: DOC1235)
-2025-11-09 14:02:06.789 [http-nio-8081-exec-5] WARN  com.zaxxer.hikari.pool.PoolBase - HikariPool-1 - Failed to validate connection com.mysql.cj.jdbc.ConnectionImpl@4d79ed38 (No operations allowed after connection closed.). Possibly consider using a shorter maxLifetime value.
-2025-11-09 14:02:06.793 [http-nio-8081-exec-5] WARN  com.zaxxer.hikari.pool.PoolBase - HikariPool-1 - Failed to validate connection com.mysql.cj.jdbc.ConnectionImpl@2138c2f3 (No operations allowed after connection closed.). Possibly consider using a shorter maxLifetime value.
-2025-11-09 14:02:06.796 [http-nio-8081-exec-5] WARN  com.zaxxer.hikari.pool.PoolBase - HikariPool-1 - Failed to validate connection com.mysql.cj.jdbc.ConnectionImpl@381975c4 (No operations allowed after connection closed.). Possibly consider using a shorter maxLifetime value.
-2025-11-09 14:02:06.798 [http-nio-8081-exec-5] WARN  com.zaxxer.hikari.pool.PoolBase - HikariPool-1 - Failed to validate connection com.mysql.cj.jdbc.ConnectionImpl@6b7313 (No operations allowed after connection closed.). Possibly consider using a shorter maxLifetime value.
-2025-11-09 14:02:06.800 [http-nio-8081-exec-5] WARN  com.zaxxer.hikari.pool.PoolBase - HikariPool-1 - Failed to validate connection com.mysql.cj.jdbc.ConnectionImpl@34a8979e (No operations allowed after connection closed.). Possibly consider using a shorter maxLifetime value.
-2025-11-09 14:02:06.802 [http-nio-8081-exec-5] WARN  com.zaxxer.hikari.pool.PoolBase - HikariPool-1 - Failed to validate connection com.mysql.cj.jdbc.ConnectionImpl@5360f4a2 (No operations allowed after connection closed.). Possibly consider using a shorter maxLifetime value.
-2025-11-09 14:02:06.806 [http-nio-8081-exec-5] WARN  com.zaxxer.hikari.pool.PoolBase - HikariPool-1 - Failed to validate connection com.mysql.cj.jdbc.ConnectionImpl@20a41c5f (No operations allowed after connection closed.). Possibly consider using a shorter maxLifetime value.
-2025-11-09 14:02:06.809 [http-nio-8081-exec-5] WARN  com.zaxxer.hikari.pool.PoolBase - HikariPool-1 - Failed to validate connection com.mysql.cj.jdbc.ConnectionImpl@7b8c00b3 (No operations allowed after connection closed.). Possibly consider using a shorter maxLifetime value.
-2025-11-09 14:02:06.812 [http-nio-8081-exec-5] WARN  com.zaxxer.hikari.pool.PoolBase - HikariPool-1 - Failed to validate connection com.mysql.cj.jdbc.ConnectionImpl@b686c3b (No operations allowed after connection closed.). Possibly consider using a shorter maxLifetime value.
-2025-11-09 14:02:06.815 [http-nio-8081-exec-5] WARN  com.zaxxer.hikari.pool.PoolBase - HikariPool-1 - Failed to validate connection com.mysql.cj.jdbc.ConnectionImpl@5ff94c10 (No operations allowed after connection closed.). Possibly consider using a shorter maxLifetime value.
-2025-11-09 14:02:06.817 [http-nio-8081-exec-5] WARN  c.a.exception.GlobalExceptionHandler - Business error (Conflict 409): Oops, something went wrong...
-2025-11-09 14:03:05.367 [http-nio-8081-exec-8] INFO  c.api.SegreteriaController - Request received: createTeacher (ID: DOC1235)
-2025-11-09 14:03:05.369 [http-nio-8081-exec-8] WARN  c.a.exception.GlobalExceptionHandler - Business error (Conflict 409): Oops, something went wrong...
-2025-11-09 14:03:55.620 [http-nio-8081-exec-4] INFO  c.api.SegreteriaController - Request received: createTeacher (ID: DOC1235)
-2025-11-09 14:03:55.630 [http-nio-8081-exec-4] INFO  c.api.SegreteriaController - Teacher DOC1235 successfully created
-2025-11-09 14:06:10.438 [http-nio-8081-exec-9] INFO  c.api.SegreteriaController - Request received: createTeacher (ID: DOC1235)
-2025-11-09 14:06:10.448 [http-nio-8081-exec-9] INFO  c.api.SegreteriaController - Teacher DOC1235 successfully created
-2025-11-09 14:06:32.147 [http-nio-8081-exec-3] INFO  c.api.SegreteriaController - Request received: createTeacher (ID: Rossi)
-2025-11-09 14:06:32.148 [http-nio-8081-exec-3] WARN  c.a.exception.GlobalExceptionHandler - Invalid request (Bad Request 400): Teacher ID must be 7 characters long
-2025-11-09 14:06:41.614 [http-nio-8081-exec-5] INFO  c.api.SegreteriaController - Request received: createTeacher (ID: Rossi)
-2025-11-09 14:06:41.615 [http-nio-8081-exec-5] WARN  c.a.exception.GlobalExceptionHandler - Invalid request (Bad Request 400): Teacher ID must be 7 characters long
-2025-11-09 14:53:54.716 [HikariPool-1 housekeeper] WARN  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=46m46s121ms757µs900ns).
-2025-11-09 15:32:43.698 [HikariPool-1 housekeeper] WARN  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=8m48s429ms693µs800ns).
-2025-11-09 15:36:02.511 [main] INFO  conservatory.Application - Starting Application using Java 21.0.8 with PID 27376 (C:\Users\flavi\eclipse-workspace-old\GestoreConservatorio\target\classes started by flavi in C:\Users\flavi\eclipse-workspace-old\GestoreConservatorio)
-2025-11-09 15:36:02.514 [main] INFO  conservatory.Application - No active profile set, falling back to 1 default profile: "default"
-2025-11-09 15:36:04.562 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8081"]
-2025-11-09 15:36:04.566 [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
-2025-11-09 15:36:04.566 [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.24]
-2025-11-09 15:36:04.654 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
-2025-11-09 15:36:05.331 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8081"]
-2025-11-09 15:36:05.397 [main] INFO  conservatory.Application - Started Application in 3.587 seconds (process running for 12.467)
-2025-11-09 15:36:20.015 [http-nio-8081-exec-1] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
-2025-11-09 15:36:20.321 [http-nio-8081-exec-1] INFO  c.api.SegreteriaController - Request received: createTeacher (ID: DOC1236)
-2025-11-09 15:36:20.332 [http-nio-8081-exec-1] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
-2025-11-09 15:36:21.003 [http-nio-8081-exec-1] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@1afc1330
-2025-11-09 15:36:21.011 [http-nio-8081-exec-1] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
-2025-11-09 15:36:21.099 [http-nio-8081-exec-1] INFO  c.api.SegreteriaController - Teacher DOC1236 successfully created
-2025-11-09 15:36:41.964 [http-nio-8081-exec-3] INFO  conservatory.api.DocenteController - Request received: openReport (Code: VR002, Teacher: C123456)
-2025-11-09 15:36:41.982 [http-nio-8081-exec-3] INFO  conservatory.api.DocenteController - Report VR002 opened successfully
-2025-11-09 15:40:11.842 [http-nio-8081-exec-6] INFO  conservatory.api.DocenteController - Request received: addExam (Report: VR002, Student: flavio, Course: A1234)
-2025-11-09 15:40:11.854 [http-nio-8081-exec-6] INFO  conservatory.api.DocenteController - Exam for the student flavio added to the report VR002
-2025-11-09 15:43:19.310 [http-nio-8081-exec-9] ERROR c.a.exception.GlobalExceptionHandler - Unhandled internal error (Internal Server 500):
-org.springframework.web.HttpMediaTypeNotSupportedException: Content-Type 'text/plain;charset=UTF-8' is not supported
-	at org.springframework.web.servlet.mvc.method.annotation.AbstractMessageConverterMethodArgumentResolver.readWithMessageConverters(AbstractMessageConverterMethodArgumentResolver.java:213)
-	at org.springframework.web.servlet.mvc.method.annotation.RequestResponseBodyMethodProcessor.readWithMessageConverters(RequestResponseBodyMethodProcessor.java:161)
-	at org.springframework.web.servlet.mvc.method.annotation.RequestResponseBodyMethodProcessor.resolveArgument(RequestResponseBodyMethodProcessor.java:135)
-	at org.springframework.web.method.support.HandlerMethodArgumentResolverComposite.resolveArgument(HandlerMethodArgumentResolverComposite.java:122)
-	at org.springframework.web.method.support.InvocableHandlerMethod.getMethodArgumentValues(InvocableHandlerMethod.java:224)
-	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:178)
-	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:118)
-	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:926)
-	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:831)
-	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:87)
-	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1089)
-	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:979)
-	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1014)
-	at org.springframework.web.servlet.FrameworkServlet.doPost(FrameworkServlet.java:914)
-	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:590)
-	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:885)
-	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:658)
-	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:195)
-	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
-	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:51)
-	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
-	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
-	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100)
-	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
-	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
-	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
-	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93)
-	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
-	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
-	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
-	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201)
-	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
-	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
-	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
-	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:167)
-	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:90)
-	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:482)
-	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:115)
-	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:93)
-	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74)
-	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:344)
-	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:389)
-	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63)
-	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:896)
-	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1741)
-	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52)
-	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1190)
-	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659)
-	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:63)
-	at java.base/java.lang.Thread.run(Thread.java:1583)
-2025-11-09 15:44:59.434 [http-nio-8081-exec-2] INFO  conservatory.api.DocenteController - Request received: closeReport (Verbale: VR002) per 1 studenti.
-2025-11-09 15:44:59.501 [http-nio-8081-exec-2] INFO  conservatory.api.DocenteController - Execute ClosingReport2 (check votes and finalize) for report VR002
-2025-11-09 15:44:59.518 [http-nio-8081-exec-2] INFO  conservatory.api.DocenteController - Report VR002 closed successfully
-2025-11-09 15:48:48.856 [http-nio-8081-exec-4] INFO  c.api.SegreteriaController - Request received: createCourse (Code: null)
-2025-11-09 15:48:48.860 [http-nio-8081-exec-4] WARN  c.a.exception.GlobalExceptionHandler - Invalid request (Bad Request 400): Course code must be 5 characters long
-2025-11-09 15:49:41.721 [http-nio-8081-exec-6] INFO  c.api.SegreteriaController - Request received: createCourse (Code: null)
-2025-11-09 15:49:41.722 [http-nio-8081-exec-6] WARN  c.a.exception.GlobalExceptionHandler - Invalid request (Bad Request 400): Course code must be 5 characters long
-2025-11-09 15:50:09.979 [http-nio-8081-exec-8] INFO  c.api.SegreteriaController - Request received: createCourse (Code: null)
-2025-11-09 15:50:09.980 [http-nio-8081-exec-8] WARN  c.a.exception.GlobalExceptionHandler - Invalid request (Bad Request 400): Course code must be 5 characters long
-2025-11-09 15:52:06.547 [http-nio-8081-exec-10] INFO  c.api.SegreteriaController - Request received: createCourse (Code: null)
-2025-11-09 15:52:06.548 [http-nio-8081-exec-10] WARN  c.a.exception.GlobalExceptionHandler - Invalid request (Bad Request 400): Course code must be 5 characters long
-2025-11-09 15:53:35.993 [http-nio-8081-exec-1] INFO  c.api.SegreteriaController - Request received: createCourse (Code: MUS01)
-2025-11-09 15:53:36.013 [http-nio-8081-exec-1] INFO  c.api.SegreteriaController - Coirse MUS01 successfully created
-2025-11-09 15:56:57.211 [http-nio-8081-exec-5] ERROR c.a.exception.GlobalExceptionHandler - Unhandled internal error (Internal Server 500):
-org.springframework.web.HttpRequestMethodNotSupportedException: Request method 'POST' is not supported
-	at org.springframework.web.servlet.mvc.method.RequestMappingInfoHandlerMapping.handleNoMatch(RequestMappingInfoHandlerMapping.java:267)
-	at org.springframework.web.servlet.handler.AbstractHandlerMethodMapping.lookupHandlerMethod(AbstractHandlerMethodMapping.java:441)
-	at org.springframework.web.servlet.handler.AbstractHandlerMethodMapping.getHandlerInternal(AbstractHandlerMethodMapping.java:382)
-	at org.springframework.web.servlet.mvc.method.RequestMappingInfoHandlerMapping.getHandlerInternal(RequestMappingInfoHandlerMapping.java:127)
-	at org.springframework.web.servlet.mvc.method.RequestMappingInfoHandlerMapping.getHandlerInternal(RequestMappingInfoHandlerMapping.java:68)
-	at org.springframework.web.servlet.handler.AbstractHandlerMapping.getHandler(AbstractHandlerMapping.java:507)
-	at org.springframework.web.servlet.DispatcherServlet.getHandler(DispatcherServlet.java:1283)
-	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1065)
-	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:979)
-	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1014)
-	at org.springframework.web.servlet.FrameworkServlet.doPost(FrameworkServlet.java:914)
-	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:590)
-	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:885)
-	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:658)
-	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:195)
-	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
-	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:51)
-	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
-	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
-	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100)
-	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
-	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
-	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
-	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93)
-	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
-	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
-	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
-	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201)
-	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
-	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
-	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
-	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:167)
-	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:90)
-	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:482)
-	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:115)
-	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:93)
-	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74)
-	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:344)
-	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:389)
-	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63)
-	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:896)
-	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1741)
-	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52)
-	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1190)
-	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659)
-	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:63)
-	at java.base/java.lang.Thread.run(Thread.java:1583)
-2025-11-09 15:57:03.987 [http-nio-8081-exec-7] ERROR c.a.exception.GlobalExceptionHandler - Unhandled internal error (Internal Server 500):
-org.springframework.web.HttpRequestMethodNotSupportedException: Request method 'POST' is not supported
-	at org.springframework.web.servlet.mvc.method.RequestMappingInfoHandlerMapping.handleNoMatch(RequestMappingInfoHandlerMapping.java:267)
-	at org.springframework.web.servlet.handler.AbstractHandlerMethodMapping.lookupHandlerMethod(AbstractHandlerMethodMapping.java:441)
-	at org.springframework.web.servlet.handler.AbstractHandlerMethodMapping.getHandlerInternal(AbstractHandlerMethodMapping.java:382)
-	at org.springframework.web.servlet.mvc.method.RequestMappingInfoHandlerMapping.getHandlerInternal(RequestMappingInfoHandlerMapping.java:127)
-	at org.springframework.web.servlet.mvc.method.RequestMappingInfoHandlerMapping.getHandlerInternal(RequestMappingInfoHandlerMapping.java:68)
-	at org.springframework.web.servlet.handler.AbstractHandlerMapping.getHandler(AbstractHandlerMapping.java:507)
-	at org.springframework.web.servlet.DispatcherServlet.getHandler(DispatcherServlet.java:1283)
-	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1065)
-	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:979)
-	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1014)
-	at org.springframework.web.servlet.FrameworkServlet.doPost(FrameworkServlet.java:914)
-	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:590)
-	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:885)
-	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:658)
-	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:195)
-	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
-	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:51)
-	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
-	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
-	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100)
-	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
-	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
-	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
-	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93)
-	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
-	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
-	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
-	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201)
-	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
-	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
-	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
-	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:167)
-	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:90)
-	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:482)
-	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:115)
-	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:93)
-	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74)
-	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:344)
-	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:389)
-	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63)
-	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:896)
-	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1741)
-	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52)
-	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1190)
-	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659)
-	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:63)
-	at java.base/java.lang.Thread.run(Thread.java:1583)
-2025-11-09 15:57:36.271 [http-nio-8081-exec-9] ERROR c.a.exception.GlobalExceptionHandler - Unhandled internal error (Internal Server 500):
-org.springframework.web.HttpRequestMethodNotSupportedException: Request method 'POST' is not supported
-	at org.springframework.web.servlet.mvc.method.RequestMappingInfoHandlerMapping.handleNoMatch(RequestMappingInfoHandlerMapping.java:267)
-	at org.springframework.web.servlet.handler.AbstractHandlerMethodMapping.lookupHandlerMethod(AbstractHandlerMethodMapping.java:441)
-	at org.springframework.web.servlet.handler.AbstractHandlerMethodMapping.getHandlerInternal(AbstractHandlerMethodMapping.java:382)
-	at org.springframework.web.servlet.mvc.method.RequestMappingInfoHandlerMapping.getHandlerInternal(RequestMappingInfoHandlerMapping.java:127)
-	at org.springframework.web.servlet.mvc.method.RequestMappingInfoHandlerMapping.getHandlerInternal(RequestMappingInfoHandlerMapping.java:68)
-	at org.springframework.web.servlet.handler.AbstractHandlerMapping.getHandler(AbstractHandlerMapping.java:507)
-	at org.springframework.web.servlet.DispatcherServlet.getHandler(DispatcherServlet.java:1283)
-	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1065)
-	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:979)
-	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1014)
-	at org.springframework.web.servlet.FrameworkServlet.doPost(FrameworkServlet.java:914)
-	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:590)
-	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:885)
-	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:658)
-	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:195)
-	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
-	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:51)
-	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
-	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
-	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100)
-	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
-	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
-	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
-	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93)
-	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
-	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
-	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
-	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201)
-	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
-	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
-	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
-	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:167)
-	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:90)
-	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:482)
-	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:115)
-	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:93)
-	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74)
-	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:344)
-	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:389)
-	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63)
-	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:896)
-	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1741)
-	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52)
-	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1190)
-	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659)
-	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:63)
-	at java.base/java.lang.Thread.run(Thread.java:1583)
-2025-11-09 15:57:41.758 [http-nio-8081-exec-10] ERROR c.a.exception.GlobalExceptionHandler - Unhandled internal error (Internal Server 500):
-org.springframework.web.HttpRequestMethodNotSupportedException: Request method 'POST' is not supported
-	at org.springframework.web.servlet.mvc.method.RequestMappingInfoHandlerMapping.handleNoMatch(RequestMappingInfoHandlerMapping.java:267)
-	at org.springframework.web.servlet.handler.AbstractHandlerMethodMapping.lookupHandlerMethod(AbstractHandlerMethodMapping.java:441)
-	at org.springframework.web.servlet.handler.AbstractHandlerMethodMapping.getHandlerInternal(AbstractHandlerMethodMapping.java:382)
-	at org.springframework.web.servlet.mvc.method.RequestMappingInfoHandlerMapping.getHandlerInternal(RequestMappingInfoHandlerMapping.java:127)
-	at org.springframework.web.servlet.mvc.method.RequestMappingInfoHandlerMapping.getHandlerInternal(RequestMappingInfoHandlerMapping.java:68)
-	at org.springframework.web.servlet.handler.AbstractHandlerMapping.getHandler(AbstractHandlerMapping.java:507)
-	at org.springframework.web.servlet.DispatcherServlet.getHandler(DispatcherServlet.java:1283)
-	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1065)
-	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:979)
-	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1014)
-	at org.springframework.web.servlet.FrameworkServlet.doPost(FrameworkServlet.java:914)
-	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:590)
-	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:885)
-	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:658)
-	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:195)
-	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
-	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:51)
-	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
-	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
-	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100)
-	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
-	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
-	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
-	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93)
-	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
-	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
-	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
-	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201)
-	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
-	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
-	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
-	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:167)
-	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:90)
-	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:482)
-	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:115)
-	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:93)
-	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74)
-	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:344)
-	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:389)
-	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63)
-	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:896)
-	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1741)
-	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52)
-	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1190)
-	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659)
-	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:63)
-	at java.base/java.lang.Thread.run(Thread.java:1583)
-2025-11-09 15:59:07.321 [http-nio-8081-exec-3] INFO  c.api.SegreteriaController - Request received: associateTeacher (Course: MUS01, Teacher: C123456)
-2025-11-09 15:59:07.348 [http-nio-8081-exec-3] INFO  c.api.SegreteriaController - Association for the course MUS01 completed
+2025-11-10 18:33:52.750 [main] INFO  conservatory.api.DocenteApiTest - Starting DocenteApiTest using Java 21.0.8 with PID 18596 (started by flavi in C:\Users\flavi\eclipse-workspace-old\GestoreConservatorio)
+2025-11-10 18:33:52.760 [main] INFO  conservatory.api.DocenteApiTest - No active profile set, falling back to 1 default profile: "default"
+2025-11-10 18:33:54.606 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-auto-1"]
+2025-11-10 18:33:54.609 [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2025-11-10 18:33:54.610 [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.24]
+2025-11-10 18:33:54.718 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2025-11-10 18:33:55.352 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2025-11-10 18:33:55.621 [main] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection conn0: url=jdbc:h2:mem:testdb user=SA
+2025-11-10 18:33:55.624 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2025-11-10 18:33:55.805 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-auto-1"]
+2025-11-10 18:33:55.841 [main] INFO  conservatory.api.DocenteApiTest - Started DocenteApiTest in 3.54 seconds (process running for 4.901)
+2025-11-10 18:33:57.934 [http-nio-auto-1-exec-1] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-11-10 18:33:58.003 [http-nio-auto-1-exec-1] INFO  conservatory.api.DocenteController - Request received: addExam (Report: XXXXX, Student: flavio, Course: A1234)
+2025-11-10 18:33:58.012 [http-nio-auto-1-exec-1] WARN  c.a.exception.GlobalExceptionHandler - Business error (Conflict 409): Oops, something went wrong...
+2025-11-10 18:33:58.631 [http-nio-auto-1-exec-2] INFO  conservatory.api.DocenteController - Request received: openReport (Code: VR248, Teacher: C123456)
+2025-11-10 18:33:58.633 [http-nio-auto-1-exec-2] INFO  conservatory.api.DocenteController - Report VR248 opened successfully
+2025-11-10 18:33:58.657 [http-nio-auto-1-exec-3] INFO  conservatory.api.DocenteController - Request received: addExam (Report: VR248, Student: flavio, Course: A1234)
+2025-11-10 18:33:58.658 [http-nio-auto-1-exec-3] INFO  conservatory.api.DocenteController - Exam for the student flavio added to the report VR248
+2025-11-10 18:33:58.681 [http-nio-auto-1-exec-4] INFO  conservatory.api.DocenteController - Request received: closeReport (Verbale: VR248) per 1 studenti.
+2025-11-10 18:33:58.690 [http-nio-auto-1-exec-4] INFO  conservatory.api.DocenteController - Execute ClosingReport2 (check votes and finalize) for report VR248
+2025-11-10 18:33:58.696 [http-nio-auto-1-exec-4] INFO  conservatory.api.DocenteController - Report VR248 closed successfully
+2025-11-10 18:33:58.718 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+2025-11-10 18:33:58.721 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+2025-11-10 18:34:15.058 [main] INFO  conservatory.api.SegreteriaApiTest - Starting SegreteriaApiTest using Java 21.0.8 with PID 27044 (started by flavi in C:\Users\flavi\eclipse-workspace-old\GestoreConservatorio)
+2025-11-10 18:34:15.059 [main] INFO  conservatory.api.SegreteriaApiTest - No active profile set, falling back to 1 default profile: "default"
+2025-11-10 18:34:16.398 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-auto-1"]
+2025-11-10 18:34:16.407 [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2025-11-10 18:34:16.407 [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.24]
+2025-11-10 18:34:16.483 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2025-11-10 18:34:16.979 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2025-11-10 18:34:17.208 [main] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection conn0: url=jdbc:h2:mem:testdb user=SA
+2025-11-10 18:34:17.210 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2025-11-10 18:34:17.339 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-auto-1"]
+2025-11-10 18:34:17.365 [main] INFO  conservatory.api.SegreteriaApiTest - Started SegreteriaApiTest in 2.679 seconds (process running for 3.871)
+2025-11-10 18:34:19.276 [http-nio-auto-1-exec-1] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-11-10 18:34:19.340 [http-nio-auto-1-exec-1] INFO  c.api.SegreteriaController - Request received: createTeacher (ID: DOC6914)
+2025-11-10 18:34:19.346 [http-nio-auto-1-exec-1] INFO  c.api.SegreteriaController - Teacher DOC6914 successfully created
+2025-11-10 18:34:19.461 [http-nio-auto-1-exec-2] INFO  c.api.SegreteriaController - Request received: associateTeacher (Course: A1234, Teacher: C123456)
+2025-11-10 18:34:19.478 [http-nio-auto-1-exec-2] INFO  c.api.SegreteriaController - Association for the course A1234 completed
+2025-11-10 18:34:19.499 [http-nio-auto-1-exec-3] INFO  c.api.SegreteriaController - Request received: associateTeacher (Course: A5555, Teacher: C123456)
+2025-11-10 18:34:19.503 [http-nio-auto-1-exec-3] WARN  c.a.exception.GlobalExceptionHandler - Business error (Conflict 409): Course has already been assigned to a teacher
+2025-11-10 18:34:20.013 [http-nio-auto-1-exec-4] INFO  c.api.SegreteriaController - Request received: createTeacher (ID: ID_TOO_LONG)
+2025-11-10 18:34:20.014 [http-nio-auto-1-exec-4] WARN  c.a.exception.GlobalExceptionHandler - Invalid request (Bad Request 400): Teacher ID must be 7 characters long
+2025-11-10 18:34:20.047 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+2025-11-10 18:34:20.050 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+2025-11-10 18:45:10.265 [main] INFO  conservatory.control.TestGestore - Starting TestGestore using Java 21.0.8 with PID 3532 (started by flavi in C:\Users\flavi\eclipse-workspace-old\GestoreConservatorio)
+2025-11-10 18:45:10.266 [main] INFO  conservatory.control.TestGestore - No active profile set, falling back to 1 default profile: "default"
+2025-11-10 18:45:11.893 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2025-11-10 18:45:12.125 [main] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection conn0: url=jdbc:h2:mem:testdb user=SA
+2025-11-10 18:45:12.127 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2025-11-10 18:45:12.303 [main] INFO  conservatory.control.TestGestore - Started TestGestore in 2.412 seconds (process running for 3.599)
+2025-11-10 18:45:13.327 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+2025-11-10 18:45:13.330 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
