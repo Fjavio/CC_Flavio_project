@@ -1,0 +1,85 @@
+name: gestore-conservatorio-cluster
+
+services:
+  # ------------------------------------------------------------
+  # 1. DATABASE SERVICE (MySQL): data container
+  db-service:
+    image: mysql:8.0
+    container_name: mysql-container
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: gestionecorsidistudioconservatorio
+    ports:
+      - "3306:3306" #Map the port to allow you to control
+    volumes:
+      - mysql-data:/var/lib/mysql #PERSISTENCE: Data survives reboots
+    networks:
+      - conservatory-network
+    #Healthcheck: Tells Docker when the DB is actually ready to receive connections.
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  # ------------------------------------------------------------
+  # 2. NOTIFICATION SERVICE
+  notification-service:
+    build: ./NotificationService #Build using the Dockerfile located in this folder
+    container_name: notification-container
+    ports:
+      - "8082:8082"
+    volumes:
+      - ./NotificationService/data:/app/data #Local H2 persistence
+    networks:
+      - conservatory-network
+
+  # ------------------------------------------------------------
+  # 3. ROOM BOOKING SERVICE
+  room-booking-service:
+    build: ./RoomBookingService
+    container_name: booking-container
+    ports:
+      - "8083:8083"
+    volumes:
+      - ./RoomBookingService/data:/app/data #Local H2 persistence
+    networks:
+      - conservatory-network
+
+  # ------------------------------------------------------------
+  # 4. CORE SERVICE
+  core-service:
+    build: ./CoreService
+    container_name: core-container
+    ports:
+      - "8081:8081"
+    environment:
+      # DYNAMIC CONFIGURATION: Overrides application.properties
+      - DB_HOST=db-service
+      - DB_PORT=3306
+      - DB_NAME=gestionecorsidistudioconservatorio
+      - DB_USER=root
+      - DB_PASSWORD=root
+      # Tell the Core where to find the other services in the cluster
+      - BOOKING_URL=http://room-booking-service:8083/api/bookings
+      - NOTIFICATION_URL=http://notification-service:8082/api/notifications
+    networks:
+      - conservatory-network
+    depends_on:
+      #Wait for the DB to be ready before starting
+      db-service:
+        condition: service_healthy
+      notification-service:
+        condition: service_started
+      room-booking-service:
+        condition: service_started
+
+# ------------------------------------------------------------
+# NETWORK AND VOLUME DEFINITION
+networks:
+  conservatory-network:
+    driver: bridge
+
+volumes:
+  mysql-data: # Docker manages volume for MySQL

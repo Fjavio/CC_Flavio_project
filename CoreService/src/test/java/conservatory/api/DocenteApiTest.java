@@ -1,0 +1,133 @@
+package conservatory.api;
+
+import io.restassured.RestAssured;
+import io.restassured.http.ContentType;
+import conservatory.api.dto.*;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.test.web.server.LocalServerPort;
+import org.springframework.http.HttpStatus;
+
+import java.time.LocalDate;
+import java.util.List;
+import java.util.Random;
+
+import static io.restassured.RestAssured.given;
+import static org.hamcrest.Matchers.equalTo;
+
+import org.springframework.boot.test.mock.mockito.MockBean;
+import conservatory.control.ExternalService; // (o ExternalServiceIntegration)
+import static org.mockito.Mockito.doNothing;
+import static org.mockito.ArgumentMatchers.anyString;
+
+//End-to-End (E2E) integration test for the Secretariat API. 
+//This test interacts with H2 database.
+
+@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
+public class DocenteApiTest { //teacher
+
+    @LocalServerPort
+    private int port;
+   
+    //N.B. In E2E testing, it's best to make the tests independent, but for this flow it makes sense to create a report and then close it
+    //private static String testReportCode;
+    private String testReportCode;
+
+    @MockBean
+    private ExternalService externalServiceMock;
+    
+    @BeforeEach
+    public void setup() {
+        RestAssured.baseURI = "http://localhost";
+        RestAssured.port = port;
+        
+        //A unique report code
+        testReportCode = "VR" + (100 + new Random().nextInt(800));
+    }
+
+    //Each error message will depend on what gestore throws
+    @Test
+    void testCompleteReportFlow() throws Exception {
+        
+    	//Configure the mock to say "Room booked"
+        doNothing().when(externalServiceMock).bookRoom(anyString(), anyString(), anyString(), anyString());
+        
+        //Configure the mock for notifications
+        doNothing().when(externalServiceMock).sendNotification(anyString(), anyString());
+        
+        //OPEN REPORT
+        OpenReportRequest openRequest = new OpenReportRequest();
+        openRequest.setReportCode(testReportCode);
+        openRequest.setReportDate(LocalDate.now().toString());
+        openRequest.setTeacherID("C123456"); //exists in data.sql
+        openRequest.setRoomName("Aula 01");
+        openRequest.setTimeSlot("Morning");
+
+        given()
+            .contentType(ContentType.JSON)
+            .body(openRequest)
+        .when()
+            .post("/api/docente/verbali")
+        .then()
+            .statusCode(HttpStatus.OK.value())
+            .body(equalTo("Report opened successfully"));
+
+        //ADD EXAM
+        AddExamRequest examRequest = new AddExamRequest();
+        examRequest.setVote(28);
+        examRequest.setHonors(false);
+        examRequest.setNotes("very good");
+        examRequest.setCourseCode("A1234"); //exists in data.sql
+        examRequest.setUsername("flavio");  //exists in data.sql
+
+        given()
+            .contentType(ContentType.JSON)
+            .body(examRequest)
+        .when()
+            .post("/api/docente/verbali/" + testReportCode + "/esami")
+        .then()
+            .statusCode(HttpStatus.OK.value())
+            .body(equalTo("Exam added to the report"));
+
+        //CLOSE REPORT
+        StudentPinDto pinDto = new StudentPinDto();
+        pinDto.setUsername("flavio");
+        pinDto.setPin(1234567); //Make sure this is the correct PIN for 'flavio'
+
+        CloseReportRequest closeRequest = new CloseReportRequest();
+        closeRequest.setStudentPins(List.of(pinDto));
+
+        given()
+            .contentType(ContentType.JSON)
+            .body(closeRequest)
+        .when()
+            .post("/api/docente/verbali/" + testReportCode + "/chiusura")
+        .then()
+            .statusCode(HttpStatus.OK.value())
+            .body(equalTo("Report closed successfully"));
+    }
+    
+    @Test
+    void testAddExam_Fail_ReportNotOpen() {
+        
+    	//Add an exam to a report that doesn't exist
+        String reportCodeInexistent = "XXXXX";
+        
+        AddExamRequest examRequest = new AddExamRequest();
+        examRequest.setVote(30);
+        examRequest.setHonors(true);
+        examRequest.setNotes("ok");
+        examRequest.setCourseCode("A1234");
+        examRequest.setUsername("flavio");
+
+        given()
+            .contentType(ContentType.JSON)
+            .body(examRequest)
+        .when()
+            .post("/api/docente/verbali/" + reportCodeInexistent + "/esami")
+        .then()
+            .statusCode(HttpStatus.CONFLICT.value()) // 409 Conflict
+            .body("error", equalTo("Oops, something went wrong..."));
+    }
+}

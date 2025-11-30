@@ -1,0 +1,75 @@
+2025-11-29 18:24:38.728 [main] INFO  conservatory.Application - Starting Application using Java 21.0.8 with PID 7636 (C:\Users\flavi\eclipse-workspace-old\GestoreConservatorio\CoreService\target\classes started by flavi in C:\Users\flavi\eclipse-workspace-old\GestoreConservatorio\CoreService)
+2025-11-29 18:24:38.739 [main] INFO  conservatory.Application - No active profile set, falling back to 1 default profile: "default"
+2025-11-29 18:24:40.117 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8081"]
+2025-11-29 18:24:40.124 [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2025-11-29 18:24:40.124 [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.24]
+2025-11-29 18:24:40.184 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2025-11-29 18:24:40.791 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8081"]
+2025-11-29 18:24:40.830 [main] INFO  conservatory.Application - Started Application in 2.899 seconds (process running for 3.356)
+2025-11-29 18:27:40.452 [http-nio-8081-exec-2] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-11-29 18:27:40.822 [http-nio-8081-exec-2] INFO  conservatory.api.DocenteController - Request received: closeReport (Verbale: VR002) per 1 studenti.
+2025-11-29 18:27:40.838 [http-nio-8081-exec-2] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2025-11-29 18:27:41.456 [http-nio-8081-exec-2] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@655f7abc
+2025-11-29 18:27:41.464 [http-nio-8081-exec-2] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2025-11-29 18:27:41.593 [http-nio-8081-exec-2] INFO  conservatory.api.DocenteController - Execute ClosingReport2 (check votes and finalize) for report VR002
+2025-11-29 18:27:41.624 [http-nio-8081-exec-2] INFO  c.control.ExternalService - Attempting to send notification to: flavio
+2025-11-29 18:27:42.628 [http-nio-8081-exec-2] INFO  c.control.ExternalService - Notification successfully send to flavio
+2025-11-29 18:27:42.628 [http-nio-8081-exec-2] INFO  conservatory.api.DocenteController - Report VR002 closed successfully
+2025-11-29 18:32:22.667 [main] INFO  conservatory.Application - Starting Application using Java 21.0.8 with PID 25088 (C:\Users\flavi\eclipse-workspace-old\GestoreConservatorio\CoreService\target\classes started by flavi in C:\Users\flavi\eclipse-workspace-old\GestoreConservatorio\CoreService)
+2025-11-29 18:32:22.669 [main] INFO  conservatory.Application - No active profile set, falling back to 1 default profile: "default"
+2025-11-29 18:32:24.033 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8081"]
+2025-11-29 18:32:24.038 [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2025-11-29 18:32:24.039 [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.24]
+2025-11-29 18:32:24.105 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2025-11-29 18:32:24.751 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8081"]
+2025-11-29 18:32:24.783 [main] INFO  conservatory.Application - Started Application in 2.697 seconds (process running for 3.072)
+2025-11-29 18:33:45.097 [http-nio-8081-exec-4] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-11-29 18:33:45.488 [http-nio-8081-exec-4] INFO  conservatory.api.DocenteController - Request received: openReport (Code: VR100, Teacher: null)
+2025-11-29 18:33:45.497 [http-nio-8081-exec-4] WARN  c.a.exception.GlobalExceptionHandler - Invalid request (Bad Request 400): Teacher ID must be 7 characters long
+2025-11-29 18:51:33.230 [main] INFO  conservatory.Application - Starting Application using Java 21.0.8 with PID 2616 (C:\Users\flavi\eclipse-workspace-old\GestoreConservatorio\CoreService\target\classes started by flavi in C:\Users\flavi\eclipse-workspace-old\GestoreConservatorio\CoreService)
+2025-11-29 18:51:33.232 [main] INFO  conservatory.Application - No active profile set, falling back to 1 default profile: "default"
+2025-11-29 18:51:34.666 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8081"]
+2025-11-29 18:51:34.670 [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2025-11-29 18:51:34.670 [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.24]
+2025-11-29 18:51:34.742 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2025-11-29 18:51:35.372 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8081"]
+2025-11-29 18:51:35.404 [main] INFO  conservatory.Application - Started Application in 3.024 seconds (process running for 3.501)
+2025-11-29 18:53:03.127 [http-nio-8081-exec-1] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-11-29 18:53:03.466 [http-nio-8081-exec-1] INFO  conservatory.api.DocenteController - Request received: openReport (Code: VR100, Teacher: null)
+2025-11-29 18:53:03.477 [http-nio-8081-exec-1] WARN  c.a.exception.GlobalExceptionHandler - Invalid request (Bad Request 400): Teacher ID must be 7 characters long
+2025-11-29 18:53:24.197 [http-nio-8081-exec-4] INFO  conservatory.api.DocenteController - Request received: openReport (Code: VR100, Teacher: null)
+2025-11-29 18:53:24.200 [http-nio-8081-exec-4] WARN  c.a.exception.GlobalExceptionHandler - Invalid request (Bad Request 400): Teacher ID must be 7 characters long
+2025-11-29 18:53:25.709 [http-nio-8081-exec-6] INFO  conservatory.api.DocenteController - Request received: openReport (Code: VR100, Teacher: null)
+2025-11-29 18:53:25.710 [http-nio-8081-exec-6] WARN  c.a.exception.GlobalExceptionHandler - Invalid request (Bad Request 400): Teacher ID must be 7 characters long
+2025-11-29 18:56:14.267 [main] INFO  conservatory.Application - Starting Application using Java 21.0.8 with PID 11188 (C:\Users\flavi\eclipse-workspace-old\GestoreConservatorio\CoreService\target\classes started by flavi in C:\Users\flavi\eclipse-workspace-old\GestoreConservatorio\CoreService)
+2025-11-29 18:56:14.270 [main] INFO  conservatory.Application - No active profile set, falling back to 1 default profile: "default"
+2025-11-29 18:56:15.630 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8081"]
+2025-11-29 18:56:15.634 [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2025-11-29 18:56:15.635 [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.24]
+2025-11-29 18:56:15.698 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2025-11-29 18:56:16.317 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8081"]
+2025-11-29 18:56:16.355 [main] INFO  conservatory.Application - Started Application in 2.845 seconds (process running for 3.268)
+2025-11-29 18:56:37.885 [http-nio-8081-exec-1] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-11-29 18:56:38.257 [http-nio-8081-exec-1] INFO  conservatory.api.DocenteController - Request received: openReport (Code: VR100, Teacher: null)
+2025-11-29 18:56:38.268 [http-nio-8081-exec-1] WARN  c.a.exception.GlobalExceptionHandler - Invalid request (Bad Request 400): Teacher ID must be 7 characters long
+2025-11-29 18:59:26.271 [main] INFO  conservatory.Application - Starting Application using Java 21.0.8 with PID 23200 (C:\Users\flavi\eclipse-workspace-old\GestoreConservatorio\CoreService\target\classes started by flavi in C:\Users\flavi\eclipse-workspace-old\GestoreConservatorio\CoreService)
+2025-11-29 18:59:26.273 [main] INFO  conservatory.Application - No active profile set, falling back to 1 default profile: "default"
+2025-11-29 18:59:27.662 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8081"]
+2025-11-29 18:59:27.666 [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2025-11-29 18:59:27.666 [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.24]
+2025-11-29 18:59:27.729 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2025-11-29 18:59:28.364 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8081"]
+2025-11-29 18:59:28.397 [main] INFO  conservatory.Application - Started Application in 2.693 seconds (process running for 3.161)
+2025-11-29 18:59:49.399 [http-nio-8081-exec-2] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-11-29 18:59:49.740 [http-nio-8081-exec-2] INFO  conservatory.api.DocenteController - Request received: openReport (Code: VR100, Teacher: null)
+2025-11-29 18:59:49.746 [http-nio-8081-exec-2] INFO  conservatory.api.DocenteController - DEBUG PARAMETRI: Code=VR100, Date=2025-06-15, TeacherID=null, Room=Aula 01, Slot=Morning
+2025-11-29 18:59:49.753 [http-nio-8081-exec-2] WARN  c.a.exception.GlobalExceptionHandler - Invalid request (Bad Request 400): Teacher ID must be 7 characters long
+2025-11-29 19:00:44.003 [http-nio-8081-exec-4] INFO  conservatory.api.DocenteController - Request received: openReport (Code: VR100, Teacher: C123456)
+2025-11-29 19:00:44.004 [http-nio-8081-exec-4] INFO  conservatory.api.DocenteController - DEBUG PARAMETRI: Code=VR100, Date=2025-06-15, TeacherID=C123456, Room=Aula 01, Slot=Morning
+2025-11-29 19:00:45.241 [http-nio-8081-exec-4] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2025-11-29 19:00:45.875 [http-nio-8081-exec-4] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@75f2ed38
+2025-11-29 19:00:45.884 [http-nio-8081-exec-4] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2025-11-29 19:00:45.978 [http-nio-8081-exec-4] INFO  conservatory.api.DocenteController - Report VR100 opened successfully
+2025-11-29 19:04:09.565 [http-nio-8081-exec-7] INFO  conservatory.api.DocenteController - Request received: openReport (Code: VR101, Teacher: C123456)
+2025-11-29 19:04:09.566 [http-nio-8081-exec-7] INFO  conservatory.api.DocenteController - DEBUG PARAMETRI: Code=VR101, Date=2025-06-15, TeacherID=C123456, Room=Aula 01, Slot=Morning
+2025-11-29 19:04:09.617 [http-nio-8081-exec-7] WARN  c.a.exception.GlobalExceptionHandler - Business error (Conflict 409): Error while opening report: The room Aula 01 is already occupied for that date!
