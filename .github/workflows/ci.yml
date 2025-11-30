@@ -34,10 +34,10 @@ jobs:
       run: mvn -B clean package -f CoreService/pom.xml
 
     - name: Build Notification Service
-      run: mvn -B clean package -f NotificationService/pom.xml -DskipTests
+      run: mvn -B clean package -f NotificationService/pom.xml
 
     - name: Build Room Booking Service
-      run: mvn -B clean package -f RoomBookingService/pom.xml -DskipTests
+      run: mvn -B clean package -f RoomBookingService/pom.xml
 
     #Prepare Docker environment: change the username to lowercase (required for Docker)
     - name: Lowercase Registry Owner
