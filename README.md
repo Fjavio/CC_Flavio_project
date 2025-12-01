@@ -138,3 +138,5 @@ Progress tracking of the project during the Cloud Computing Exam
   - [Issue #3: Orchestration](https://github.com/Fjavio/CC_Flavio_project/issues/28)
   - [Issue #4: Automation CI/CD](https://github.com/Fjavio/CC_Flavio_project/issues/30)
   - [Issue #5: Cluster Testing](https://github.com/Fjavio/CC_Flavio_project/issues/31)
+  - [Issue #6: System Demo](https://github.com/Fjavio/CC_Flavio_project/issues/32)
+
