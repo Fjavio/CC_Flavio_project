@@ -33,7 +33,7 @@ services:
     ports:
       - "8082:8082"
     volumes:
-      - ./NotificationService/data:/app/data #Local H2 persistence
+      - notification-data:/app/data
     networks:
       - conservatory-network
 
@@ -45,7 +45,7 @@ services:
     ports:
       - "8083:8083"
     volumes:
-      - ./RoomBookingService/data:/app/data #Local H2 persistence
+      - booking-data:/app/data
     networks:
       - conservatory-network
 
@@ -85,3 +85,5 @@ networks:
 
 volumes:
   mysql-data: # Docker manages volume for MySQL
+  notification-data:  
+  booking-data:
