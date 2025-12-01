@@ -1,16 +1,16 @@
 package conservatory.api.dto;
 
 public class CreaCorsoRequest {
-    private String code;
-    private String name;
+    private String courseCode;
+    private String courseName;
     private int cfu;
     private String preOf;
     private String preFor;
 
-    public String getCode() { return code; }
-    public void setCode(String code) { this.code = code; }
-    public String getName() { return name; }
-    public void setName(String name) { this.name = name; }
+    public String getCourseCode() { return courseCode; }
+    public void setCourseCode(String courseCode) { this.courseCode = courseCode; }
+    public String getCourseName() { return courseName; }
+    public void setCourseName(String courseName) { this.courseName = courseName; }
     public int getCfu() { return cfu; }
     public void setCfu(int cfu) { this.cfu = cfu; }
     public String getPreOf() { return preOf; }

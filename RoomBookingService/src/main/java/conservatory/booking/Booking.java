@@ -6,7 +6,7 @@ import java.time.LocalDate;
 @Entity
 @Table(uniqueConstraints = {
     @UniqueConstraint(columnNames = {"roomName", "date", "timeSlot"}) 
-}) // Questo vincolo nel DB impedisce le doppie prenotazioni!
+}) //This DB constraint prevents double bookings
 public class Booking {
 
     @Id
@@ -16,18 +16,17 @@ public class Booking {
     private String roomName;   
     private LocalDate date;    
     private String timeSlot;   
-    private String teacherId;
+    private String teacherID;
 
     public Booking() {}
 
-    public Booking(String roomName, LocalDate date, String timeSlot, String teacherId) {
+    public Booking(String roomName, LocalDate date, String timeSlot, String teacherID) {
         this.roomName = roomName;
         this.date = date;
         this.timeSlot = timeSlot;
-        this.teacherId = teacherId;
+        this.teacherID = teacherID;
     }
 
-    // Getters e Setters standard...
     public Long getId() { return id; }
     public String getRoomName() { return roomName; }
     public void setRoomName(String roomName) { this.roomName = roomName; }
@@ -35,6 +34,6 @@ public class Booking {
     public void setDate(LocalDate date) { this.date = date; }
     public String getTimeSlot() { return timeSlot; }
     public void setTimeSlot(String timeSlot) { this.timeSlot = timeSlot; }
-    public String getTeacherId() { return teacherId; }
-    public void setTeacherId(String teacherId) { this.teacherId = teacherId; }
+    public String getTeacherID() { return teacherID; }
+    public void setTeacherID(String teacherID) { this.teacherID = teacherID; }
 }

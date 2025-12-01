@@ -31,9 +31,9 @@ public class DocenteDAO {
         try (Connection conn = dataSource.getConnection();
              PreparedStatement stmt = conn.prepareStatement(query)) {
 
-            stmt.setString(1, eD.getID());
-            stmt.setString(2, eD.getteacherName()); 
-            stmt.setString(3, eD.getteacherSurname());
+            stmt.setString(1, eD.getTeacherID());
+            stmt.setString(2, eD.getTeacherName()); 
+            stmt.setString(3, eD.getTeacherSurname());
 
             stmt.executeUpdate();
 
@@ -43,21 +43,21 @@ public class DocenteDAO {
         }
     }
 	
-    public EntityDocente readTeacher(String ID) throws DAOException {
+    public EntityDocente readTeacher(String teacherID) throws DAOException {
         EntityDocente eD = null;
-        String query = "SELECT * FROM teacher WHERE ID = ?;";
+        String query = "SELECT * FROM teacher WHERE teacherID = ?;";
 
         try (Connection conn = dataSource.getConnection();
              PreparedStatement stmt = conn.prepareStatement(query)) {
 
-            stmt.setString(1, ID);
+            stmt.setString(1, teacherID);
             ResultSet result = stmt.executeQuery();
 
             if (result.next()) {
                 eD = new EntityDocente(
                     result.getString("teacherName"), 
                     result.getString("teacherSurname"), 
-                    ID
+                    teacherID
                 );
             }
         } catch (SQLException e) {

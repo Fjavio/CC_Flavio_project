@@ -5,8 +5,8 @@ import java.time.LocalDate;
 import java.util.List;
 
 public interface BookingRepository extends JpaRepository<Booking, Long> {
-    // Ci serve per verificare se esiste già una prenotazione
+	//To check if a reservation already exists
     boolean existsByRoomNameAndDateAndTimeSlot(String roomName, LocalDate date, String timeSlot);
     
-    List<Booking> findByTeacherId(String teacherId);
+    List<Booking> findByTeacherID(String teacherID);
 }

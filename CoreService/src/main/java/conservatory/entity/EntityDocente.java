@@ -3,31 +3,31 @@ package conservatory.entity;
 public class EntityDocente {
 	private String teacherName;
 	private String teacherSurname;
-	private String ID;
+	private String teacherID;
 	
-	public EntityDocente(String ID, String teacherName, String teacherSurname) {
+	public EntityDocente(String teacherID, String teacherName, String teacherSurname) {
 		super();
-		this.ID = ID;
+		this.teacherID = teacherID;
 		this.teacherName = teacherName;
 		this.teacherSurname = teacherSurname;
 	}
 	
-	public String getteacherName() {
+	public String getTeacherName() {
 		return teacherName;
 	}
-	public void setteacherName(String teacherName) {
+	public void setTeacherName(String teacherName) {
 		this.teacherName = teacherName;
 	}
-	public String getteacherSurname() {
+	public String getTeacherSurname() {
 		return teacherSurname;
 	}
-	public void setteacherSurname(String teacherSurname) {
+	public void setTeacherSurname(String teacherSurname) {
 		this.teacherSurname = teacherSurname;
 	}
-	public String getID() {
-		return ID;
+	public String getTeacherID() {
+		return teacherID;
 	}
-	public void setID(String ID) {
-		this.ID = ID;
+	public void setTeacherID(String teacherID) {
+		this.teacherID = teacherID;
 	}
 }

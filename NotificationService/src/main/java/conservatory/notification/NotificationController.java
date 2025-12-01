@@ -17,31 +17,31 @@ public class NotificationController {
     @Autowired
     private NotificationRepository repository;
 
-    // 1. Invia una nuova notifica (Usato dal tuo GestoreConservatorio)
+    //Send a new notification (Used by GestoreConservatorio)
     @PostMapping
     public ResponseEntity<String> sendNotification(@RequestBody NotificationRequest request) {
-        logger.info("Salvataggio notifica per: {}", request.getRecipient());
+        logger.info("Saving notification for: {}", request.getRecipient());
         
         Notification n = new Notification(request.getRecipient(), request.getMessage());
         repository.save(n);
         
-        return ResponseEntity.ok("Notifica salvata con ID: " + n.getId());
+        return ResponseEntity.ok("Notification saved with ID: " + n.getId());
     }
 
-    // 2. Leggi tutte le notifiche di un utente (Usato dallo studente)
+    //Read all user's notifications (Used by student)
     @GetMapping("/{username}")
     public List<Notification> getNotifications(@PathVariable String username) {
         return repository.findByRecipient(username);
     }
 
-    // 3. Segna una notifica come letta
+    //Mark a notification as read
     @PutMapping("/{id}/read")
     public ResponseEntity<String> markAsRead(@PathVariable Long id) {
         return repository.findById(id)
                 .map(notification -> {
                     notification.setRead(true);
                     repository.save(notification);
-                    return ResponseEntity.ok("Notifica " + id + " segnata come letta.");
+                    return ResponseEntity.ok("Notification " + id + " marked as read.");
                 })
                 .orElse(ResponseEntity.notFound().build());
     }

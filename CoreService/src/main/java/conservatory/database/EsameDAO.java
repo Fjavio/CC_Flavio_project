@@ -267,7 +267,7 @@ public class EsameDAO {
                 throw new DAOException("Impossible find student: " + username);
             }
             
-            int studentPin = student.getPIN();
+            int studentPin = student.getPin();
             String querySelect = "SELECT * FROM exam WHERE username = ? AND reportCode = ?;";
             String queryDelete = "DELETE FROM exam WHERE username = ? AND reportCode = ?;";
 

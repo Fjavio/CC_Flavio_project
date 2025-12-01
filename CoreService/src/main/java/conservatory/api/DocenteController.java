@@ -33,7 +33,7 @@ public class DocenteController { //teacher
         
         java.sql.Date sqlDate = java.sql.Date.valueOf(request.getReportDate());
         
-        logger.info("DEBUG PARAMETRI: Code={}, Date={}, TeacherID={}, Room={}, Slot={}", 
+        logger.info("DEBUG PARAMETERS: Code={}, Date={}, TeacherID={}, Room={}, Slot={}", 
                 request.getReportCode(), 
                 sqlDate, 
                 request.getTeacherID(),
@@ -70,7 +70,7 @@ public class DocenteController { //teacher
     public ResponseEntity<String> closeReport(@PathVariable String reportCode, @RequestBody CloseReportRequest request) 
             throws OperationException, IllegalArgumentException {
         
-        logger.info("Request received: closeReport (Verbale: {}) per {} studenti.", 
+        logger.info("Request received: closeReport (Report: {}) for {} students.", 
                     reportCode, request.getStudentPins().size());
     
         //The closing logic iterates over all students and submitted PINs

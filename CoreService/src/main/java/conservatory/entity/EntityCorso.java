@@ -3,16 +3,16 @@ package conservatory.entity;
 public class EntityCorso {
 	private String courseCode;
 	private String courseName;
-	private int CFU;
+	private int cfu;
 	public String teacherID;
 	public String preOf;
 	public String preFor;
 	
-	public EntityCorso(String courseCode, String courseName, int CFU, String teacherID, String preOf, String preFor) {
+	public EntityCorso(String courseCode, String courseName, int cfu, String teacherID, String preOf, String preFor) {
 		super();
 		this.courseCode = courseCode;
 		this.courseName = courseName;
-		this.CFU = CFU;
+		this.cfu = cfu;
 		this.teacherID = teacherID;
 		this.preOf = preOf;
 		this.preFor = preFor;
@@ -34,12 +34,12 @@ public class EntityCorso {
 		this.courseName = courseName;
 	}
 	
-	public int getCFU() {
-		return CFU;
+	public int getCfu() {
+		return cfu;
 	}
 	
-	public void setCFU(int CFU) {
-		this.CFU = CFU;
+	public void setCfu(int cfu) {
+		this.cfu = cfu;
 	}
 	
 	public String getteacherID() {

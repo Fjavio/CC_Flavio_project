@@ -6,7 +6,7 @@ on:
   pull_request:
     branches: [ "master" ]
 
-#Permissions needed to write to the GitHub Package Registry (GHCR)
+# Permissions needed to write to the GitHub Package Registry (GHCR)
 permissions:
   contents: read
   packages: write
@@ -16,11 +16,11 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    #Download the code
+    #Download code
     - name: Checkout repository
       uses: actions/checkout@v4
 
-    #Prepare Java
+    #Prepare Java 17
     - name: Set up JDK 17
       uses: actions/setup-java@v4
       with:
@@ -28,18 +28,21 @@ jobs:
         distribution: 'temurin'
         cache: maven
 
-    #Compile and Test Microservices (Create files .jar)
+    #Compile and Test microservices (Create files .jar)
     
-    - name: Build Core Service
-      run: mvn -B clean package -f CoreService/pom.xml
+    # Core Service: use 'verify' to execute also integration tests (H2)
+    - name: Build and Test Core Service
+      run: mvn -B clean verify -f CoreService/pom.xml
 
+    # Notification Service
     - name: Build Notification Service
-      run: mvn -B clean package -f NotificationService/pom.xml
+      run: mvn -B clean package -DskipTests -f NotificationService/pom.xml
 
+    # Room Booking Service
     - name: Build Room Booking Service
-      run: mvn -B clean package -f RoomBookingService/pom.xml
+      run: mvn -B clean package -DskipTests -f RoomBookingService/pom.xml
 
-    #Prepare Docker environment: change the username to lowercase (required for Docker)
+    #Prepare Docker env: make the username lowercase (required by Docker)
     - name: Lowercase Registry Owner
       run: |
         echo "OWNER_LC=${OWNER,,}" >> ${GITHUB_ENV}
@@ -58,7 +61,7 @@ jobs:
 
     #Build & Push Docker Images
     
-    #Core Service
+    # Core Service
     - name: Build and push Core Service Docker image
       uses: docker/build-push-action@v5
       with:
@@ -66,7 +69,7 @@ jobs:
         push: true
         tags: ghcr.io/${{ env.OWNER_LC }}/gestore-conservatorio-core:latest
 
-    #Notification Service
+    # Notification Service
     - name: Build and push Notification Service Docker image
       uses: docker/build-push-action@v5
       with:
@@ -74,10 +77,16 @@ jobs:
         push: true
         tags: ghcr.io/${{ env.OWNER_LC }}/gestore-conservatorio-notification:latest
 
-    #Room Booking Service
+    # Room Booking Service
     - name: Build and push Room Booking Service Docker image
       uses: docker/build-push-action@v5
       with:
         context: ./RoomBookingService
         push: true
         tags: ghcr.io/${{ env.OWNER_LC }}/gestore-conservatorio-booking:latest
+
+    #TEST CLUSTER: start Docker Compose, wait, and then launch the cURL calls defined in the script
+    - name: Test Docker Cluster
+      run: |
+        chmod +x test-cluster.sh
+        ./test-cluster.sh

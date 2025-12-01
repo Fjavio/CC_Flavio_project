@@ -36,12 +36,12 @@ public class SegreteriaApiTest { //secretariat
     void testCreateTeacher_Success() {
         
         //A unique teacher ID to avoid conflicts
-        String teacherId = "DOC" + (1000 + new Random().nextInt(9000));
+        String teacherID = "DOC" + (1000 + new Random().nextInt(9000));
         
         CreaDocenteRequest requestBody = new CreaDocenteRequest();
-        requestBody.setName("Mario");
-        requestBody.setSurname("Rossi");
-        requestBody.setId(teacherId);
+        requestBody.setTeacherName("Mario");
+        requestBody.setTeacherSurname("Rossi");
+        requestBody.setTeacherID(teacherID);
 
         //REST Assured
         given()
@@ -59,9 +59,9 @@ public class SegreteriaApiTest { //secretariat
        
         //A deliberately incorrect ID
         CreaDocenteRequest requestBody = new CreaDocenteRequest();
-        requestBody.setName("Luca");
-        requestBody.setSurname("Verdi");
-        requestBody.setId("ID_TOO_LONG");
+        requestBody.setTeacherName("Luca");
+        requestBody.setTeacherSurname("Verdi");
+        requestBody.setTeacherID("ID_TOO_LONG");
 
         given()
             .contentType(ContentType.JSON)
@@ -77,11 +77,11 @@ public class SegreteriaApiTest { //secretariat
     void testAssociateTeacher_Fail_AssignedCourse() {
     	
     	String courseCode = "A5555"; //assigned in data.sql
-        String teacherId = "C123456"; //A valid teacher
+        String teacherID = "C123456"; //A valid teacher
 
         given()
             .contentType(ContentType.JSON)
-            .body("{ \"teacherId\": \"" + teacherId + "\" }")
+            .body("{ \"teacherID\": \"" + teacherID + "\" }")
         .when()
             .put("/api/segreteria/corsi/" + courseCode + "/docente")
         .then()
@@ -94,11 +94,11 @@ public class SegreteriaApiTest { //secretariat
         
         //Using course 'A1234', which data.sql created specifically with teacherID = NULL
         String courseCode = "A1234";
-        String teacherId = "C123456"; 
+        String teacherID = "C123456"; 
 
         given()
             .contentType(ContentType.JSON)
-            .body("{ \"teacherId\": \"" + teacherId + "\" }")
+            .body("{ \"teacherID\": \"" + teacherID + "\" }")
         .when()
             .put("/api/segreteria/corsi/" + courseCode + "/docente")
         .then()

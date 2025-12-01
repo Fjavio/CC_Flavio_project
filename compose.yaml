@@ -13,7 +13,9 @@ services:
     ports:
       - "3306:3306" #Map the port to allow you to control
     volumes:
-      - mysql-data:/var/lib/mysql #PERSISTENCE: Data survives reboots
+      - "mysql-data:/var/lib/mysql" #PERSISTENCE: Data survives reboots
+      # Init script
+      - "./mysql-init/init.sql:/docker-entrypoint-initdb.d/init.sql"
     networks:
       - conservatory-network
     #Healthcheck: Tells Docker when the DB is actually ready to receive connections.

@@ -10,24 +10,21 @@ public class Notification {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String recipient; // es. "flavio"
-    private String message;   // es. "Verbale chiuso"
+    private String recipient; // e.g. "flavio"
+    private String message;   // e.g. "Report closed"
     
-    private boolean isRead;   // true = letta, false = non letta
+    private boolean isRead;   // true = read
     private LocalDateTime timestamp;
 
-    // Costruttore vuoto (richiesto da JPA)
     public Notification() {}
 
-    // Costruttore utile
     public Notification(String recipient, String message) {
         this.recipient = recipient;
         this.message = message;
-        this.isRead = false; // Nasce non letta
+        this.isRead = false;
         this.timestamp = LocalDateTime.now();
     }
 
-    // Getters e Setters
     public Long getId() { return id; }
     public String getRecipient() { return recipient; }
     public String getMessage() { return message; }

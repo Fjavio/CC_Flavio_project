@@ -1,8 +1,8 @@
 package conservatory.api.dto;
 
 public class AssociationRequest {
-    private String teacherId;
+    private String teacherID;
 
-    public String getTeacherId() { return teacherId; }
-    public void setTeacherId(String teacherId) { this.teacherId = teacherId; }
+    public String getTeacherID() { return teacherID; }
+    public void setTeacherID(String teacherID) { this.teacherID = teacherID; }
 }

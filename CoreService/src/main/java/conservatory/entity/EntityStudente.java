@@ -3,23 +3,23 @@ package conservatory.entity;
 public class EntityStudente {
 	private String username;
 	private String password;
-	private int PIN;
+	private int pin;
 	private int idCDS;
 		
-	public EntityStudente (String username, String password, int PIN, int idCDS){
+	public EntityStudente (String username, String password, int pin, int idCDS){
 			super();
 			this.username = username;
 			this.password = password;
-			this.PIN = PIN;
+			this.pin = pin;
 			this.idCDS = idCDS;
 		}
 	
-	public int getPIN() {
-		return PIN;
+	public int getPin() {
+		return pin;
 	}
 
-	public void setPIN(int PIN) {
-		this.PIN = PIN;
+	public void setPin(int pin) {
+		this.pin = pin;
 	}
 	
 	public String getUsername() {

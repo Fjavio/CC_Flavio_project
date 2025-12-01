@@ -105,7 +105,7 @@ public class GestoreCorsiDiStudioConservatorio {
 	    }
     }
 	
-	public void createAndInsertCourse(String courseCode, String courseName, int CFU, String preOf, String preFor) 
+	public void createAndInsertCourse(String courseCode, String courseName, int cfu, String preOf, String preFor) 
             throws OperationException, IllegalArgumentException {
         
         if (courseCode == null || courseCode.length() != 5) {
@@ -114,22 +114,22 @@ public class GestoreCorsiDiStudioConservatorio {
         if (courseName == null || courseName.trim().isEmpty()) {
             throw new IllegalArgumentException("Course name cannot be empty");
         }
-        if (CFU <= 0) {
+        if (cfu <= 0) {
             throw new IllegalArgumentException("CFU must be a positive number");
         }
 
 	    try {
-	        EntityCorso course = new EntityCorso(courseCode, courseName, CFU, null, preOf, preFor);
+	        EntityCorso course = new EntityCorso(courseCode, courseName, cfu, null, preOf, preFor);
 	        courseDAO.createCourse(course);
 	    } catch (DAOException ex) {
 	        throw new OperationException("Oops, something went wrong...");
 	    }
 	}
 	
-	public void createAndInsertTeacher(String ID, String teacherName, String teacherSurname) 
+	public void createAndInsertTeacher(String teacherID, String teacherName, String teacherSurname) 
             throws OperationException, IllegalArgumentException {
         
-        if (ID == null || ID.length() != 7) {
+        if (teacherID == null || teacherID.length() != 7) {
             throw new IllegalArgumentException("Teacher ID must be 7 characters long");
         }
         if (teacherName == null || teacherName.trim().isEmpty()) {
@@ -137,19 +137,37 @@ public class GestoreCorsiDiStudioConservatorio {
         }
 
 		try {
-		    EntityDocente teacher = new EntityDocente(ID, teacherName, teacherSurname);
+		    EntityDocente teacher = new EntityDocente(teacherID, teacherName, teacherSurname);
             teacherDAO.createTeacher(teacher);
 		} catch(DAOException ex) {
 	        throw new OperationException("Oops, something went wrong...");
 	    }
     }
 	
-	public void OpeningReport(String reportCode, Date reportDate, String ID, String roomName, String timeSlot) throws OperationException, IllegalArgumentException {
+	public void createAndInsertStudent(String username, String password, int pin, int idCDS) 
+	        throws OperationException, IllegalArgumentException {
+	    
+	    if (username == null || username.trim().isEmpty()) {
+	        throw new IllegalArgumentException("Username cannot be empty");
+	    }
+	    if (String.valueOf(pin).length() != 7) {
+	        throw new IllegalArgumentException("PIN must be 7 digits long");
+	    }
+
+	    try {
+	        EntityStudente student = new EntityStudente(username, password, pin, idCDS);
+	        studentDAO.createStudent(student);
+	    } catch (DAOException ex) {
+	        throw new OperationException("Failed to create student: " + ex.getMessage());
+	    }
+	}
+	
+	public void OpeningReport(String reportCode, Date reportDate, String teacherID, String roomName, String timeSlot) throws OperationException, IllegalArgumentException {
         
         if (reportCode == null || reportCode.length() != 5) {
             throw new IllegalArgumentException("Report code must be 5 characters long");
         }
-        if (ID == null || ID.length() != 7) {
+        if (teacherID == null || teacherID.length() != 7) {
             throw new IllegalArgumentException("Teacher ID must be 7 characters long");
         }
         if (reportDate == null) {
@@ -162,14 +180,14 @@ public class GestoreCorsiDiStudioConservatorio {
 
         //STEP 1: try to book the room by calling the other microservice
         try {
-            externalService.bookRoom(roomName, reportDate.toString(), timeSlot, ID);
+            externalService.bookRoom(roomName, reportDate.toString(), timeSlot, teacherID);
         } catch (RuntimeException e) {
             throw new OperationException("Error while opening report: " + e.getMessage());
         }
         
         //STEP 2: if the room reservation is successful, save the report in the DB
 	    try {
-	        EntityVerbale eB = new EntityVerbale(reportCode, reportDate, ID);
+	        EntityVerbale eB = new EntityVerbale(reportCode, reportDate, teacherID);
 	        reportDAO.createReport(eB);
 	    } catch(DAOException ex) {
 	        //throw new OperationException("Oops, something went wrong...");
@@ -234,15 +252,15 @@ public class GestoreCorsiDiStudioConservatorio {
 		}
 	}
 	
-	public boolean checkTeacher(String ID) throws OperationException, IllegalArgumentException {
+	public boolean checkTeacher(String teacherID) throws OperationException, IllegalArgumentException {
        
 		EntityDocente eD = null;
-        if (ID == null || ID.length() != 7) {
+        if (teacherID == null || teacherID.length() != 7) {
             throw new IllegalArgumentException("Teacher ID must be 7 characters long");
         }
         
 	    try {
-	    	eD = teacherDAO.readTeacher(ID);
+	    	eD = teacherDAO.readTeacher(teacherID);
 	        return (eD != null);
 	    } catch(DAOException ex) {
 			throw new OperationException("Oops, something went wrong...");
@@ -262,7 +280,7 @@ public class GestoreCorsiDiStudioConservatorio {
 		}
 	}
 	
-	public void checkPIN(int insertedPin, String reportCode, String username) throws OperationException, IllegalArgumentException {
+	public void checkPIN(int pin, String reportCode, String username) throws OperationException, IllegalArgumentException {
         
         if (reportCode == null || reportCode.length() != 5) {
             throw new IllegalArgumentException("Report code must be 5 characters long");
@@ -270,12 +288,12 @@ public class GestoreCorsiDiStudioConservatorio {
         if (username == null || username.trim().isEmpty()) {
             throw new IllegalArgumentException("Username cannot be empty");
         }
-        if (String.valueOf(insertedPin).length() != 7) {
+        if (String.valueOf(pin).length() != 7) {
             throw new IllegalArgumentException("PIN must be 7 digits long");
         }
         
 	    try {
-	        examDAO.checkPIN(insertedPin, reportCode, username);
+	        examDAO.checkPIN(pin, reportCode, username);
 	    } catch(DAOException ex) {
 			throw new OperationException("Oops, something went wrong...");
 		}

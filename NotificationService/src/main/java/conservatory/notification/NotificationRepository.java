@@ -3,11 +3,11 @@ package conservatory.notification;
 import org.springframework.data.jpa.repository.JpaRepository;
 import java.util.List;
 
-//Interfaccia Spring per parlare con DB
+//Spring interface to talk with DB
 public interface NotificationRepository extends JpaRepository<Notification, Long> {
-    // Metodo custom per trovare le notifiche di un utente
+    //Custom method to find user's notifications
     List<Notification> findByRecipient(String recipient);
     
-    // Metodo custom per trovare solo quelle non lette
+    //Custom method to find not read notifications
     List<Notification> findByRecipientAndIsReadFalse(String recipient);
 }

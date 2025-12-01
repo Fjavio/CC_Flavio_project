@@ -22,14 +22,14 @@ public class ExternalService {
     @Value("${service.notification.url:http://localhost:8082/api/notifications}")
     private String notificationUrl;
 
-    public void bookRoom(String roomName, String date, String timeSlot, String teacherId) throws RuntimeException {
+    public void bookRoom(String roomName, String date, String timeSlot, String teacherID) throws RuntimeException {
         
         //JSON to send to the other service
         Map<String, Object> bookingRequest = Map.of(
             "roomName", roomName,
             "date", date,
             "timeSlot", timeSlot,
-            "teacherId", teacherId
+            "teacherID", teacherID
         );
 
         try {

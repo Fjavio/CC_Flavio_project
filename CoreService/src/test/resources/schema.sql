@@ -7,7 +7,7 @@ DROP TABLE IF EXISTS teacher;
 
 -- Tables
 CREATE TABLE teacher (
-    ID VARCHAR(7) PRIMARY KEY,
+    teacherID VARCHAR(7) PRIMARY KEY,
     teacherName VARCHAR(255),
     teacherSurname VARCHAR(255)
 );
@@ -26,14 +26,14 @@ CREATE TABLE course (
     teacherID VARCHAR(7),
     preOf VARCHAR(255),
     preFor VARCHAR(255),
-    FOREIGN KEY (teacherID) REFERENCES teacher(ID)
+    FOREIGN KEY (teacherID) REFERENCES teacher(teacherID)
 );
 
 CREATE TABLE report (
     reportCode VARCHAR(5) PRIMARY KEY,
     reportDate DATE,
     teacherID VARCHAR(7),
-    FOREIGN KEY (teacherID) REFERENCES teacher(ID)
+    FOREIGN KEY (teacherID) REFERENCES teacher(teacherID)
 );
 
 CREATE TABLE exam (

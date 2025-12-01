@@ -1,14 +1,14 @@
 package conservatory.api.dto;
 
 public class CreaDocenteRequest {
-    private String name;
-    private String surname;
-    private String id;
+    private String teacherName;
+    private String teacherSurname;
+    private String teacherID;
 
-    public String getName() { return name; }
-    public void setName(String name) { this.name = name; }
-    public String getSurname() { return surname; }
-    public void setSurname(String surname) { this.surname = surname; }
-    public String getId() { return id; }
-    public void setId(String id) { this.id = id; }
+    public String getTeacherName() { return teacherName; }
+    public void setTeacherName(String teacherName) { this.teacherName = teacherName; }
+    public String getTeacherSurname() { return teacherSurname; }
+    public void setTeacherSurname(String teacherSurname) { this.teacherSurname = teacherSurname; }
+    public String getTeacherID() { return teacherID; }
+    public void setTeacherID(String teacherID) { this.teacherID = teacherID; }
 }

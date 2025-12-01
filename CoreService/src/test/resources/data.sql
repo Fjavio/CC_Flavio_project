@@ -1,8 +1,8 @@
 -- Enter the essential test data
 
 -- Teachers required for the tests
-INSERT INTO teacher (ID, teacherName, teacherSurname) VALUES ('C123456', 'Claudia', 'Carrara');
-INSERT INTO teacher (ID, teacherName, teacherSurname) VALUES ('DUMMY01', 'July', 'Peach');
+INSERT INTO teacher (teacherID, teacherName, teacherSurname) VALUES ('C123456', 'Claudia', 'Carrara');
+INSERT INTO teacher (teacherID, teacherName, teacherSurname) VALUES ('DUMMY01', 'July', 'Peach');
 
 -- Student required for the tests
 INSERT INTO student (username, password, PIN, idCDS) VALUES ('flavio', 'ugrcorreo', 1234567, 12345);

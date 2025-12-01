@@ -39,7 +39,7 @@ public class CorsoDAO {
 	                eC = new EntityCorso(
 	                    courseCode, 
 	                    result.getString("courseName"), 
-	                    result.getInt("CFU"), 
+	                    result.getInt("cfu"), 
 	                    result.getString("teacherID"), 
 	                    result.getString("preOf"), 
 	                    result.getString("preFor")
@@ -60,7 +60,7 @@ public class CorsoDAO {
 
 	               stmt.setString(1, eC.getcourseCode());
 	               stmt.setString(2, eC.getcourseName());
-	               stmt.setInt(3, eC.getCFU());
+	               stmt.setInt(3, eC.getCfu());
 	               stmt.setString(4, null);
 	               stmt.setString(5, eC.getpreOf());
 	               stmt.setString(6, eC.getpreFor());

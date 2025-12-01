@@ -39,7 +39,7 @@ public class StudenteDAO {
                 eS = new EntityStudente(
                     username, 
                     result.getString("password"), 
-                    result.getInt("PIN"), 
+                    result.getInt("pin"), 
                     result.getInt("idCDS")
                 );	
             }
@@ -59,7 +59,7 @@ public class StudenteDAO {
 
             stmt.setString(1, eS.getUsername());
             stmt.setString(2, eS.getPassword());
-            stmt.setInt(3, eS.getPIN());
+            stmt.setInt(3, eS.getPin());
             stmt.setInt(4, eS.getidCDS());
 
             stmt.executeUpdate();

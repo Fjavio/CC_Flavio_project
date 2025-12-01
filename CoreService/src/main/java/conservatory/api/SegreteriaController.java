@@ -28,11 +28,11 @@ public class SegreteriaController { //secretariat
             throws OperationException, IllegalArgumentException {
         
         //Log the incoming action
-        logger.info("Request received: createTeacher (ID: {})", request.getId());
+        logger.info("Request received: createTeacher (ID: {})", request.getTeacherID());
         
-        gestore.createAndInsertTeacher(request.getId(), request.getName(), request.getSurname());
+        gestore.createAndInsertTeacher(request.getTeacherID(), request.getTeacherName(), request.getTeacherSurname());
         
-        logger.info("Teacher {} successfully created", request.getId());
+        logger.info("Teacher {} successfully created", request.getTeacherID());
         return new ResponseEntity<>("Teacher successfully created", HttpStatus.CREATED);
     }
 
@@ -40,9 +40,9 @@ public class SegreteriaController { //secretariat
     public ResponseEntity<String> createCourse(@RequestBody CreaCorsoRequest request) 
             throws OperationException, IllegalArgumentException {
         
-        logger.info("Request received: createCourse (Code: {})", request.getCode());
-        gestore.createAndInsertCourse(request.getCode(), request.getName(), request.getCfu(), request.getPreOf(), request.getPreFor());
-        logger.info("Coirse {} successfully created", request.getCode());
+        logger.info("Request received: createCourse (Code: {})", request.getCourseCode());
+        gestore.createAndInsertCourse(request.getCourseCode(), request.getCourseName(), request.getCfu(), request.getPreOf(), request.getPreFor());
+        logger.info("Coirse {} successfully created", request.getCourseCode());
         
         return new ResponseEntity<>("Course successfully created", HttpStatus.CREATED);
     }
@@ -51,10 +51,23 @@ public class SegreteriaController { //secretariat
     public ResponseEntity<String> associateTeacher(@PathVariable String courseCode, @RequestBody AssociationRequest request) 
     		throws OperationException, IllegalArgumentException {
         
-        logger.info("Request received: associateTeacher (Course: {}, Teacher: {})", courseCode, request.getTeacherId());
-        gestore.AssociationTeacherCourse(courseCode, request.getTeacherId());
+        logger.info("Request received: associateTeacher (Course: {}, Teacher: {})", courseCode, request.getTeacherID());
+        gestore.AssociationTeacherCourse(courseCode, request.getTeacherID());
         logger.info("Association for the course {} completed", courseCode);
 
         return ResponseEntity.ok("Association successfully completed");
+    }
+    
+    @PostMapping("/studenti")
+    public ResponseEntity<String> createStudent(@RequestBody CreateStudentRequest request) 
+            throws OperationException, IllegalArgumentException {
+        
+        gestore.createAndInsertStudent(
+            request.getUsername(), 
+            request.getPassword(), 
+            request.getPin(), 
+            request.getIdCds()
+        );
+        return new ResponseEntity<>("Student successfully created", HttpStatus.CREATED);
     }
 }

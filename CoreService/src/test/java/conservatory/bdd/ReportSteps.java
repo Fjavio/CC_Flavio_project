@@ -133,7 +133,7 @@ public class ReportSteps {
     public void the_teacher_closes_report_with_correct_pin(String reportCode, String username) throws OperationException {
     	//NOTIFICATION MOCK: external service should not throw exceptions when called
         doNothing().when(externalServiceMock).sendNotification(anyString(), anyString());
-        gestore.checkPIN(currentStudent.getPIN(), reportCode, username);
+        gestore.checkPIN(currentStudent.getPin(), reportCode, username);
         gestore.ClosingReport1(reportCode, username);
         gestore.ClosingReport2(reportCode);
     }
