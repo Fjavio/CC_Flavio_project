@@ -129,3 +129,8 @@ Progress tracking of the project during the Cloud Computing Exam
   - [Issue #4: Changing pom.xml](https://github.com/Fjavio/CC_Flavio_project/issues/21)
   - [Issue #5: Log System](https://github.com/Fjavio/CC_Flavio_project/issues/22)
   - [Issue #6: Finalize the build](https://github.com/Fjavio/CC_Flavio_project/issues/23)
+- [Milestone: Hito 4 -  Composición de servicios](https://github.com/Fjavio/CC_Flavio_project/milestone/7):
+  - [Issue #1: New microservices](https://github.com/Fjavio/CC_Flavio_project/issues/24)
+    - [Sub-issue #1: NotificationService](https://github.com/Fjavio/CC_Flavio_project/issues/25)
+    - [Sub-issue #2: RoomBookingService](https://github.com/Fjavio/CC_Flavio_project/issues/26)
+    - [Sub-issue #3: CoreServiceIntegration](https://github.com/Fjavio/CC_Flavio_project/issues/27)
