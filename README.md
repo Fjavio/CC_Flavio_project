@@ -134,3 +134,5 @@ Progress tracking of the project during the Cloud Computing Exam
     - [Sub-issue #1: NotificationService](https://github.com/Fjavio/CC_Flavio_project/issues/25)
     - [Sub-issue #2: RoomBookingService](https://github.com/Fjavio/CC_Flavio_project/issues/26)
     - [Sub-issue #3: CoreServiceIntegration](https://github.com/Fjavio/CC_Flavio_project/issues/27)
+  - [Issue #2: Containerization](https://github.com/Fjavio/CC_Flavio_project/issues/29)
+  - [Issue #3: Orchestration](https://github.com/Fjavio/CC_Flavio_project/issues/28)
