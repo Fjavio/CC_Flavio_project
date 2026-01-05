@@ -76,7 +76,6 @@ services:
         condition: service_started
       room-booking-service:
         condition: service_started
-		
   # ------------------------------------------------------------
   # 5. PROMETHEUS (Collects Metrics)
   prometheus:
@@ -88,7 +87,6 @@ services:
       - "9090:9090"
     networks:
       - conservatory-network
-
   # ------------------------------------------------------------
   # 6. GRAFANA (Visualizes Metrics)
   grafana:
