@@ -90,3 +90,29 @@ jobs:
       run: |
         chmod +x test-cluster.sh
         ./test-cluster.sh
+  deploy:
+      needs: build
+      runs-on: ubuntu-latest
+      if: github.ref == 'refs/heads/main'  # Esegui solo su push in main/master
+    
+      steps:
+      - name: Deploy to Azure VM via SSH
+        uses: appleboy/ssh-action@v1.0.3
+        with:
+          host: ${{ secrets.VM_HOST }}
+          username: ${{ secrets.VM_USER }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          script: |
+            # Entra nella cartella
+            cd CC_Flavio_project
+          
+            # Scarica le modifiche
+            git pull origin main
+          
+            # Ricompila i servizi (importante per le modifiche Java)
+            mvn clean package -f CoreService/pom.xml -DskipTests
+            mvn clean package -f NotificationService/pom.xml -DskipTests
+            mvn clean package -f RoomBookingService/pom.xml -DskipTests
+          
+            # Riavvia i container aggiornati
+            sudo docker compose up --build -d
