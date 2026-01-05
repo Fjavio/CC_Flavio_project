@@ -6,7 +6,7 @@ on:
   pull_request:
     branches: [ "master" ]
 
-# Permissions needed to write to the GitHub Package Registry (GHCR)
+#Permissions needed to write to the GitHub Package Registry (GHCR)
 permissions:
   contents: read
   packages: write
