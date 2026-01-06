@@ -42,7 +42,7 @@ jobs:
     - name: Build Room Booking Service
       run: mvn -B clean package -DskipTests -f RoomBookingService/pom.xml
 
-    #Prepare Docker env: make the username lowercase (required by Docker)
+    # Prepare Docker env: make the username lowercase (required by Docker)
     - name: Lowercase Registry Owner
       run: |
         echo "OWNER_LC=${OWNER,,}" >> ${GITHUB_ENV}
