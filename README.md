@@ -95,6 +95,9 @@ New architecture HITO3:
      - }
   - Expected Result: a 201 Created status and the message "Teacher successfully created"
 
+6 IMPORTANT NOTICE: Infrastructure Availability
+- The application is hosted on a Microsoft Azure Virtual Machine (IaaS). To optimize cloud costs and resources, the VM is **deallocated** when not in active testing. If the provided links (Swagger UI, Grafana, Application) are unreachable, the Virtual Machine is currently offline.
+
 ## Project Management
 Progress tracking of the project during the Software Engineering Exam
 - [Milestone: Hito 0.1 - Base Architecture](https://github.com/Fjavio/CC_Flavio_project/milestone/1):
