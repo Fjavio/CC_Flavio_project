@@ -139,4 +139,10 @@ Progress tracking of the project during the Cloud Computing Exam
   - [Issue #4: Automation CI/CD](https://github.com/Fjavio/CC_Flavio_project/issues/30)
   - [Issue #5: Cluster Testing](https://github.com/Fjavio/CC_Flavio_project/issues/31)
   - [Issue #6: System Demo](https://github.com/Fjavio/CC_Flavio_project/issues/32)
+- [Milestone: Hito 5 -  Despliegue de la aplicacion](https://github.com/Fjavio/CC_Flavio_project/milestone/8):
+  - [Issue #1: Cloud Provider Choice](https://github.com/Fjavio/CC_Flavio_project/issues/33)
+  - [Issue #2: Observability Tools](https://github.com/Fjavio/CC_Flavio_project/issues/34)
+  - [Issue #3: Automated Provisioning and Infrastructure-as-Code Configuration Tools](https://github.com/Fjavio/CC_Flavio_project/issues/35)
+  - [Issue #4: Functional Verification and Stress Testing](https://github.com/Fjavio/CC_Flavio_project/issues/36)
+  - [Issue #5: Configuration for automatic deployment of the application to IaaS from the Github repository](https://github.com/Fjavio/CC_Flavio_project/issues/37)
 
